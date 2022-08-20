@@ -1,0 +1,1073 @@
+#include<stdio.h>
+#include<conio.h>
+#include<windows.h>
+////////////////////////////////////////////////////////////////////////////////
+//..........                                                                  //
+// NAMA : BURHANUDIN HAWARI                                                   //
+//                                                                            //
+//                                                                            //
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+//....................... P R O T O T Y P E ..................................//
+////////////////////////////////////////////////////////////////////////////////
+void login();                                                                 //
+void menu();                                                                  //
+void informasi();                                                             //
+void admin();                                                                 //
+void ambil();                                                                 //
+void keuangan();                                                              //
+void datapenyewa();                                                           //
+void keluar();                                                                //
+void daftar();                                                                //
+void background_1();                                                          //
+void background_2();                                                          //
+void background_3();                                                          //
+void background_4();                                                          //
+void background_5();                                                          //
+void background_6();                                                          //
+void background_7();                                                          //
+void background_8();                                                          //
+void background_9();                                                          //
+void sewa();                                                                  //
+void nota();                                                                  //
+void data();                                                                  //
+void ceknama();                                                               //
+////////////////////////////////////////////////////////////////////////////////
+char username[20];                                                            //
+char password[20];                                                            //
+char nama[100][100];                                                          //
+char jeniskelamin[100][100];                                                  //
+char type1[50];                                                               //
+char pilih;                                                                   //
+char nohp[100][100];                                                          //
+char umur[100][100];                                                          //
+char lamasewa1[40];                                                           //
+char bayar[30][50];                                                           //
+char ambilu[50][50];                                                          //
+char keperluan[100][100];                                                     //                                                          //
+int nilai[50];
+////////////////////////////////////////////////////////////////////////////////                                                           //
+int n=0;
+int z=0;                                                                      //
+int a=1;                                                                      //
+int q=0;                                                                      //
+int v=0;                                                                      //
+int ambiluang;
+int totaluang;                                                                //
+int jumlah;                                                                   //
+int harga;                                                                    //
+int bsewa;                                                                    //
+int type;                                                                     //
+int lamasewa;                                                                 //
+int bbonus;                                                                   //
+int btotal;                                                                   //                                                                    //
+////////////////////////////////////////////////////////////////////////////////
+bool valnama(char nama1[]);                                                   //
+bool valumur(char umur1[]);                                                   //
+bool valjeniskelamin(char jeniskelamin1[]);                                   //
+bool valnohp(char nohp1[]);                                                   //
+bool valangka(char bayar1[]);                                                 //
+////////////////////////////////////////////////////////////////////////////////
+//............................................................................//
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+//............................... L O G I N ..................................//
+////////////////////////////////////////////////////////////////////////////////
+void login(){
+a=1;
+background_1();
+	do{
+		gotoxy(45,25);printf("username :                     ");
+      gotoxy(45,29);printf("password :                     ");
+      gotoxy(55,25);gets(username);
+      gotoxy(55,29);gets(password);
+      	if(strcmp(username,"burhanudin")==0 && strcmp(password,"hawari")==0){
+         	a=5;
+            clrscr();
+            menu();
+         }else if(strcmp(username,"burhanudin")!=0 && strcmp(password,"hawari")==0){
+            for(int a=1;a<=3;a++){
+         		gotoxy(45,25);printf("    username salah !!!!!!!!    "); Sleep(400);
+   				gotoxy(45,25);printf("                               "); Sleep(400);
+            }	gotoxy(45,25);printf("                               ");
+               gotoxy(45,29);printf("                               ");
+
+         a++;
+         }else if(strcmp(username,"burhanudin")==0 && strcmp(password,"hawari")!=0){
+            for(int a=1;a<=3;a++){
+         		gotoxy(45,29);printf("     password salah !!!!!!!!   "); Sleep(400);
+   				gotoxy(45,29);printf("                               "); Sleep(400);
+            }  gotoxy(45,29);printf("                               ");
+            	gotoxy(45,25);printf("                               ");
+         a++;
+         }else if(strcmp(username,"burhanudin")!=0 && strcmp(password,"hawari")!=0){
+         	for(int a=1;a<=3;a++){
+					gotoxy(45,25);printf("username dan password salah !!!"); Sleep(400);
+   				gotoxy(45,25);printf("                               "); Sleep(400);
+            	gotoxy(45,29);printf("username dan password salah !!!"); Sleep(400);
+   				gotoxy(45,29);printf("                               "); Sleep(400);
+            }  gotoxy(45,25);printf("                               ");
+            	gotoxy(45,29);printf("                               ");
+         a++;
+         }
+
+   }while(a<=3);
+
+   	if(a==5){
+      	clrscr();
+      	menu();
+      }else{
+      	for (int a=1;a<=100;a++){
+         	for(int a=1;a<=3;a++){
+      			gotoxy(29,33);printf("ANDA TELAH MEMASUKAN USERNAME DAN PASSWORD SALAH SEBANYAK 3 KALI");Sleep(500);
+         		gotoxy(29,33);printf("                                                                ");
+            	gotoxy(29,33);printf("ANDA TELAH MEMASUKAN USERNAME DAN PASSWORD SALAH SEBANYAK 3 KALI");}
+					gotoxy(29,34);printf("              APAKAH ANDA INGIN LOGIN KEMBALI....(y/t)?         ");pilih=getch();Sleep(500);
+         		clrscr();
+         	if(pilih=='y'){
+         		login();
+         	}else if(pilih=='t'){
+         		keluar();
+         	}else{
+         		for(int a=1;a<=3;a++){
+         			gotoxy(29,33);printf("                   PILIHAN TIDAK VALID !!!                      ");Sleep(500);
+            		gotoxy(29,33);printf("                                                                ");
+         		}
+         	}
+   		}
+		}
+
+}
+////////////////////////////////////////////////////////////////////////////////
+//.................................. M E N U .................................//
+////////////////////////////////////////////////////////////////////////////////
+void menu(){
+background_2();
+	gotoxy(5,14);printf("1. ADMIN     ");
+   gotoxy(5,20);printf("2. INFORMASI ");
+	gotoxy(5,26);printf("3. SEWA      ");
+   gotoxy(5,32);printf("4. keluar    ");
+   gotoxy(5,37);printf("   pilih    :"); pilih=getche();
+   	if(pilih=='1'){
+      	clrscr();
+      	admin();
+      }else if(pilih=='2'){
+      	clrscr();
+      	informasi();
+      }else if(pilih=='3'){
+      	clrscr();
+      	daftar();
+      }else if(pilih=='4'){
+      	clrscr();
+      	keluar();
+      }else{
+      	clrscr();
+      	menu();
+      }
+}
+////////////////////////////////////////////////////////////////////////////////
+//........................... D A T A   K E U A N G A N ......................//
+////////////////////////////////////////////////////////////////////////////////
+void keuangan(){
+background_9();
+
+
+	gotoxy(25,3);printf(" PEMASUKAN ");
+   gotoxy(87,3);printf("PENGELUARAN");
+
+    for(int b=0,y=7;b<z;b++,y+=2){
+   	gotoxy(5,y);printf("%d.  %s",b+1,nama[b]);
+      gotoxy(25,y);printf("sebesar Rp. %d  ",nilai[b]);
+      gotoxy(90,y);printf("%d  ",totaluang);
+
+   }
+/*   for(int a=0,y=7;a<q;a++,y+=2){
+   	gotoxy(63,y);printf("%s  ",keperluan[v]);
+		gotoxy(90,y);printf("%d  ",ambilu[q]);
+   }*/
+   gotoxy(5,33);printf(" jumlah uang sekarang :%d  ",jumlah-totaluang);
+   gotoxy(65,33);printf(" jumlah pengeluaran sekarang :%d  ",totaluang);
+
+   gotoxy(47,36);printf("tekan 9 jika ingin ambil uang");
+   gotoxy(80,38);printf("tekan 0 untuk kembali ke menu");
+   for(int a=0;a<10;a++){
+   gotoxy(5,37);printf("pilih");pilih=getche();
+   	if(pilih=='0'){
+      	clrscr();
+      	menu();
+   	}else if(pilih=='9'){
+         clrscr();
+      	ambil();
+      }else{
+      	for(int b=1;b<=3;b++){
+   			gotoxy(50,39);printf("PILIHAN TIDAK VALID ");Sleep(500);
+   			gotoxy(50,39);printf("                    ");Sleep(500);
+   		}
+   	}
+   }
+    system("color f3");
+}
+////////////////////////////////////////////////////////////////////////////////
+//......................... A M B I L   U A N G ..............................//
+////////////////////////////////////////////////////////////////////////////////
+void ambil(){
+background_9();
+int x=0;
+	gotoxy(5,3);printf(" MASUKAN KEPERLUAN ");
+	gotoxy(65,3);printf("MASUKAN NOMINAL UANG");
+
+   for(int x=0,p=7;x<100;x++,p+=2){
+      gotoxy(5,p);gets(keperluan[v]);
+		gotoxy(65,p); gets(ambilu[q]);
+      		if(valangka(ambilu[q])==true){
+               //gotoxy(65,p); printf("                   ");
+               x=111;
+            }else{
+               gotoxy(65,p); printf("MASUKAN TIDAK VALID !");Sleep(500);
+               gotoxy(65,p); printf("                        ");
+            }
+
+   }
+   ambiluang=atoi(ambilu[q]);
+   totaluang+=ambiluang;
+   gotoxy(40,36);printf("tekan 9 jika ingin kembali ");
+   gotoxy(80,38);printf("tekan 0 untuk kembali ke menu");
+
+    for(int a=0;a<10;a++){
+    	gotoxy(5,37);printf("pilih");pilih=getche();
+   	if(pilih=='0'){
+      	clrscr();
+      	menu();
+   	}else if(pilih=='9'){
+         clrscr();
+      	keuangan();
+      }else{
+      	for(int b=1;b<=3;b++){
+   			gotoxy(50,39);printf("PILIHAN TIDAK VALID ");Sleep(500);
+   			gotoxy(50,39);printf("                    ");Sleep(500);
+   		}
+   	}
+   }
+
+}
+////////////////////////////////////////////////////////////////////////////////
+//........................... I N F O R M A S I ..............................//
+////////////////////////////////////////////////////////////////////////////////
+void informasi(){
+
+background_3();
+
+	gotoxy(11,3);printf("   JENIS VILLA   ");
+   gotoxy(92,3);printf("HARGA SEWA / HARI");
+	gotoxy(52,3);printf("   KETERANGAN    ");
+   gotoxy(4,7);printf("1.VILLA Type 1");
+   gotoxy(4,9);printf("2.VILLA Type 2");
+   gotoxy(4,11);printf("3.VILLA Type 3");
+   gotoxy(4,13);printf("4.VILLA Type 4");
+   gotoxy(4,15);printf("5.VILLA Type 5");
+   gotoxy(43,7);printf("2 Kamar dengan Luas 80 m persegi  ");
+   gotoxy(43,9);printf("3 Kamar dengan Luas 100 m persegi ");
+   gotoxy(43,11);printf("4 Kamar dengan Luas 120 m persegi ");
+   gotoxy(43,13);printf("5 Kamar dengan Luas 140 m persegi ");
+   gotoxy(43,15);printf("6 Kamar dengan Luas 160 m persegi ");
+   gotoxy(84,7);printf("RP. 300000");
+   gotoxy(84,9);printf("RP. 350000");
+   gotoxy(84,11);printf("RP. 400000");
+   gotoxy(84,13);printf("RP. 450000");
+   gotoxy(84,15);printf("RP. 500000");
+   gotoxy(35,36);printf("    DISCOUNT 5% JIKA MENYEWA LEBIH DARI 3 HARI    ");
+   gotoxy(35,38);printf("           tekan 0 untuk kembali ke menu          ");
+   gotoxy(54,19);printf(" FASILITAS ");
+   gotoxy(4,23);printf(" Villa ini terdiri dari 2 lantai dengan tampilan mewah. Dilengkapi dengan fasilitas memuaskan. Disetiap kamar    ");
+   gotoxy(4,24);printf(" memiliki kamar mandi tersendiri setiap ruangan difasilitasi AC baik di kamar tidur maupunruangan lainnya");
+   gotoxy(4,26);printf(" Fasilitas furniture yang sangat bagus bisa digunakan selama anda menginap di villa ini. Dari pintu masuk anda     ");
+   gotoxy(4,27);printf(" sudah bisa melihat kemewahan villa ini. Ruang tengah yang cukup luas dibagi menjadi dua bagian dilengkapi ");
+   gotoxy(4,28);printf(" debgab sofa dan juga TV cable yang dapat digunakan dengan bebas");
+   gotoxy(4,30);printf(" tidak hanya itu villa ini juga memiliki fasilitas laundry room. Ruangan khusus dengan mesin cuci, setrika, dan ");
+   gotoxy(4,31);printf(" lemari penyimpanan dapat digunakan");
+
+   for(int a=0;a<100;a++){
+   gotoxy(5,37);printf("pilih");pilih=getche();
+   	if(pilih=='0'){
+      	clrscr();
+      	menu();
+   	}else{
+      	for(int b=1;b<=3;b++){
+   			gotoxy(50,39);printf("PILIHAN TIDAK VALID ");Sleep(500);
+   			gotoxy(50,39);printf("                    ");Sleep(500);
+   		}
+   	}
+   }
+}
+////////////////////////////////////////////////////////////////////////////////
+//.................................. S E W A .................................//
+////////////////////////////////////////////////////////////////////////////////
+void sewa(){
+
+   gotoxy(41,26);printf("pilih type     :");
+   gotoxy(62,26);printf("lama sewa      :");
+
+   gotoxy(58,26);gets(type1);
+   type=atoi(type1);
+
+   if (type <= 0 || type >= 6){
+   	for(int a=1;a<=3;a++){
+   		gotoxy(50,28);printf("PILIHAN TIDAK VALID ");Sleep(500);
+   		gotoxy(50,28);printf("                    ");Sleep(500);
+   	}
+   	sewa();
+   }
+
+   gotoxy(79,26);gets(lamasewa1);
+   lamasewa=atoi(lamasewa1);
+
+   if (lamasewa<=0){
+   	for(int a=1;a<=3;a++){
+      	gotoxy(50,39);printf("PILIHAN TIDAK VALID ");Sleep(500);
+         gotoxy(50,39);printf("                    ");Sleep(500);
+      }
+   	sewa();
+   }
+
+   if(type==1){
+   harga=300000;
+   	if(lamasewa>3){
+       	bsewa=300000*lamasewa;
+         bbonus=300000*lamasewa*5/100;
+         btotal=bsewa-bbonus;
+         clrscr();
+         nota();
+      }else{
+      	bsewa=300000*lamasewa;
+         bbonus=0;
+         btotal=bsewa-bbonus;
+         clrscr();
+         nota();
+      }
+   }
+   else if(type==2){
+   harga=350000;
+   	if(lamasewa>3){
+			bsewa=350000*lamasewa;
+         bbonus=350000*lamasewa*5/100;
+         btotal=bsewa-bbonus;
+			clrscr();
+         nota();
+      }else{
+         bsewa=350000*lamasewa;
+         bbonus=0;
+         btotal=bsewa-bbonus;
+         clrscr();
+         nota();
+      }
+   }
+   else if(type==3){
+   harga=400000;
+   	if(lamasewa>3){
+       	bsewa=400000*lamasewa;
+         bbonus=400000*lamasewa*5/100;
+         btotal=bsewa-bbonus;
+         clrscr();
+         nota();
+      }else{
+         bsewa=400000*lamasewa;
+         bbonus=0;
+         btotal=bsewa-bbonus;
+         clrscr();
+         nota();
+      }
+   }
+   else if(type==4){
+   harga=450000;
+   	if(lamasewa>3){
+       	bsewa=450000*lamasewa;
+         bbonus=450000*lamasewa*5/100;
+         btotal=bsewa-bbonus;
+         clrscr();
+         nota();
+      }else{
+         bsewa=450000*lamasewa;
+         bbonus=0;
+         btotal=bsewa-bbonus;
+         clrscr();
+         nota();
+      }
+   }
+   else if(type==5){
+   harga=500000;
+   	if(lamasewa>3){
+       	bsewa=500000*lamasewa;
+         bbonus=500000*lamasewa*5/100;
+         btotal=bsewa-bbonus;
+         clrscr();
+         nota();
+      }else{
+         bsewa=500000*lamasewa;
+         bbonus=0;
+         btotal=bsewa-bbonus;
+         clrscr();
+         nota();
+      }
+   }
+
+   for(int a=1;a<=100;a++){
+   gotoxy(80,39);printf("tekan 0 untuk kembali ke menu");
+   gotoxy(3,39);printf("pilih");pilih=getche();
+   	if(pilih=='0'){
+      	clrscr();
+      	menu();
+   	}else{
+   		for(int a=1;a<=3;a++){
+   			gotoxy(50,39);printf("PILIHAN TIDAK VALID ");Sleep(500);
+   			gotoxy(50,39);printf("                    ");Sleep(500);
+   		}
+		}
+   }
+}
+////////////////////////////////////////////////////////////////////////////////
+//................................. N O T A ..................................//
+////////////////////////////////////////////////////////////////////////////////
+void nota(){
+
+int btotal2,bayaran;
+background_7();
+
+gotoxy(41,15);printf("type %d                      : Rp. %d",type,harga);
+gotoxy(41,16);printf("lama sewa                   : Rp. %d       x",lamasewa);
+gotoxy(41,17);printf("___________________________________________");
+gotoxy(41,18);printf("                              Rp. %d",bsewa);
+gotoxy(41,19);printf("bonus                       : Rp. %d   ",bbonus);
+gotoxy(83,19);printf("_");
+gotoxy(41,20);printf("___________________________________________");
+gotoxy(41,21);printf("harga yang harus dibayar    : Rp.   ");
+gotoxy(75,21);printf("%d",btotal);
+gotoxy(41,22);printf("___________________________________________");
+gotoxy(41,23);printf("masukan nominal pembayaran  : Rp. ");
+
+   nilai[n]=btotal;
+   jumlah+=nilai[n];
+   n++;
+
+   while(true){
+		gotoxy(75,23); gets(bayar[z]);
+      if(valangka(bayar[z])==true){
+               gotoxy(45,15); printf("                   ");
+               break;
+            }else{
+               gotoxy(45,15); printf("Nomor Tidak Valid !");
+               gotoxy(98,15); printf("                        ");
+            }
+
+   }
+   bayaran=atoi(bayar[z]);
+
+   //btotal2=atoi(btotal[0]);
+
+  	if(bayaran<btotal){
+       	for(int a=1;a<=3;a++){
+   			gotoxy(50,23);printf("  NOMINAL UANG KURANG !!!       ");Sleep(500);
+   			gotoxy(50,23);printf("                                     ");Sleep(500);
+         nota();
+   		}
+   }
+   if(bayaran>=btotal){
+   	gotoxy(41,24);printf("___________________________________________");
+   	gotoxy(41,25);printf("kembalian anda              : Rp. %d",bayaran-btotal);
+   }
+   for(int a=1;a<=100;a++){
+   	gotoxy(80,39);printf("tekan 0 untuk kembali ke menu");
+   	gotoxy(3,39);printf("pilih");pilih=getch();
+   		if(pilih=='0'){
+      		clrscr();
+      		background_4();
+      			for(int a=1;a<=3;a++){
+   					gotoxy(48,20);printf("    TERIMA KASIH    ");Sleep(500);
+   					gotoxy(48,20);printf("                    ");Sleep(500);
+   				}
+         z++;
+      	menu();
+
+      	}else{
+   			for(int a=1;a<=3;a++){
+   				gotoxy(50,39);printf("PILIHAN TIDAK VALID ");Sleep(500);
+   				gotoxy(50,39);printf("                    ");Sleep(500);
+   			}
+			}
+   }
+
+
+}
+////////////////////////////////////////////////////////////////////////////////
+//.................................. A D M I N ...............................//
+////////////////////////////////////////////////////////////////////////////////
+void admin(){
+background_8();
+	gotoxy(32,20);printf("1. data penyewa ");
+   gotoxy(82,20);printf("  2. keuangan   ");
+
+   for(int a=1;a<=100;a++){
+   	gotoxy(80,39);printf("tekan 0 untuk kembali ke menu");
+   	gotoxy(3,39);printf("pilih");pilih=getch();
+   		if(pilih=='0'){
+      		z++;
+      		clrscr();
+      		background_4();
+      			for(int a=1;a<=3;a++){
+   					gotoxy(48,20);printf("    TERIMA KASIH    ");Sleep(500);
+   					gotoxy(48,20);printf("                    ");Sleep(500);
+   				}
+         z++;
+      	menu();
+
+      	}else if(pilih=='1'){
+         	clrscr();
+            datapenyewa();
+         }else if(pilih=='2'){
+         	clrscr();
+            keuangan();
+         }else{
+   			for(int a=1;a<=3;a++){
+   				gotoxy(50,39);printf("PILIHAN TIDAK VALID ");Sleep(500);
+   				gotoxy(50,39);printf("                    ");Sleep(500);
+   			}
+			}
+   }
+}
+////////////////////////////////////////////////////////////////////////////////
+//........................... D A T A   P E N Y E W A  ........................//
+////////////////////////////////////////////////////////////////////////////////
+
+void datapenyewa(){
+	background_6();
+
+   gotoxy(14,3);printf("NAMA PENYEWA");
+   gotoxy(55,3);printf("JENIS KELAMIN");
+   gotoxy(95,3);printf("NO HANDPHONE");
+
+   for(int b=0,y=7;b<z;b++,y+=2){
+   	gotoxy(58,y);printf("%s",jeniskelamin[b]);
+      gotoxy(95,y);printf("%s",nohp[b]);
+		gotoxy(5,y);printf("%d.  %s",b+1,nama[b]);
+
+   }
+
+   	gotoxy(50,36);printf("tekan 9 untuk kembali \n");
+   	gotoxy(85,37);printf("tekan 0 untuk kembali ke menu\n");
+   	gotoxy(5,37);printf("pilih");pilih=getche();
+   	if(pilih=='0'){
+      	clrscr();
+      	menu();
+   	}else 	if(pilih=='9'){
+      	clrscr();
+      	admin();
+   	}
+      else{
+   	printf("pilihihan tidak valid");
+   	printf("                      ");
+   	clrscr();
+      }
+
+}
+////////////////////////////////////////////////////////////////////////////////
+//................................ K E L U A R ...............................//
+////////////////////////////////////////////////////////////////////////////////
+void keluar(){
+
+background_4();
+
+	for(int a=1;a<=3;a++){
+   	gotoxy(48,20);printf("PROGRAM AKAN DITUTUP");Sleep(500);
+   	gotoxy(48,20);printf("                    ");Sleep(500);
+   }
+
+   for(int a=1;a<=3;a++){
+   	gotoxy(48,20);printf("    TERIMA KASIH    ");Sleep(500);
+   	gotoxy(48,20);printf("                    ");Sleep(500);
+   }
+
+		exit(0);
+
+}
+////////////////////////////////////////////////////////////////////////////////
+//.............................. D A F T A R .................................//
+////////////////////////////////////////////////////////////////////////////////
+void daftar(){
+
+background_5();
+
+	gotoxy(21,2);printf("    JENIS VILLA    ");
+   gotoxy(81,2);printf(" HARGA SEWA / HARI ");
+   gotoxy(21,5);printf("1.VILLA Type 1");
+   gotoxy(21,7);printf("2.VILLA Type 2");
+   gotoxy(21,9);printf("3.VILLA Type 3");
+   gotoxy(21,11);printf("4.VILLA Type 4");
+   gotoxy(21,13);printf("5.VILLA Type 5");
+   gotoxy(81,5);printf("RP. 300000");
+   gotoxy(81,7);printf("RP. 350000");
+   gotoxy(81,9);printf("RP. 400000");
+   gotoxy(81,11);printf("RP. 450000");
+   gotoxy(81,13);printf("RP. 500000");
+   gotoxy(55,16);printf("  daftar  ");
+	gotoxy(41,18);printf("   nama          :         ");
+   gotoxy(41,20);printf("   umur          :         ");
+   gotoxy(41,22);printf("   jenis kelamin :         ");
+   gotoxy(41,24);printf("   no.handphone  :         ");
+
+       for (int b=0;b<=100;b++){
+ 				gotoxy(60,18);gets(nama[z]);
+ 				if(valnama(nama[z])){
+               b=111;
+            	}
+            else{
+            	gotoxy(60,18);printf("inputan tidak valid"); Sleep(500);
+               gotoxy(60,18);printf("                   ");
+
+
+            }
+   	}
+
+      for(int b=0;b<=100;b++){
+         gotoxy(60,20);gets(umur[z]);
+      		if(valumur(umur[z])){
+               b=111;
+            }else{
+            	gotoxy(60,20);printf("inputan tidak valid"); Sleep(500);
+               gotoxy(60,20);printf("                   ");
+               b++;
+            }
+
+      }
+
+      for(int b=0;b<=100;b++){
+         gotoxy(60,22);gets(jeniskelamin[z]);
+      		if(valjeniskelamin(jeniskelamin[z])){
+               b=111;
+            }else{
+            	gotoxy(60,22);printf("inputan tidak valid"); Sleep(500);
+               gotoxy(60,22);printf("                   ");
+               b++;
+            }
+
+      }
+
+      for(int b=0;b<=100;b++){
+         gotoxy(60,24);gets(nohp[z]);
+      		if(valnohp(nohp[z])){
+               b=111;
+            }else{
+            	gotoxy(60,24);printf("inputan tidak valid"); Sleep(500);
+               gotoxy(60,24);printf("                   ");
+               b++;
+            }
+
+      }
+
+   sewa();
+
+}
+////////////////////////////////////////////////////////////////////////////////
+//......................... B A C K G R O U N D _ 1 ..........................//
+////////////////////////////////////////////////////////////////////////////////
+void background_1(){
+
+       // GARIS KE PINGGIR DI LOGIN //
+	for(int x=1;x<=120;x++){ textcolor(5);
+		gotoxy(x,1);cprintf("%c",219);Sleep(5);
+   	gotoxy(x,11);cprintf("%c",219);Sleep(5);
+   	gotoxy(x,40);cprintf("%c",219);Sleep(5);
+	}
+   	// GARIS KE PINGGIR DI BAWAH "VILLA" //
+	for(int x=30;x<=90;x++){ textcolor(5);
+   	gotoxy(x,21);cprintf("%c",219);Sleep(5);
+	}
+   	// GARIS KE BAWAH DI PINGGIR VILLA //
+	for(int x=11;x<=21;x++){ textcolor(5);
+		gotoxy(30,x);cprintf("%c%c",219,219);Sleep(5);
+   	gotoxy(90,x);cprintf("%c%c",219,219);Sleep(5);
+	}
+   	// GARIS KE BAWAH DI LOGIN //
+	for(int x=1;x<=40;x++){ textcolor(5);
+		gotoxy(1,x);cprintf("%c%c",219,219);Sleep(5);
+   	gotoxy(120,x);cprintf("%c%c",219,219);Sleep(5);
+	}
+////////////////// USERNAME / PASSWORD /////////////////
+                 // GARIS KE PINGGIR //
+	for(int x=40;x<=80;x++){ textcolor(5);
+   	gotoxy(x,23);cprintf("%c",219);Sleep(5);
+   	gotoxy(x,27);cprintf("%c",219);Sleep(5);
+   	gotoxy(x,31);cprintf("%c",219);Sleep(5);
+	}
+   				 // GARIS KE BAWAH //
+	for(int x=23;x<=31;x++){ textcolor(5);
+		gotoxy(40,x);cprintf("%c%c",219,219);Sleep(5);
+   	gotoxy(80,x);cprintf("%c%c",219,219);Sleep(5);
+	}
+
+//////////////////////////// P U R W A K A R T A ///////////////////////////////
+	gotoxy(25,3);cprintf("%c%c%c%c  %c%c  %c%c %c%c%c%c%c  %c       %c %c%c%c%c%c%c %c%c  %c%c %c%c%c%c%c%c %c%c%c%c%c  %c%c%c%c%c%c %c%c%c%c%c%c",37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37);Sleep(5);
+   gotoxy(25,4);cprintf("%c%c%c%c%c %c%c  %c%c %c%c%c%c%c%c %c       %c %c%c%c%c%c%c %c%c  %c%c %c%c%c%c%c%c %c%c%c%c%c%c %c%c%c%c%c%c %c%c%c%c%c%c",37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37);Sleep(5);
+   gotoxy(25,5);cprintf("%c%c %c%c %c%c  %c%c %c%c  %c%c %c%c     %c%c %c%c  %c%c %c%c %c%c  %c%c  %c%c %c%c  %c%c   %c%c   %c%c  %c%c",37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37);Sleep(5);
+   gotoxy(25,6);cprintf("%c%c%c%c%c %c%c  %c%c %c%c%c%c%c  %c%c  %c  %c%c %c%c%c%c%c%c %c%c%c%c   %c%c%c%c%c%c %c%c%c%c%c    %c%c   %c%c%c%c%c%c",37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37);Sleep(5);
+   gotoxy(25,7);cprintf("%c%c%c%c  %c%c  %c%c %c%c%c%c    %c %c%c%c %c  %c%c%c%c%c%c %c%c %c%c  %c%c%c%c%c%c %c%c%c%c     %c%c   %c%c%c%c%c%c",37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37);Sleep(5);
+   gotoxy(25,8);cprintf("%c%c    %c%c  %c%c %c%c %c%c   %c%c%c %c%c%c  %c%c  %c%c %c%c  %c%c %c%c  %c%c %c%c %c%c    %c%c   %c%c  %c%c",37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37);Sleep(5);
+   gotoxy(25,9);cprintf("%c%c    %c%c%c%c%c%c %c%c  %c%c   %c   %c   %c%c  %c%c %c%c  %c%c %c%c  %c%c %c%c  %c%c   %c%c   %c%c  %c%c",37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37);Sleep(5);
+//////////////////////////////// V I L L A /////////////////////////////////////
+   gotoxy(47,13);cprintf("%c   %c %c%c %c%c      %c%c      %c%c%c%c%c%c",37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37);Sleep(5);
+   gotoxy(47,14);cprintf("%c   %c %c%c %c%c      %c%c      %c%c%c%c%c%c",37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37);Sleep(5);
+   gotoxy(47,15);cprintf("%c%c %c%c %c%c %c%c      %c%c      %c%c  %c%c",37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37);Sleep(5);
+   gotoxy(47,16);cprintf("%c%c %c%c %c%c %c%c      %c%c      %c%c%c%c%c%c",37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37);Sleep(5);
+   gotoxy(47,17);cprintf(" %c %c  %c%c %c%c      %c%c      %c%c%c%c%c%c",37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37);Sleep(5);
+   gotoxy(47,18);cprintf(" %c%c%c  %c%c %c%c      %c%c      %c%c  %c%c",37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37);Sleep(5);
+   gotoxy(47,19);cprintf("  %c   %c%c %c%c%c%c%c%c%c %c%c%c%c%c%c%c %c%c  %c%c",37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37);Sleep(5);
+
+  system("color f3");
+}
+////////////////////////////////////////////////////////////////////////////////
+//......................... B A C K G R O U N D _ 2 ..........................//
+////////////////////////////////////////////////////////////////////////////////
+void background_2(){
+		// GARIS KE PINGGIR DI MENU //
+   for(int x=1;x<=120;x++){ textcolor(5);
+		gotoxy(x,1);cprintf("%c",219);
+   	gotoxy(x,11);cprintf("%c",219);
+   	gotoxy(x,40);cprintf("%c",219);
+	}
+   	// GARIS KE PINGGIR DI MENU //
+   for(int x=1;x<=30;x++){ textcolor(5);
+		gotoxy(x,17);cprintf("%c",219);
+   	gotoxy(x,23);cprintf("%c",219);
+   	gotoxy(x,29);cprintf("%c",219);
+   	gotoxy(x,35);cprintf("%c",219);
+      gotoxy(x,36);cprintf("%c",219);
+   	gotoxy(x,37);cprintf("%c",219);
+      gotoxy(x,38);cprintf("%c",219);
+      gotoxy(x,39);cprintf("%c",219);
+   }
+      // GARIS KE BAWAH DI "MENU" //
+   for(int x=1;x<=11;x++){ textcolor(5);
+		gotoxy(50,x);cprintf("%c%c",219,219);
+
+	}
+   	// GARIS KE BAWAH DI MENU //
+	for(int x=11;x<=40;x++){ textcolor(5);
+		gotoxy(30,x);cprintf("%c%c",219,219);
+
+	}
+   	// GARIS KE BAWAH DI MENU //
+	for(int x=1;x<=40;x++){ textcolor(5);
+		gotoxy(1,x);cprintf("%c%c",219,219);
+   	gotoxy(120,x);cprintf("%c%c",219,219);
+	}
+/////////////////////////////////// M E N U ////////////////////////////////////
+   gotoxy(11,3);cprintf("%c%c%c %c%c%c %c%c%c%c%c %c%c   %c%c %c%c  %c%c",37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37);Sleep(5);
+   gotoxy(11,4);cprintf("%c%c%c%c%c%c%c %c%c%c%c%c %c%c%c  %c%c %c%c  %c%c",37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37);Sleep(5);
+   gotoxy(11,5);cprintf("%c%c%c%c%c%c%c %c%c    %c%c%c%c %c%c %c%c  %c%c",37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37);Sleep(5);
+   gotoxy(11,6);cprintf("%c%c %c %c%c %c%c%c%c%c %c%c%c%c%c%c%c %c%c  %c%c",37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37);Sleep(5);
+   gotoxy(11,7);cprintf("%c%c   %c%c %c%c    %c%c %c%c%c%c %c%c  %c%c",37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37);Sleep(5);
+   gotoxy(11,8);cprintf("%c%c   %c%c %c%c%c%c%c %c%c  %c%c%c %c%c%c%c%c%c",37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37);Sleep(5);
+   gotoxy(11,9);cprintf("%c%c   %c%c %c%c%c%c%c %c%c   %c%c %c%c%c%c%c%c",37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37,37);Sleep(5);
+
+
+   system("color f3");
+}
+////////////////////////////////////////////////////////////////////////////////
+//........................... B A C K G R O U N D _ 3 ........................//
+////////////////////////////////////////////////////////////////////////////////
+void background_3(){
+
+		// GARIS KE PINGGIR DI  //
+   for(int x=1;x<=120;x++){ textcolor(5);
+		gotoxy(x,1);cprintf("%c",219);
+   	gotoxy(x,5);cprintf("%c",219);
+      gotoxy(x,17);cprintf("%c",219);
+      gotoxy(x,21);cprintf("%c",219);
+      gotoxy(x,34);cprintf("%c",219);
+   	gotoxy(x,40);cprintf("%c",219);
+	}
+   	// GARIS KE BAWAH DI  //
+	for(int x=1;x<=17;x++){ textcolor(5);
+		gotoxy(40,x);cprintf("%c%c",219,219);
+      gotoxy(80,x);cprintf("%c%c",219,219);
+
+	}
+   	// GARIS KE BAWAH DI  //
+	for(int x=1;x<=34;x++){ textcolor(5);
+		gotoxy(1,x);cprintf("%c%c",219,219);
+   	gotoxy(120,x);cprintf("%c%c",219,219);
+	}
+   system("color f3");
+}
+////////////////////////////////////////////////////////////////////////////////
+//......................... B A C K G R O U N D _ 4 ..........................//
+////////////////////////////////////////////////////////////////////////////////
+void background_4(){
+
+		// GARIS KE PINGGIR //
+   for(int x=1;x<=120;x++){ textcolor(5);
+		gotoxy(x,1);cprintf("%c",219);
+   	gotoxy(x,40);cprintf("%c",219);
+	}                                    //.....P O L O S.....//
+   	// GARIS KE BAWAH //
+	for(int x=1;x<=40;x++){ textcolor(5);
+		gotoxy(1,x);cprintf("%c%c",219,219);
+   	gotoxy(120,x);cprintf("%c%c",219,219);
+	}
+   system("color f3");
+}
+////////////////////////////////////////////////////////////////////////////////
+//.......................... B A C K G R O U N D _ 5 .........................//
+////////////////////////////////////////////////////////////////////////////////
+void background_5(){
+
+		// GARIS KE PINGGIR DI SEWA //
+   for(int x=1;x<=120;x++){ textcolor(5);
+		gotoxy(x,1);cprintf("%c",219);
+   	gotoxy(x,40);cprintf("%c",219);
+	}
+   	// GARIS KE BAWAH DI SEWA //
+	for(int x=1;x<=40;x++){ textcolor(5);
+		gotoxy(1,x);cprintf("%c%c",219,219);
+   	gotoxy(120,x);cprintf("%c%c",219,219);
+	}
+   	// GARIS KE PINGGIR DI SEWA //
+   for(int x=39;x<=81;x++){ textcolor(5);
+		gotoxy(x,15);cprintf("%c",219);
+      gotoxy(x,17);cprintf("%c",219);
+   	gotoxy(x,19);cprintf("%c",219);
+		gotoxy(x,21);cprintf("%c",219);
+   	gotoxy(x,23);cprintf("%c",219);
+      gotoxy(x,25);cprintf("%c",219);
+      gotoxy(x,27);cprintf("%c",219);
+   }
+   	// GARIS KE BAWAH DI SEWA //
+	for(int x=15;x<=27;x++){ textcolor(5);
+		gotoxy(39,x);cprintf("%c%c",219,219);
+   	gotoxy(81,x);cprintf("%c%c",219,219);
+      gotoxy(60,26);cprintf("%c%c",219,219);
+	}
+   	// GARIS KE BAWAH DI SEWA //
+   for(int x=1;x<=15;x++){ textcolor(5);
+      gotoxy(60,x);cprintf("%c%c",219,219);
+	}
+   	// GARIS KE PINGGIR DI SEWA //
+   for(int x=1;x<=120;x++){ textcolor(5);
+		gotoxy(x,15);cprintf("%c",219);
+      gotoxy(x,3);cprintf("%c",219);
+   }
+   system("color f3");
+}
+////////////////////////////////////////////////////////////////////////////////
+//........................... B A C K G R O U N D _ 6 ........................//
+////////////////////////////////////////////////////////////////////////////////
+void background_6(){
+
+		// GARIS KE PINGGIR DI PENYEWA //
+   for(int x=1;x<=120;x++){ textcolor(5);
+		gotoxy(x,1);cprintf("%c",219);
+   	gotoxy(x,5);cprintf("%c",219);
+      gotoxy(x,34);cprintf("%c",219);
+   	gotoxy(x,40);cprintf("%c",219);
+	}
+   	// GARIS KE BAWAH DI PENYEWA //
+	for(int x=1;x<=34;x++){ textcolor(5);
+		gotoxy(40,x);cprintf("%c%c",219,219);
+      gotoxy(80,x);cprintf("%c%c",219,219);
+
+	}
+   	// GARIS KE BAWAH DI DATA PENYEWA //
+	for(int x=1;x<=34;x++){ textcolor(5);
+		gotoxy(1,x);cprintf("%c%c",219,219);
+   	gotoxy(120,x);cprintf("%c%c",219,219);
+	}
+   system("color f3");
+}
+////////////////////////////////////////////////////////////////////////////////
+//.......................... B A C K G R O U N D _ 7 .........................//
+////////////////////////////////////////////////////////////////////////////////
+void background_7(){
+
+		// GARIS KE PINGGIR DI  //
+   for(int x=1;x<=120;x++){ textcolor(5);
+		gotoxy(x,1);cprintf("%c",219);
+   	gotoxy(x,40);cprintf("%c",219);
+	}
+   	// GARIS KE BAWAH DI  //
+	for(int x=13;x<=27;x++){ textcolor(5);
+		gotoxy(38,x);cprintf("%c%c",219,219);
+      gotoxy(85,x);cprintf("%c%c",219,219);
+
+	}
+   	// GARIS KE BAWAH DI  //
+	for(int x=1;x<=40;x++){ textcolor(5);
+		gotoxy(1,x);cprintf("%c%c",219,219);
+   	gotoxy(120,x);cprintf("%c%c",219,219);
+	}
+   	// GARIS KE PINGGIR DI  //
+   for(int x=40;x<=85;x++){ textcolor(5);
+		gotoxy(x,13);cprintf("%c%c",219,219);
+   	gotoxy(x,27);cprintf("%c%c",219,219);
+	}
+   system("color f3");
+}
+////////////////////////////////////////////////////////////////////////////////
+//............................. B A C K G R O U N D _ 8.......................//
+////////////////////////////////////////////////////////////////////////////////
+void background_8(){
+
+		// GARIS KE PINGGIR //
+   for(int x=1;x<=120;x++){ textcolor(5);
+		gotoxy(x,1);cprintf("%c",219);
+   	gotoxy(x,40);cprintf("%c",219);
+	}                                    //.....P O L O S.....//
+   	// GARIS KE BAWAH //
+	for(int x=1;x<=40;x++){ textcolor(5);
+		gotoxy(1,x);cprintf("%c%c",219,219);
+   	gotoxy(120,x);cprintf("%c%c",219,219);
+	}
+   	//
+   for(int a=30,b=80;a<=50;a++,b++){
+   	gotoxy(a,18);cprintf("%c",219);
+   	gotoxy(a,22);cprintf("%c",219);
+      gotoxy(b,18);cprintf("%c",219);
+   	gotoxy(b,22);cprintf("%c",219);
+
+   }
+   for(int a=18;a<=22;a++){
+   	gotoxy(30,a);cprintf("%c",219);
+   	gotoxy(50,a);cprintf("%c",219);
+      gotoxy(80,a);cprintf("%c",219);
+   	gotoxy(100,a);cprintf("%c",219);
+
+   }
+   system("color f3");
+}
+////////////////////////////////////////////////////////////////////////////////
+//......................... B A C K G R O U N D _ 9 ..........................//
+////////////////////////////////////////////////////////////////////////////////
+void background_9(){
+
+		// GARIS KE PINGGIR //
+   for(int x=1;x<=120;x++){ textcolor(5);
+		gotoxy(x,1);cprintf("%c",219);
+   	gotoxy(x,40);cprintf("%c",219);
+      gotoxy(x,5);cprintf("%c",219);
+	}                                    //.....P O L O S.....//
+   	// GARIS KE BAWAH //
+	for(int x=1;x<=40;x++){ textcolor(5);
+		gotoxy(1,x);cprintf("%c%c",219,219);
+   	gotoxy(120,x);cprintf("%c%c",219,219);
+      gotoxy(60,x);cprintf("%c%c",219,219);
+	}
+    for(int z=1;z<=120;z++){
+      gotoxy(z,31);cprintf("%c",219);
+   	gotoxy(z,35);cprintf("%c",219);
+   }
+
+   system("color f3");
+}
+////////////////////////////////////////////////////////////////////////////////
+//........................... V A L I D A S I ................................//
+////////////////////////////////////////////////////////////////////////////////
+//............................................................................//
+////////////////////////////////////////////////////////////////////////////////
+//..................... V A L I D A S I   N A M A ............................//
+////////////////////////////////////////////////////////////////////////////////
+bool valnama(char nama[]){
+	if(nama[0]==' ' ||  nama[strlen(nama)-1]==' '){
+     		return false;
+     }
+     if(nama[0]==NULL){
+         return false;
+     }
+     for(int a=0; nama[a]!=NULL; a++){
+   		if(!(nama[a]>='a' && nama[a]<='z' || nama[a]>='A' && nama[a]<='Z' || nama[a]==' ')){
+      		return false;
+      	}
+         if(nama[a]==' ' && nama[a-1]==' '){
+            return false;
+         }
+      }
+      return true;
+}
+////////////////////////////////////////////////////////////////////////////////
+//........................ V A L I D A S I   U M U R .........................//
+////////////////////////////////////////////////////////////////////////////////
+bool valumur(char umur[100]){
+
+	if(umur[0]=='0' && umur[1]=='0' || umur[0]=='0' ){
+   	return false;
+   }
+   for(int i=0; i<strlen(umur); i++){
+   	if(!(umur[i]>='0' && umur[i]<='9')){
+   		return false;
+   	}
+   }
+   if(!(strlen(umur)<=2)){
+   	return false;
+   }
+   else{
+   	return true;
+   }
+}
+////////////////////////////////////////////////////////////////////////////////
+//............... V A L I D A S I   J E N I S   K E L A M I N ................//
+////////////////////////////////////////////////////////////////////////////////
+bool valjeniskelamin(char jeniskelamin[]){
+
+    if(strcmp(jeniskelamin,"pria")==0 || strcmp(jeniskelamin,"wanita")==0 || strcmp(jeniskelamin,"PRIA")==0 || strcmp(jeniskelamin,"WANITA")==0 ){
+    	return true;
+    }
+
+    return false;
+}
+////////////////////////////////////////////////////////////////////////////////
+//.............. V A L I D A S I   N O   H A N D P H O N E ...................//
+////////////////////////////////////////////////////////////////////////////////
+bool valnohp(char nohp[]){
+
+	if(!(nohp[0]=='0' && nohp[1]=='8')){
+   	return false;
+   }
+
+   if(!(strlen(nohp)>=11 && strlen(nohp)<=13)){
+   	return false;
+   }
+
+   for (int a=0;a<strlen(nohp);a++){
+   	if(!(nohp[a]>='0' && nohp[a]<='9')){
+   		return false;
+      }
+   }
+
+   return true;
+}
+////////////////////////////////////////////////////////////////////////////////
+//...................... V A L I D A S I   A N G K A .........................//
+////////////////////////////////////////////////////////////////////////////////
+bool valangka(char bayar[]){
+
+    for(int a=0; bayar[a]!=NULL; a++){
+   	if(!(bayar[a]>='0' && bayar[a]<='9')){
+      	return false;
+      }
+
+    }
+    return true;
+
+}
+
+////////////////////////////////////////////////////////////////////////////////
+//................................. M A I N ..................................//
+////////////////////////////////////////////////////////////////////////////////
+main(){
+//background_9();
+login();
+
+getch();
+}
+
+////////////////////////////////////////////////////////////////////////////////
+//............................... S E L E S A I ..............................//
+////////////////////////////////////////////////////////////////////////////////

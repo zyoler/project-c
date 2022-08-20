@@ -1,0 +1,433 @@
+#include<stdio.h>
+#include<conio.h>
+#include<windows.h>
+
+//=====prototype=====\\
+
+void background();
+void bingkai_utama();
+void bingkai2();
+void bingkai3();
+void bingkai4();
+void bingkai5();
+void bingkai6();
+void bingkai7();
+void bingkai8();
+void login();
+void login2();
+void loading();
+void welcome();
+void gambar();
+void menu();
+void jadwal_kota();
+void kota_tujuan(int pil);
+void tempat();
+void tempat2();
+void tempat3();
+void tujuan1(int t);
+void bagan();
+void bayar();
+void tunai(int n);
+void trayek(int y);
+void kosong();
+void hapus();
+void jam_pagi_hari2();
+void tarip_harga(int s[9]);
+void isikursi();
+void tal_pesan();
+void tujuan2(int y);
+void keluar();
+void batal_pesan();
+	char kota[9][15]={	"Bandung",	"Banjar",	"Bekasi",	"Bogor",	"Depok",	"Cirebon",	"Sukabumi",	"Tasik",	"Cimahi"};
+   int harga[9][9]={
+   	{30000,	50000,		60000,		65000,	65000,	80000,		85000,		70000,	20000},
+   	{50000,	30000,		40000,		50000,	60000,	50000,		80000,		75000,	35000},
+   	{60000,	40000,		30000,		65000,	40000,	60000,		85000,		65000,	50000},
+   	{65000,	50000,		65000,		30000,	40000,	80000,		85000,		50000,	55000},
+   	{65000,	60000,		40000,		40000,	30000,	65000,		85000,		55000,	60000},
+   	{80000,	50000,		60000,		80000,	65000,	30000,		85000,		60000,	80000},
+		{85000,	80000,		85000,		85000,	85000,	85000,		30000,		65000,	80000},
+   	{70000,	75000,		65000,		50000,	55000,	60000,		65000,		30000,	75000},
+   	{20000,	35000,		50000,		55000,	60000,	80000,		80000,		75000,	30000}};
+
+   int harga_bandung[9]={	30000,	50000,		60000,		65000,	65000,	80000,		85000,		70000,	20000};
+   int harga_banjar[9]={	50000,	30000,		40000,		50000,	60000,	50000,		80000,		75000,	35000};
+   int harga_bekasi[9]={	60000,	40000,		30000,		65000,	40000,	60000,		85000,		65000,	50000};
+   int harga_bogor[9]={		65000,	50000,		65000,		30000,	40000,	80000,		85000,		50000,	55000};
+   int harga_depok[9]={		65000,	60000,		40000,		40000,	30000,	65000,		85000,		55000,	60000};
+   int harga_cirebon[9]={	80000,	50000,		60000,		80000,	65000,	30000,		85000,		60000,	80000};
+	int harga_sukabumi[9]={	85000,	80000,		85000,		85000,	85000,	85000,		30000,		65000,	80000};
+   int harga_tasik[9]={		70000,	75000,		65000,		50000,	55000,	60000,		65000,		30000,	75000};
+   int harga_cimahi[9]={	20000,	35000,		50000,		55000,	60000,	80000,		80000,		75000,	30000};
+   char jam_pagi_hari[4][10]={"02.00 WIB","04.30 WIB","07.30 WIB","10.00 WIB"};
+   char jam_siang_hari[4][10]={"12.30 WIB","15.30 WIB","18.00 WIB","20.00 WIB"};
+
+  	char nama[7];
+   char pass[11];
+
+	int no=0;
+   struct pemesanan{
+   	int id;
+      int kota_asal;
+      int kota_tujuan;
+      int masuk;
+      int jumlah;
+   };
+   pemesanan tiket[1000];
+
+   int tujuan;
+   int seat[9][9][8]={{{40}}};
+   int n;
+   int o;
+   int m;
+   int kursi[9]={40,40,40,40,40,40,40,40,40};
+   int pilasal;
+   int piltujuan1;
+   int pil;
+   char l[20];
+   int r=0;
+
+//========================= bingkai =========================\\
+
+void background(){
+	for(int a=0;a<=98;a++){
+   textbackground(7);
+   textcolor(1);
+      for(int b=0;b<40;b++){
+      	gotoxy(3+a,3+b);cprintf(" ");
+      }
+   }
+}
+void bingkai_utama(){
+	textcolor(1);
+	for(int x=0;x<=100;x++){
+   	gotoxy(2+x,2);cprintf("%c",219);
+      gotoxy(2+x,43);cprintf("%c",219);
+      if(x<42){
+         gotoxy(2,2+x);cprintf("%c",219);
+         gotoxy(102,2+x);cprintf("%c",219);
+      }
+   }
+}
+
+void bingkai2(){
+   for(int x=0;x<=30;x++){
+   textcolor(0);
+   	gotoxy(37+x,22);cprintf("%c",219);
+      gotoxy(37+x,29);cprintf("%c",219);
+      if(x<8){
+         gotoxy(37,22+x);cprintf("%c",219);
+         gotoxy(67,22+x);cprintf("%c",219);
+      }
+   }
+}
+
+void bingkai3(){
+	for(int x=0;x<=100;x++){
+   textbackground(1);
+   	gotoxy(2+x,2);cprintf("%c",219);
+      gotoxy(2+x,12);cprintf("%c",219);
+      gotoxy(2+x,43);cprintf("%c",219);
+      if(x<42){
+         gotoxy(2,2+x);cprintf("%c",219);
+         gotoxy(102,2+x);cprintf("%c",219);
+      }
+   }
+}
+
+void bingkai4(){
+	for(int x=0;x<=69;x++){
+   textcolor(13);
+   textbackground(7);
+   	gotoxy(17+x,14);cprintf("%c",219);
+      gotoxy(17+x,41);cprintf("%c",219);
+      gotoxy(17+x,18);cprintf("%c",219);
+      gotoxy(17,18);cprintf("%c",219);
+      gotoxy(17,41);cprintf("%c",219);
+      if(x<27){
+         gotoxy(17,15+x);cprintf("%c",219);
+         gotoxy(86,15+x);cprintf("%c",219);
+      }
+   }
+}
+
+
+void bingkai5(){
+	for(int x=0;x<79;x++){
+   textcolor(10);
+   	gotoxy(10+x,5);cprintf("%c",219);
+      gotoxy(10+x,9);cprintf("%c",219);
+      gotoxy(10+x,41);cprintf("%c",219);
+      gotoxy(10,9);cprintf("%c",219);
+      if(x<35){
+         gotoxy(10,6+x);cprintf("%c",219);
+         gotoxy(88,6+x);cprintf("%c",219);
+      }
+   }
+}
+
+void bingkai6(){
+	bingkai5();
+   int y=0;
+   for(int v=0;v<6;v++){
+   textcolor(1);
+   	gotoxy(15,11+y);cprintf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c",219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219);
+   	gotoxy(15,12+y);cprintf("%c                            %c",219,219);
+   	gotoxy(15,13+y);cprintf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c",219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219);
+   	gotoxy(55,11+y);cprintf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c",219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219);
+   	gotoxy(55,12+y);cprintf("%c                            %c",219,219);
+   	gotoxy(55,13+y);cprintf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c",219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219);
+		y+=5;
+   }
+}
+
+void bingkai7(){
+	bingkai5();
+   int z=0;
+   for(int x=0;x<5;x++){
+   textcolor(1);
+     gotoxy(15,11+z);cprintf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c",219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219);
+     gotoxy(15,12+z);cprintf("%c                            %c",219,219);
+     gotoxy(15,13+z);cprintf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c",219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219);
+     gotoxy(15,14+z);cprintf("%c                            %c",219,219);
+     gotoxy(15,15+z);cprintf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c",219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219);
+     gotoxy(55,11+z);cprintf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c",219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219);
+     gotoxy(55,12+z);cprintf("%c                            %c",219,219);
+     gotoxy(55,13+z);cprintf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c",219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219);
+     gotoxy(55,14+z);cprintf("%c                            %c",219,219);
+     gotoxy(55,15+z);cprintf("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c",219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219);
+     z+=6;
+   }
+}
+
+void bingkai8(){
+	bingkai5();
+	for(int x=0;x<=74;x++){
+   textcolor(10);
+   	gotoxy(12+x,10);cprintf("%c",219);
+      gotoxy(12+x,40);cprintf("%c",219);
+      gotoxy(12,10);cprintf("%c",219);
+      if(x<=29){
+         gotoxy(12,10+x);cprintf("%c",219);
+         gotoxy(86,10+x);cprintf("%c",219);Sleep(10);
+      }
+   }
+}
+
+void jam_pagi_hari2(){
+	int a,b;
+   textcolor(0);
+	for(a=0;a<=77;a++){
+   	textcolor(0);
+   	gotoxy(14+a,10);cprintf("%c",219);
+   	gotoxy(14+a,14);cprintf("%c",219);
+   	gotoxy(14+a,18);cprintf("%c",219);
+   	gotoxy(14+a,22);cprintf("%c",219);
+   	gotoxy(14+a,26);cprintf("%c",219);
+   	gotoxy(14+a,30);cprintf("%c",219);
+      gotoxy(14+a,33);cprintf("%c",219);
+      gotoxy(14+a,35);cprintf("%c",219);
+   	if(a<20){
+   		gotoxy(14,11+a);cprintf("%c",219);
+    		gotoxy(19,11+a);cprintf("%c",219);
+    		gotoxy(37,11+a);cprintf("%c",219);
+    		gotoxy(55,11+a);cprintf("%c",219);
+    		gotoxy(73,11+a);cprintf("%c",219);
+    		gotoxy(91,11+a);cprintf("%c",219);
+
+
+   	}
+   }
+
+
+   gotoxy(17, 7);cprintf(" Data TRAVEL Jawa Barat Dari Pukul 02.00 WIB Sampai Pukul 20.00 WIB");
+   gotoxy(14,12);cprintf("%c No %c   jadwal ke-1   %c   jadwal ke-2   %c   jadwal ke-3   %c   jadwal ke-4   %c",219,219,219,219,219,219);
+   gotoxy(14,16);cprintf("%c 1. %c    %s    %c    %s    %c    %s    %c    %s    %c",219,219,jam_pagi_hari[0],219,jam_pagi_hari[1],219,jam_pagi_hari[2],219,jam_pagi_hari[3],219);
+   gotoxy(14,24);cprintf("%c 2. %c    %s    %c    %s    %c    %s    %c    %s    %c",219,219,jam_siang_hari[0],219,jam_siang_hari[1],219,jam_siang_hari[2],219,jam_siang_hari[3],219);
+   gotoxy(14,34);cprintf("%c  0  KEMBALI    %c   1 MENU    %c  99  KELUAR    %c   Masukan pilihan :        %c",219,219,219,219,219,219,219,219);
+	gotoxy(23,20);cprintf("%d Kursi",seat[pilasal][piltujuan1][0]);
+   gotoxy(41,20);cprintf("%d Kursi",seat[pilasal][piltujuan1][1]);
+   gotoxy(59,20);cprintf("%d Kursi",seat[pilasal][piltujuan1][2]);
+   gotoxy(77,20);cprintf("%d Kursi",seat[pilasal][piltujuan1][3]);
+   gotoxy(23,28);cprintf("%d Kursi",seat[pilasal][piltujuan1][4]);
+   gotoxy(41,28);cprintf("%d Kursi",seat[pilasal][piltujuan1][6]);
+   gotoxy(59,28);cprintf("%d Kursi",seat[pilasal][piltujuan1][7]);
+   gotoxy(77,28);cprintf("%d Kursi",seat[pilasal][piltujuan1][8]);
+
+
+      	int n;
+
+         textcolor(0);
+   		textbackground(7);
+         l:
+        	gotoxy(84,34);gets(l);
+         if(strlen(l)==0)goto l;
+         r=0;
+         while(r!=strlen(l)){
+         	r=0;
+            for(int a=0;a<strlen(l);a++){
+         		if(l[a]>='0' && l[a]<='9'){
+            		r++;
+            	}
+            }
+            if(r!=strlen(l)){
+            	for(int a=0;a<strlen(l);a++){
+               	gotoxy(84+a,34);cprintf(" ");
+            	}
+            	gotoxy(84,34);gets(l);
+            }
+         }
+         n=atoi(l);
+         gotoxy(14,34);cprintf("%c  0  KEMBALI    %c   1 MENU    %c  99  KELUAR    %c   Masukan pilihan :        %c",219,219,219,219,219,219,219,219);
+         if(strcmp(l,"0")==0){
+   		  	background();
+   			kota_tujuan(o);
+         }else if(strcmp(l,"99")==0){
+   			keluar();
+		   }else if(strcmp(l,"1")==0){
+   			welcome();
+		   }else{
+            background();
+         	jam_pagi_hari2();
+		   }
+}
+
+
+void kosong(){
+	gotoxy(55,35);cprintf("                              ");
+   gotoxy(55,36);cprintf("                              ");
+   gotoxy(55,37);cprintf("                              ");
+   gotoxy(55,38);cprintf("                              ");
+   gotoxy(55,39);cprintf("                              ");
+}
+
+
+//========================= login =========================\\
+void login(){
+   bingkai2();
+   login2();
+   textbackground(7);
+   a:
+   gotoxy(39,24);cprintf("Username : ");gets(nama);
+   if(strlen(nama)==0)goto a;
+   if(strlen(nama)>17){
+   	bingkai2();
+   }
+   b:
+   gotoxy(39,26);cprintf("Password : ");gets(pass);
+   if(strlen(pass)==0)goto b;
+   if(strlen(nama)>17){
+   	bingkai2();
+   }
+   if(strcmp(nama,"iqbal")==0 && strcmp(pass,"insyaallah")==0){
+      char a[]="Berhasil.....";
+
+      for(int x=0;x<=3;x++){
+      	for(int y=0;y<=strlen(a);y++){
+         textcolor(1);
+         	gotoxy(43+y,28);cprintf("%c",a[y]);Sleep(5);
+         }
+      }
+      loading();
+      welcome();
+   }else{
+   	char a[]="akun tidak ditemukan...";
+   	for(int z=0;z<=strlen(a);z++){
+         textcolor(12);
+         textbackground(7);
+   		gotoxy(41+z,28);cprintf("%c",a[z]);Sleep(15);
+   	}
+      getch();
+      background();
+      login();
+   }
+
+}
+
+void login2(){
+
+		char a[]="  NN          NNNNNN      NNNNNN     NNNN    NNNNN    NNN ";
+   	char b[]="  NN         NN     N    NN     N     NN      NN NN    N  ";
+   	char c[]="  NN         NN     N    NN           NN      NN  NN   N  ";
+   	char d[]="  NN         NN     N    NN   NNN     NN      NN   NN  N  ";
+   	char e[]="  NN         NN     N    NN     N     NN      NN    NN N  ";
+      char f[]="  NNNNNNN     NNNNNN      NNNNNN     NNNN    NNN     NNNN ";
+
+      for(int x=0;x<strlen(a);x++){
+      textcolor(0);
+      		gotoxy(25+x,11);cprintf("%c",a[x]);Sleep(5);
+   	      gotoxy(25+strlen(b)-x,12);cprintf("%c",b[strlen(b)-x]);Sleep(5);
+	         gotoxy(25+x,13);cprintf("%c",c[x]);Sleep(5);
+         	gotoxy(25+strlen(d)-x,14);cprintf("%c",d[strlen(d)-x]);Sleep(5);
+       	   gotoxy(25+x,15);cprintf("%c",e[x]);Sleep(5);
+            gotoxy(25+strlen(f)-x,16);cprintf("%c",f[strlen(f)-x]);Sleep(5);
+      }
+
+
+}
+
+//========================= loading =========================\\
+void loading(){
+	for(int a=1;a<=80;a++){
+   textbackground(7);gotoxy(43,35);cprintf("Loading....%d %",a+20);Sleep(30);
+   	textcolor(1);gotoxy(12+a,38);cprintf("%c",219);Sleep(10);
+   }
+}
+
+//========================= welcome =========================\\
+void welcome(){
+	background();
+	bingkai3();
+
+   	char a[]="NNN      NNN   NNNNN   NN      NNNNN    NNNNN    NNNN NNNN   NNNNNN";
+   	char b[]="NN        NN   NN      NN      NN      NN    N   NN NNN NN   NN   ";
+   	char c[]="NN   NN   NN   NNN     NN      NN      NN    N   NN  N  NN   NNNN  ";
+   	char d[]=" NN NNNN NN    NN      NN      NN      NN    N   NN     NN   NN    ";
+   	char e[]="  NNN  NNN     NNNNN   NNNNN   NNNNN    NNNNN    NN     NN   NNNNNN";
+
+      for(int x=0;x<strlen(a);x++){
+      textcolor(0);
+      textbackground(7);
+      	gotoxy(17+x,4);cprintf("%c",a[x]);
+         gotoxy(17+strlen(b)-x,5);cprintf("%c",b[strlen(b)-x]);
+         gotoxy(17+x,6);cprintf("%c",c[x]);
+         gotoxy(17+strlen(d)-x,7);cprintf("%c",d[strlen(d)-x]);
+         gotoxy(17+x,8);cprintf("%c",e[x]);Sleep(30);
+      }
+      char f[]="To Application TRAVEL  Created by MOBAELLOEN......";
+
+      for(int x=0;x<strlen(f);x++){
+      	gotoxy(27+x,10);cprintf("%c",f[x]);Sleep(25);
+      }
+
+
+      menu();
+}
+
+//========================= jadwal =========================\\
+
+void jadwal_kota(){
+	textcolor(7);
+	bingkai_utama();
+   bingkai6();
+   char b[]="DATA TRANS TRAVEL JAWA BARAT";
+
+
+      for(int x=0;x<strlen(b);x++){
+      textcolor(0);
+      textbackground(7);
+      	gotoxy(35+x,7);cprintf("%c",b[x]);Sleep(25);
+      }
+
+   textbackground(7);
+   gotoxy(18,12);cprintf("1. BANDUNG ");
+   gotoxy(18,17);cprintf("2. BANJAR ");
+   gotoxy(18,22);cprintf("3. BEKASI ");
+   gotoxy(18,27);cprintf("4. BOGOR ");
+	gotoxy(18,32);cprintf("5. DEPOK ");
+   gotoxy(58,12);cprintf("6. CIREBON ");
+   gotoxy(58,17);cprintf("7. SUKABUMI ");
+   gotoxy(58,22);cprintf("8. TASIK MALAYA ");
+   gotoxy(58,27);cprintf("9. CIMAHI ");
+   gotoxy(58,32);cprintf("99 KELUAR ");
+   gotoxy(18,37)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

@@ -1,0 +1,2465 @@
+#include<stdio.h>
+#include<conio.h>
+#include<windows.h>
+
+//////////////////////////////////PROTOTYPE/////////////////////////////////////
+
+void background_1();
+void login();
+void loading();
+void tampilan2();
+void tampilan3();
+void pilih();
+void menuHome();
+void menuAboutUs();
+void timpaSpasi();
+void menuTour();
+void pilihTour();
+void menuStore();
+void pilihStore();
+void timpaSpasiStore();
+void storePremium();
+void pilihPremium();
+void animPremium();
+void storeMens();
+void pilihMens();
+void storeWomens();
+void pilihWomens();
+void storeAcc();
+void pilihAcc();
+void tampilan4();
+void skull();
+void pilihMusic();
+void BM();
+
+//////////////////////////////////VARIABEL GLOBAL///////////////////////////////
+
+int stok_cc=50,stok_LBC=50,stok_acid=50,stok_toxic=50,stok_hell=45;
+int stok_mask=40,stok_deat=40,stok_mug=40,stok_rut=40,stok_pool=40,stok_coe=40;
+int stok_shadow=40,stok_tote=40,stok_ride=40,stok_httk=40,stok_trio=40;
+
+
+/////////////////////////////////PROCEDURE//////////////////////////////////////
+
+void background_1(){
+	for(int a=1;a<=30;a++){
+   	for(int b=1;b<=10;b++){
+         textcolor(0);
+      	gotoxy(44+a,15);cprintf("%c",219);   // samping atas
+         gotoxy(44+a,25);cprintf("%c",219);   // samping bawah
+         gotoxy(44+a,20);cprintf("%c",219);
+         gotoxy(45,14+b);cprintf("%c",219);   // tegak kiri
+         gotoxy(74,14+b);cprintf("%c",219);   // tegak kanan
+      }
+   }
+ gotoxy(47,17);cprintf("Username: ");
+ gotoxy(47,22);cprintf("Password: ");
+}
+
+void login(){
+	background_1();
+	int x=0;
+	char nama[50],pass[50];
+	do{
+ 		gotoxy(57,17);gets(nama);
+ 		gotoxy(57,22);gets(pass);
+ 		if(strcmp(nama,"AfnanSullivan")==0 && strcmp(pass,"my41148")==0){
+   	   	gotoxy(50,26);cprintf("Welcome to The Family");
+      		x=4;
+      		gotoxy(53,27);printf("              ");
+      		loading();
+      		clrscr();
+      		tampilan2();
+   	}else{
+   		gotoxy(57,17);printf("              ");
+   		gotoxy(57,22);printf("              ");
+ 			textcolor(4);
+ 			gotoxy(53,26);printf(" Who Are You? ");Sleep(500);
+         gotoxy(53,26);printf("              ");Sleep(500);
+         gotoxy(53,26);printf(" Who Are You? ");Sleep(500);
+         gotoxy(53,26);printf("              ");
+			textcolor(0);gotoxy(47,17);cprintf("Username: ");
+   		x++;
+   		getch();
+ 		}
+	}while(x!=4);
+}
+
+
+
+void loading(){
+   int tamp=0;
+   textcolor(7);
+   for(int a=1;a<=51;a++){
+   	textcolor(8);Sleep(50);
+		gotoxy(34+a,30);cprintf("%c",219);
+      gotoxy(51,28);cprintf("Loading ... %d %",tamp);
+   	tamp+=2;
+   }
+
+   gotoxy(51,28);cprintf("-Loading Completed-");Sleep(500);
+   gotoxy(51,28);printf("                  ");Sleep(500);
+   gotoxy(51,28);cprintf("-Loading Completed-");
+}
+
+
+
+void tampilan2(){
+   textcolor(0);
+   for(int a=1;a<=30;a++){
+   	for(int b=1;b<=120;b++){
+      	gotoxy(1,a);cprintf("%c",219);
+         gotoxy(120,a);cprintf("%c",219);
+         gotoxy(b,1);cprintf("%c",219);
+         gotoxy(b,5);cprintf("%c",219);
+         gotoxy(b,10);cprintf("%c",219);
+         gotoxy(b,30);cprintf("%c",219);
+
+      }
+   }
+   for(int a=5;a<=30;a++){
+   	for(int b=1;b<=120;b++){
+      	gotoxy(24,a);cprintf("%c",219);
+      }
+   }
+   for(int a=5;a<=10;a++){
+   	for(int b=1;b<=120;b++){
+      	gotoxy(49,a);cprintf("%c",219);
+         gotoxy(74,a);cprintf("%c",219);
+         gotoxy(99,a);cprintf("%c",219);
+      }
+   }
+   textcolor(10);
+   char as[200] = "Avenged Sevenfold Official Website ";
+   for(int i=0; i<strlen(as); i++){
+   	if(i == 0){
+      	gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      }else{
+   		gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   	}
+   }
+   gotoxy(9,8);printf("1. HOME");
+   gotoxy(34,8);printf("2. STORE");
+	gotoxy(59,8);printf("3. MUSIC");
+   gotoxy(84,8);printf("4. TOUR");
+   gotoxy(104,8);printf("5. ABOUT US");
+   pilih();
+}
+
+
+
+void tampilan3(){
+   for(int a=1;a<=30;a++){
+   	for(int b=1;b<=120;b++){
+      	textcolor(0);
+      	gotoxy(1,a);cprintf("%c",5);
+         gotoxy(120,a);cprintf("%c",5);
+         gotoxy(b,1);cprintf("%c",5);
+         gotoxy(b,10);cprintf("%c",5);
+         gotoxy(b,30);cprintf("%c",5);
+      }
+   }
+   textcolor(10);
+   char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   for(int i=0; i<strlen(as); i++){
+   	if(i == 0){
+      	gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      }else{
+   		gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   	}
+   }
+   menuStore();
+}
+
+
+
+void pilih(){
+	int pil;
+   gotoxy(5,27);printf("Pilih: "); scanf("%d",&pil);
+   if(pil==1){
+      timpaSpasi();
+     	menuHome();
+   }else if(pil==5){
+      timpaSpasi();
+   	menuAboutUs();
+   }else if(pil==4){
+      timpaSpasi();
+      menuTour();
+   }else if(pil==2){
+   	clrscr();
+      tampilan3();
+   }else if(pil==3){
+   	clrscr();
+      tampilan4();
+   }else{
+      timpaSpasi();
+      gotoxy(5,27);printf("Incorrect! ");
+      clrscr();
+      tampilan2();
+      pilih();
+   }
+}
+
+
+
+void timpaSpasi(){
+   gotoxy(5,27);printf("Pilih:         ");
+	gotoxy(27,13);printf("                                                     ");
+   gotoxy(27,14);printf("                                                                                          ");
+   gotoxy(27,15);printf("                                                                                          ");
+   gotoxy(27,16);printf("                                                                                          ");
+   gotoxy(27,17);printf("                                                                                          ");
+   gotoxy(27,18);printf("                                                                                          ");
+   gotoxy(27,19);printf("                                                                                          ");
+   gotoxy(27,20);printf("                                                                                          ");
+   gotoxy(27,21);printf("                                                                                          ");
+   gotoxy(27,22);printf("                                                                                          ");
+   gotoxy(27,23);printf("                                                                                          ");
+   gotoxy(27,24);printf("                                                                                          ");
+   gotoxy(27,25);printf("                                                                                          ");
+   gotoxy(27,26);printf("                                                                                          ");
+   gotoxy(27,27);printf("                                                                                          ");
+   gotoxy(27,28);printf("                                                                                          ");
+}
+
+
+
+void timpaSpasiStore(){
+	gotoxy(5,27);printf("Pilih:         ");
+   gotoxy(2,11);printf("                                                                                                                      ");
+   gotoxy(2,12);printf("                                                                                                                      ");
+   gotoxy(2,13);printf("                                                                                                                      ");
+   gotoxy(2,14);printf("                                                                                                                      ");
+   gotoxy(2,15);printf("                                                                                                                      ");
+   gotoxy(2,16);printf("                                                                                                                      ");
+   gotoxy(2,17);printf("                                                                                                                      ");
+   gotoxy(2,18);printf("                                                                                                                      ");
+   gotoxy(2,19);printf("                                                                                                                      ");
+   gotoxy(2,20);printf("                                                                                                                      ");
+   gotoxy(2,21);printf("                                                                                                                      ");
+   gotoxy(2,22);printf("                                                                                                                      ");
+   gotoxy(2,23);printf("                                                                                                                      ");
+   gotoxy(2,24);printf("                                                                                                                      ");
+   gotoxy(2,25);printf("                                                                                                                      ");
+   gotoxy(2,26);printf("                                                                                                                      ");
+   gotoxy(2,27);printf("                                                                                                                      ");
+   gotoxy(2,28);printf("                                                                                                                      ");
+   gotoxy(2,29);printf("                                                                                                                      ");
+}
+
+
+
+void menuHome(){
+   gotoxy(5,27);printf("Pilih:    ");
+	gotoxy(27,15);printf("Avenged Sevenfold adalah band bergenre Metal, yang didirikan pada tahun 1999 di California");
+   gotoxy(32,16);printf("yang hingga kini tetap ekssis mengeluarkan album dan musik serta menggelar konser");
+   gotoxy(55,17);printf("ke berbagai belahan dunia");
+   pilih();
+}
+
+
+
+void menuAboutUs(){
+	gotoxy(5,27);printf("Pilih:    ");
+	gotoxy(27,13);printf("Vocalist      :    Matthew Charles Sanders 	(M. Shadows)");
+   gotoxy(27,15);printf("Lead Guitar   :    Brian Elwin Haner Jr. 	(Synyster Gates)");
+   gotoxy(27,17);printf("Rhytym Guitar :    Zachary James Baker      (Zacky Vengeance)");
+   gotoxy(27,19);printf("Bassist       :    Jonathan Christ          (Johnny Christ)");
+   gotoxy(27,21);printf("Drummer       :    Brooks Wackerman          ");
+   pilih();
+}
+
+
+
+void pilihTour(){
+	int harga,kembalian;
+   long uang,pil,pil2;
+   gotoxy(27,27);printf("Pilih Ticket Tour: "); scanf("%ld",&pil);
+   if(pil==1){
+      timpaSpasi();
+      harga=500000;
+      gotoxy(5,27);printf("Pilih:         ");
+      gotoxy(5,27);printf("          ");
+      gotoxy(27,19);printf("Harga: 500000");
+      gotoxy(27,20);printf("Masukkan Nominal Uang: "); scanf("%ld",&uang);
+     	gotoxy(27,21);printf("Buy This Ticket?");
+      gotoxy(27,23);printf("1. Yes      2. No");
+      gotoxy(27,27);printf("                   ");
+      gotoxy(27,27);printf("Pilih: "); scanf("%ld",&pil2);
+      if(pil2==1){
+         if(uang<harga){
+            gotoxy(27,19);printf("Uang Anda Tidak Cukup");
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            gotoxy(27,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            gotoxy(27,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            timpaSpasi();
+            menuTour();
+         }else{
+            kembalian=uang-harga;
+            gotoxy(27,17);printf("Total Harga: %d",harga);
+            gotoxy(27,18);printf("Kembalian: %d",kembalian);Sleep(3000);
+            timpaSpasi();
+         	menuTour();
+         }
+      }else if(pil2==2){
+         	gotoxy(27,19);printf("Belilah Lain Kali :)");
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            gotoxy(27,19);printf("Belilah Lain Kali :)");Sleep(500);
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            gotoxy(27,19);printf("Belilah Lain Kali :)");Sleep(500);
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            timpaSpasi();
+         	menuHome();
+      }else{
+         timpaSpasi();
+         menuTour();
+      	gotoxy(27,28);printf("Incorrect!");
+         pilihTour();
+      }
+   }else if(pil==2){
+      timpaSpasi();
+      harga=600000;
+      gotoxy(5,27);printf("Pilih:         ");
+      gotoxy(5,27);printf("          ");
+      gotoxy(27,19);printf("Harga: 600000");
+     	gotoxy(27,20);printf("Masukkan Nominal Uang: "); scanf("%ld",&uang);
+     	gotoxy(27,21);printf("Buy This Ticket?");
+      gotoxy(27,23);printf("1. Yes      2. No");
+      gotoxy(27,27);printf("                   ");
+      gotoxy(27,27);printf("Pilih: "); scanf("%ld",&pil2);
+      if(pil2==1){
+         if(uang<harga){
+            gotoxy(27,19);printf("Uang Anda Tidak Cukup");
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            gotoxy(27,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            gotoxy(27,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            timpaSpasi();
+            menuTour();
+         }else{
+            kembalian=uang-harga;
+            gotoxy(27,17);printf("Total Harga: %d",harga);
+            gotoxy(27,18);printf("Kembalian: %d",kembalian);Sleep(3000);
+            timpaSpasi();
+         	menuTour();
+         }
+      }else if(pil2==2){
+         	gotoxy(27,19);printf("Belilah Lain Kali :)");
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            gotoxy(27,19);printf("Belilah Lain Kali :)");Sleep(500);
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            gotoxy(27,19);printf("Belilah Lain Kali :)");Sleep(500);
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            timpaSpasi();
+         	menuHome();
+      }else{
+         timpaSpasi();
+         menuTour();
+      	gotoxy(27,28);printf("Incorrect!");
+         pilihTour();
+      }
+   }else if(pil==3){
+      timpaSpasi();
+      harga=700000;
+      gotoxy(5,27);printf("Pilih:         ");
+      gotoxy(5,27);printf("          ");
+      gotoxy(27,19);printf("Harga: 700000");
+     	gotoxy(27,20);printf("Masukkan Nominal Uang: "); scanf("%ld",&uang);
+     	gotoxy(27,21);printf("Buy This Ticket?");
+      gotoxy(27,23);printf("1. Yes      2. No");
+      gotoxy(27,27);printf("                   ");
+      gotoxy(27,27);printf("Pilih: "); scanf("%ld",&pil2);
+      if(pil2==1){
+         if(uang<harga){
+            gotoxy(27,19);printf("Uang Anda Tidak Cukup");
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            gotoxy(27,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            gotoxy(27,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            timpaSpasi();
+            menuTour();
+         }else{
+            kembalian=uang-harga;
+            gotoxy(27,17);printf("Total Harga: %d",harga);
+            gotoxy(27,18);printf("Kembalian: %d",kembalian);Sleep(3000);
+            timpaSpasi();
+         	menuTour();
+         }
+      }else if(pil2==2){
+         	gotoxy(27,19);printf("Belilah Lain Kali :)");
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            gotoxy(27,19);printf("Belilah Lain Kali :)");Sleep(500);
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            gotoxy(27,19);printf("Belilah Lain Kali :)");Sleep(500);
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            timpaSpasi();
+         	menuHome();
+      }else{
+         timpaSpasi();
+         menuTour();
+      	gotoxy(27,28);printf("Incorrect!");
+         pilihTour();
+      }
+   }else if(pil==4){
+      timpaSpasi();
+      harga=800000;
+      gotoxy(5,27);printf("Pilih:         ");
+      gotoxy(5,27);printf("          ");
+      gotoxy(27,19);printf("Harga: 800000");
+     	gotoxy(27,20);printf("Masukkan Nominal Uang: "); scanf("%ld",&uang);
+     	gotoxy(27,21);printf("Buy This Ticket?");
+      gotoxy(27,23);printf("1. Yes      2. No");
+      gotoxy(27,27);printf("                   ");
+      gotoxy(27,27);printf("Pilih: "); scanf("%ld",&pil2);
+      if(pil2==1){
+         if(uang<harga){
+            gotoxy(27,19);printf("Uang Anda Tidak Cukup");
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            gotoxy(27,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            gotoxy(27,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            timpaSpasi();
+            menuTour();
+         }else{
+            kembalian=uang-harga;
+            gotoxy(27,17);printf("Total Harga: %d",harga);
+            gotoxy(27,18);printf("Kembalian: %d",kembalian);Sleep(3000);
+            timpaSpasi();
+         	menuTour();
+         }
+      }else if(pil2==2){
+         	gotoxy(27,19);printf("Belilah Lain Kali :)");
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            gotoxy(27,19);printf("Belilah Lain Kali :)");Sleep(500);
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            gotoxy(27,19);printf("Belilah Lain Kali :)");Sleep(500);
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            timpaSpasi();
+         	menuHome();
+      }else{
+         timpaSpasi();
+         menuTour();
+      	gotoxy(27,28);printf("Incorrect!");
+         pilihTour();
+      }
+   }else if(pil==5){
+      timpaSpasi();
+      harga=700000;
+      gotoxy(5,27);printf("Pilih:         ");
+      gotoxy(5,27);printf("          ");
+      gotoxy(27,19);printf("Harga: 700000");
+     	gotoxy(27,20);printf("Masukkan Nominal Uang: "); scanf("%ld",&uang);
+     	gotoxy(27,21);printf("Buy This Ticket?");
+      gotoxy(27,23);printf("1. Yes      2. No");
+      gotoxy(27,27);printf("                   ");
+      gotoxy(27,27);printf("Pilih: "); scanf("%ld",&pil2);
+      if(pil2==1){
+         if(uang<harga){
+            gotoxy(27,19);printf("Uang Anda Tidak Cukup");
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            gotoxy(27,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            gotoxy(27,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            timpaSpasi();
+            menuTour();
+         }else{
+            kembalian=uang-harga;
+            gotoxy(27,17);printf("Total Harga: %d",harga);
+            gotoxy(27,18);printf("Kembalian: %d",kembalian);Sleep(3000);
+            timpaSpasi();
+         	menuTour();
+         }
+      }else if(pil2==2){
+         	gotoxy(27,19);printf("Belilah Lain Kali :)");
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            gotoxy(27,19);printf("Belilah Lain Kali :)");Sleep(500);
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            gotoxy(27,19);printf("Belilah Lain Kali :)");Sleep(500);
+            gotoxy(27,19);printf("                     ");Sleep(500);
+            timpaSpasi();
+         	menuHome();
+      }else{
+         timpaSpasi();
+         menuTour();
+      	gotoxy(27,28);printf("Incorrect!");
+         pilihTour();
+      }
+   }else{
+   	gotoxy(27,28);printf("Incorrect!");           Sleep(500);
+      gotoxy(27,28);printf("                     ");
+      gotoxy(27,28);printf("Incorrect!");           Sleep(500);
+      gotoxy(27,28);printf("                     ");
+      gotoxy(27,28);printf("Incorrect!");           Sleep(500);
+      gotoxy(27,28);printf("                     ");
+      gotoxy(27,28);printf("Incorrect!");           Sleep(500);
+      gotoxy(27,28);printf("                     ");
+      clrscr();
+      tampilan2();
+   }
+}
+
+
+
+void menuTour(){
+ 	gotoxy(5,27);printf("          ");
+	gotoxy(27,13);printf("1. Avenged Sevenfold's Tour at Jakarta 11 June 2030 ");
+   gotoxy(27,15);printf("2. Avenged Sevenfold's World Tour: Hail to The King at Washington DC 12 July 2030");
+   gotoxy(27,17);printf("3. Avenged Sevenfold: Live in the LBC 17 August 2030 at Long Beach 25 December 2030");
+   gotoxy(27,19);printf("4. Avenged Sevenfold: It's Your Nightmare at Sipirok City 1 January 2031");
+   gotoxy(27,21);printf("5. Avenged Sevenfold's Tour: Hail to the King at Padang Sidempuan 31 February 2031");
+   pilihTour();
+}
+
+
+
+void pilihStore(){
+	int pilihA;
+   gotoxy(5,27);printf("Pilih: "); scanf("%d",&pilihA);
+   if(pilihA==1){
+   	timpaSpasiStore();
+      storePremium();
+   }else if(pilihA==2){
+      timpaSpasiStore();
+      storeMens();
+   }else if(pilihA==3){
+		timpaSpasiStore();
+      storeWomens();
+   }else if(pilihA==4){
+      timpaSpasiStore();
+      storeAcc();
+   }else{
+   	clrscr();
+      tampilan2();
+   }
+}
+
+
+
+void menuStore(){
+textcolor(24);
+for(int a=0; a<=65; a++){
+	gotoxy(9+a,11);printf("          $$$$$$$$$$$$$$$$$$$$$$$$$\n");Sleep(1);
+	gotoxy(9+a,12);printf("         $$$$ $$$$$$$$$$$$$$$$$$$$$$\n");Sleep(1);
+	gotoxy(9+a,13);printf("        $$$$   $$$$$$$$$$$$$$$$$$$$$$\n");Sleep(1);
+	gotoxy(9+a,14);printf("      $$$$      $$$$$$$$$$$$$$$$$$$$$$$\n");Sleep(1);
+	gotoxy(9+a,15);printf("    $$$$$        $$$$$$$$$$$$$$$$$$$$$$$\n");Sleep(1);
+	gotoxy(9+a,16);printf("   $$$$$          $$$$$$$$$$$$$$$$$$$$$$$\n");Sleep(1);
+	gotoxy(9+a,17);printf("  $$$$$            $$$$$$$$$$$$$$$$$$$$$$$\n");Sleep(1);
+	gotoxy(9+a,18);printf(" $$$$$$            $$$$$$$$$$$$$$$$$$$$$$$$\n");Sleep(1);
+	gotoxy(9+a,19);printf(" $$$$$$           $$$$$$$$$           $$$$$$\n");Sleep(1);
+	gotoxy(9+a,20);printf(" $$$$$$$         $$$ $$$ $$$         $$$$$$$\n");Sleep(1);
+	gotoxy(9+a,21);printf(" $$$$$$$$      $$$$   $   $$$$      $$$$$$$$\n");Sleep(1);
+	gotoxy(9+a,22);printf(" $$$$$$$$$$$$$$$$$   $$$   $$$$$$$$$$$$$$$$$\n");Sleep(1);
+	gotoxy(9+a,22);printf(" $$$ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ o$$\n");Sleep(1);
+	gotoxy(9+a,23);printf(" $$$  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$  $$$\n");Sleep(1);
+	gotoxy(9+a,24);printf("  $$$  $’$$$$$$$$$$$$$$$$$$$$$$$$$$$$$  o$$$\n");Sleep(1);
+	gotoxy(9+a,24);printf("  ’$$o  $$  $$’$$$$$$$$$$$$$$’$$  $$     o$$\n");Sleep(1);
+	gotoxy(9+a,25);printf("    $$o$    $$  ’$$’$$’$$’  $$     $   o$$\n");Sleep(1);
+	gotoxy(9+a,25);printf("     $$$o$  $    $$    $$   $$    $$  o$\n");Sleep(1);
+	gotoxy(9+a,26);printf("      ’$$$$O$    $$    $$   $$     o$$$\n");Sleep(1);
+	gotoxy(9+a,27);printf("         ’$$o$$  $$    $$   $$   o$$$\n");Sleep(1);
+	gotoxy(9+a,28);printf("           ’$$$$o$o$o$o$o$o$o$o$$$$\n");Sleep(1);
+	gotoxy(9+a,29);printf("             ’$$$$o$o$o$o$o$o$o$o\n");Sleep(1);
+}
+   for(int a=10;a<=30;a++){
+   	for(int b=1; b<=72; b++){
+      	textcolor(0);
+         gotoxy(72,a);cprintf("%c",5);
+         gotoxy(b,14);cprintf("%c",5);
+      }
+   }
+	gotoxy(3,12);printf("1. Premium       2. Men's       3. Women's       4. Accesories");
+   pilihStore();
+}
+
+
+
+void storePremium(){
+	textcolor(10);
+   char as[200] = "PREMIUM ";
+   for(int i=0; i<strlen(as); i++){
+   	if(i == 0){
+      	gotoxy(46,12);system("color 40");cprintf("          %c",as[i]);   //3,12
+      }else{
+   		gotoxy(56+i,12);system("color 40");cprintf("%c",as[i]);
+   	}
+   }
+   for(int a=1;a<=30;a++){
+   	for(int b=1;b<=120;b++){
+      	textcolor(0);
+         gotoxy(b,14);cprintf("%c",5);
+         gotoxy(b,21);cprintf("%c",5);
+      }
+   }
+   for(int a=14;a<=30;a++){
+   	for(int b=1;b<=120;b++){
+      	textcolor(0);
+         gotoxy(60,a);cprintf("%c",5);
+      }
+   }
+   gotoxy(20,16);printf("1. Cotton Candy Hooded Pullover");
+   gotoxy(30,19);printf("(Rp. 530.000)");
+   gotoxy(70,16);printf("3. Acid Rain Pullover Hoodie");
+   gotoxy(80,19);printf("(Rp. 650.000)");
+   gotoxy(20,24);printf("2. LBC Hoodie (Unisex)");
+   gotoxy(30,27);printf("(Rp. 900.000)");
+   gotoxy(70,24);printf("4. Toxic Avenger Pullover Hoodie");
+   gotoxy(80,27);printf("(Rp. 670.000)");
+   pilihPremium();
+}
+
+void BM(){
+   for(int a=1;a<=30;a++){
+   	for(int b=1;b<=120;b++){
+      	textcolor(0);
+      	gotoxy(1,a);cprintf("%c",5);
+         gotoxy(120,a);cprintf("%c",5);
+         gotoxy(b,1);cprintf("%c",5);
+         gotoxy(b,10);cprintf("%c",5);
+         gotoxy(b,30);cprintf("%c",5);
+      }
+   }
+	textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+}
+
+void pilihPremium(){
+	int kembalian,harga;
+   long uang,jumlah,pilihP,pilihPP;
+   gotoxy(3,29);printf("Pilih: "); scanf("%ld",&pilihP);
+   if(pilihP==1){
+   	timpaSpasiStore();
+      gotoxy(4,15);printf("Cotton Candy Hooded Pullover");
+      gotoxy(4,16);printf("Stok: %d",stok_cc);
+      gotoxy(4,17);printf("Price: Rp. 530.000");
+      gotoxy(4,19);printf("Masukkan Jumlah Barang: "); scanf("%ld",&jumlah);
+      gotoxy(4,20);printf("Masukkan Nominal Uang: "); scanf("%ld",&uang);
+      gotoxy(4,23);printf("Are You Sure to Buy This Item?");
+      gotoxy(4,25);printf("1. Yes        2. No");
+      gotoxy(4,28);printf("Pilih: "); scanf("%ld",&pilihPP);
+      if(pilihPP==1){
+      		harga=jumlah*530000;
+         	if(jumlah<=stok_cc){
+            	if(uang<harga){
+               clrscr();
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               BM();
+               storePremium();
+            	}else{
+               clrscr();
+      			gotoxy(4,19);printf("Jumlah Barang: %ld",jumlah);
+         		gotoxy(4,20);printf("Total Harga: %d",harga);
+               stok_cc -= jumlah;
+                  kembalian=uang-harga;
+         			gotoxy(4,21);printf("Kembalian: %d",kembalian);
+                  gotoxy(4,23);printf("Sisa Stok: %d",stok_cc);Sleep(5000);
+               clrscr();
+         		animPremium();
+         		clrscr();
+      			tampilan3();
+               }
+         	}else{
+         		clrscr();
+               gotoxy(4,19);printf("Stock Tidak Cukup");
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               BM();
+               storePremium();
+         	}
+      }else if(pilihPP==2){
+         clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storePremium();
+         clrscr();
+      	tampilan3();
+      	}else{
+      		clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storePremium();
+         clrscr();
+      	tampilan3();
+      	}
+   }else if(pilihP==2){
+   	timpaSpasiStore();
+      gotoxy(4,18);printf("LBC Hoodie (Unisex)");
+      gotoxy(4,16);printf("Stok: %d",stok_LBC);
+      gotoxy(4,17);printf("Price: Rp. 900.000");
+      gotoxy(4,19);printf("Masukkan Jumlah Barang: "); scanf("%ld",&jumlah);
+      gotoxy(4,20);printf("Masukkan Nominal Uang: "); scanf("%ld",&uang);
+      gotoxy(4,23);printf("Are You Sure to Buy This Item?");
+      gotoxy(4,25);printf("1. Yes        2. No");
+      gotoxy(4,28);printf("Pilih: "); scanf("%ld",&pilihPP);
+      if(pilihPP==1){
+      		harga=jumlah*900000;
+         	if(jumlah<=stok_LBC){
+            	if(uang<harga){
+               clrscr();
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               BM();
+               storePremium();
+            	}else{
+               clrscr();
+      			gotoxy(4,19);printf("Jumlah Barang: %ld",jumlah);
+         		gotoxy(4,20);printf("Total Harga: %d",harga);
+               stok_LBC -= jumlah;
+                  kembalian=uang-harga;
+         			gotoxy(4,21);printf("Kembalian: %d",kembalian);
+                  gotoxy(4,23);printf("Sisa Stok: %d",stok_LBC);Sleep(5000);
+               clrscr();
+         		animPremium();
+         		clrscr();
+      			tampilan3();
+               }
+         	}else{
+         		clrscr();
+               gotoxy(4,19);printf("Stock Tidak Cukup");
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               BM();
+               storePremium();
+         	}
+
+      }else if(pilihPP==2){
+         clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storePremium();
+         clrscr();
+      	tampilan3();
+      }else{
+      	clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storePremium();
+         clrscr();
+      	tampilan3();
+      }
+   }else if(pilihP==3){
+   	timpaSpasiStore();
+      gotoxy(4,18);printf("Acid Rain Pullover Hoodie");
+      gotoxy(4,16);printf("Stok: %d",stok_acid);
+      gotoxy(4,17);printf("Price: Rp. 650.000");
+      gotoxy(4,19);printf("Masukkan Jumlah Barang: "); scanf("%ld",&jumlah);
+      gotoxy(4,20);printf("Masukkan Nominal Uang: "); scanf("%ld",&uang);
+      gotoxy(4,23);printf("Are You Sure to Buy This Item?");
+      gotoxy(4,25);printf("1. Yes        2. No");
+      gotoxy(4,28);printf("Pilih: "); scanf("%ld",&pilihPP);
+      if(pilihPP==1){
+      		harga=jumlah*650000;
+         	if(jumlah<=stok_acid){
+            	if(uang<harga){
+               clrscr();
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               BM();
+               storePremium();
+            	}else{
+               clrscr();
+      			gotoxy(4,19);printf("Jumlah Barang: %ld",jumlah);
+         		gotoxy(4,20);printf("Total Harga: %d",harga);
+               stok_acid -= jumlah;
+                  kembalian=uang-harga;
+         			gotoxy(4,21);printf("Kembalian: %d",kembalian);
+                  gotoxy(4,23);printf("Sisa Stok: %d",stok_acid);Sleep(5000);
+               clrscr();
+         		animPremium();
+         		clrscr();
+      			tampilan3();
+               }
+         	}else{
+         		gotoxy(4,19);printf("Stock Tidak Cukup");
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               BM();
+               storePremium();
+         	}
+      }else if(pilihPP==2){
+         clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storePremium();
+         clrscr();
+      	tampilan3();
+      }else{
+      	clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storePremium();
+         clrscr();
+      	tampilan3();
+      }
+   }else if(pilihP==4){
+   	timpaSpasiStore();
+      gotoxy(4,18);printf("Toxic Avenger Pullover Hoodie");
+      gotoxy(4,16);printf("Stok: %d",stok_toxic);
+      gotoxy(4,17);printf("Price: Rp. 670.000");
+      gotoxy(4,19);printf("Masukkan Jumlah Barang: "); scanf("%ld",&jumlah);
+      gotoxy(4,20);printf("Masukkan Nominal Uang: "); scanf("%ld",&uang);
+      gotoxy(4,23);printf("Are You Sure to Buy This Item?");
+      gotoxy(4,25);printf("1. Yes        2. No");
+      gotoxy(4,28);printf("Pilih: "); scanf("%ld",&pilihPP);
+      if(pilihPP==1){
+      		harga=jumlah*670000;
+         	if(jumlah<=stok_toxic){
+            	if(uang<harga){
+               clrscr();
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               BM();
+               storePremium();
+            	}else{
+               clrscr();
+      			gotoxy(4,19);printf("Jumlah Barang: %ld",jumlah);
+         		gotoxy(4,20);printf("Total Harga: %d",harga);
+               stok_toxic -= jumlah;
+                  kembalian=uang-harga;
+         			gotoxy(4,21);printf("Kembalian: %d",kembalian);
+                  gotoxy(4,23);printf("Sisa Stok: %d",stok_toxic);Sleep(5000);
+               clrscr();
+         		animPremium();
+         		clrscr();
+      			tampilan3();
+               }
+         	}else{
+         		clrscr();
+               gotoxy(4,19);printf("Stock Tidak Cukup");
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               BM();
+               storePremium();
+         	}
+      }else if(pilihPP==2){
+         clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storePremium();
+         clrscr();
+      	tampilan3();
+      }else{
+      	clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storePremium();
+         clrscr();
+      	tampilan3();
+      }
+   }else{
+     	clrscr();
+      tampilan3();
+   }
+}
+
+
+
+void animPremium(){
+	for(int a=0; a<=50; a++){
+		gotoxy(1+a,4);printf(" $$$$$$$$$$$ $$$    $$$ $$$$$$$$$$ $$$    $$$ $$$   $$$ $$$$$$$$$$");Sleep(1);
+		gotoxy(1+a,5);printf("     $$$     $$$    $$$ $$$    $$$ $$ $   $$$ $$$ $$$   $$$       ");Sleep(1);
+		gotoxy(1+a,6);printf("     $$$     $$$    $$$ $$$    $$$ $$  $  $$$ $$$$$$    $$$        ");Sleep(1);
+		gotoxy(1+a,7);printf("     $$$     $$$$$$$$$$ $$$$$$$$$$ $$   $ $$$ $$$$$$    $$$$$$$$$$");Sleep(1);
+		gotoxy(1+a,8);printf("     $$$     $$$    $$$ $$$    $$$ $$    $$$$ $$$  $$$         $$$");Sleep(1);
+		gotoxy(1+a,9);printf("     $$$     $$$    $$$ $$$    $$$ $$     $$$ $$$   $$$ $$$$$$$$$$");Sleep(1);
+		gotoxy(9+a,12);printf("                ¶¶¶¶¶      ¶¶¶¶               ");Sleep(1);
+		gotoxy(9+a,13);printf("             ¶¶¶1¶¶         ¶¶¶¶¶¶¶           ");Sleep(1);
+		gotoxy(9+a,14);printf("          ¶¶¶111¶¶           ¶¶111¶¶¶¶        ");Sleep(1);
+		gotoxy(9+a,15);printf("       ¶¶¶¶1111¶¶¶            ¶¶¶1111¶¶¶1     ");Sleep(1);
+		gotoxy(9+a,16);printf("      ¶¶¶1111¶¶¶¶             ¶¶¶¶11111¶¶¶    ");Sleep(1);
+		gotoxy(9+a,17);printf("    ¶¶¶11¶1¶1¶¶¶¶   ¶¶    ¶¶  ¶¶¶¶¶1¶1¶1¶¶¶1  ");Sleep(1);
+		gotoxy(9+a,18);printf("   ¶¶¶11¶1¶11¶¶¶¶¶  ¶¶¶¶¶¶¶¶  ¶¶¶¶¶1¶1¶¶11¶¶1 ");Sleep(1);
+		gotoxy(9+a,19);printf("  ¶¶¶11¶¶1¶11¶¶¶¶¶¶  ¶¶¶¶¶¶ ¶¶¶¶¶¶¶1¶¶1¶¶1¶¶¶ ");Sleep(1);
+		gotoxy(9+a,20);printf(" ¶¶¶¶1¶¶11¶¶1¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶1¶¶1¶¶¶1¶¶¶");Sleep(1);
+		gotoxy(9+a,21);printf(" ¶¶¶11¶¶11¶¶1¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶1¶¶¶1¶¶¶1¶¶¶");Sleep(1);
+		gotoxy(9+a,22);printf(" ¶¶¶1¶¶¶¶1¶¶¶1¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶11¶¶¶1¶¶¶11¶¶");Sleep(1);
+		gotoxy(9+a,23);printf("  ¶¶11¶¶¶1¶¶¶¶1¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶1¶¶¶1¶¶¶¶1¶¶¶");Sleep(1);
+		gotoxy(9+a,24);printf("  ¶¶¶1¶¶¶¶1¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶1¶¶¶¶1¶¶1");Sleep(1);
+		gotoxy(9+a,25);printf("   ¶¶1¶¶¶¶¶¶¶¶  ¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶  ¶¶¶¶¶¶¶¶1¶¶¶ ");Sleep(1);
+		gotoxy(9+a,26);printf("    ¶¶1¶¶¶_¶¶       ¶¶¶¶¶¶¶¶      ¶¶¶¶¶¶¶¶¶¶  ");Sleep(1);
+		gotoxy(9+a,27);printf("     ¶¶¶¶            ¶¶¶¶¶¶           ¶¶¶¶    ");Sleep(1);
+		gotoxy(9+a,28);printf("       ¶¶¶          ¶¶¶  ¶¶¶          ¶¶      ");Sleep(1);
+		gotoxy(9+a,29);printf("        ¶¶¶         ¶      ¶         ¶¶¶      ");Sleep(1);	}
+}
+
+
+
+void storeMens(){
+	textcolor(10);
+   char as[200] = "MEN'S ";
+   for(int i=0; i<strlen(as); i++){
+   	if(i == 0){
+      	gotoxy(46,12);system("color 40");cprintf("          %c",as[i]);   //3,12
+      }else{
+   		gotoxy(56+i,12);system("color 40");cprintf("%c",as[i]);
+   	}
+   }
+   for(int a=1;a<=30;a++){
+   	for(int b=1;b<=120;b++){
+      	textcolor(0);
+         gotoxy(b,14);cprintf("%c",5);
+         gotoxy(b,21);cprintf("%c",5);
+      }
+   }
+   for(int a=14;a<=30;a++){
+   	for(int b=1;b<=120;b++){
+      	textcolor(0);
+         gotoxy(60,a);cprintf("%c",5);
+      }
+   }
+   gotoxy(20,16);printf("1. Hellfire Long Sleeve");
+   gotoxy(30,19);printf("(Rp. 330.000)");
+   gotoxy(70,16);printf("3. End of World Trio");
+   gotoxy(80,19);printf("(Rp. 350.000)");
+   gotoxy(20,24);printf("2. COE");
+   gotoxy(30,27);printf("(Rp. 200.000)");
+   gotoxy(70,24);printf("4. HTTK");
+   gotoxy(80,27);printf("(Rp. 270.000)");
+   pilihMens();
+}
+
+void pilihMens(){
+	int kembalian,harga;
+   long pilihP,pilihPP,uang,jumlah;
+   gotoxy(3,29);printf("Pilih: "); scanf("%ld",&pilihP);
+   if(pilihP==1){
+   	timpaSpasiStore();
+      gotoxy(4,18);printf("Hellfire Long Sleeve");
+      gotoxy(4,16);printf("Stok: %d",stok_hell);
+      gotoxy(4,17);printf("Price: Rp. 330.000");
+      gotoxy(4,19);printf("Masukkan Jumlah Barang: "); scanf("%ld",&jumlah);
+      gotoxy(4,20);printf("Masukkan Nominal Uang: "); scanf("%ld",&uang);
+      gotoxy(4,23);printf("Are You Sure to Buy This Item?");
+      gotoxy(4,25);printf("1. Yes        2. No");
+      gotoxy(4,28);printf("Pilih: "); scanf("%ld",&pilihPP);
+      if(pilihPP==1){
+      		harga=jumlah*330000;
+         	if(jumlah<=stok_hell){
+            	if(uang<harga){
+               clrscr();
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               BM();
+               storeMens();
+            	}else{
+               clrscr();
+      			gotoxy(4,19);printf("Jumlah Barang: %ld",jumlah);
+         		gotoxy(4,20);printf("Total Harga: %d",harga);
+               stok_hell -= jumlah;
+                  kembalian=uang-harga;
+         			gotoxy(4,21);printf("Kembalian: %d",kembalian);
+                  gotoxy(4,23);printf("Sisa Stok: %d",stok_hell);Sleep(5000);
+               clrscr();
+         		animPremium();
+         		clrscr();
+      			tampilan3();
+               }
+         	}else{
+         		clrscr();
+               gotoxy(4,19);printf("Stock Tidak Cukup");
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               BM();
+               storeMens();
+         	}
+      }else if(pilihPP==2){
+         clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storeMens();
+         clrscr();
+      	tampilan3();
+      	}else{
+      		clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storeMens();
+         clrscr();
+      	tampilan3();
+      	}
+   }else if(pilihP==2){
+   	timpaSpasiStore();
+      gotoxy(4,18);printf("COE");
+      gotoxy(4,16);printf("Stok: %d",stok_coe);
+      gotoxy(4,17);printf("Price: Rp. 200.000");
+      gotoxy(4,19);printf("Masukkan Jumlah Barang: "); scanf("%ld",&jumlah);
+      gotoxy(4,20);printf("Masukkan Nominal Uang: "); scanf("%ld",&uang);
+      gotoxy(4,23);printf("Are You Sure to Buy This Item?");
+      gotoxy(4,25);printf("1. Yes        2. No");
+      gotoxy(4,28);printf("Pilih: "); scanf("%ld",&pilihPP);
+      if(pilihPP==1){
+      		harga=jumlah*200000;
+         	if(jumlah<=stok_coe){
+            	if(uang<harga){
+               clrscr();
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               BM();
+               storeMens();
+            	}else{
+               clrscr();
+      			gotoxy(4,19);printf("Jumlah Barang: %ld",jumlah);
+         		gotoxy(4,20);printf("Total Harga: %d",harga);
+               stok_coe -= jumlah;
+                  kembalian=uang-harga;
+         			gotoxy(4,21);printf("Kembalian: %d",kembalian);
+                  gotoxy(4,23);printf("Sisa Stok: %d",stok_coe);Sleep(5000);
+               clrscr();
+         		animPremium();
+         		clrscr();
+      			tampilan3();
+               }
+         	}else{
+         		clrscr();
+               gotoxy(4,19);printf("Stock Tidak Cukup");
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               BM();
+               storeMens();
+         	}
+      }else if(pilihPP==2){
+         clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storeMens();
+         clrscr();
+      	tampilan3();
+      }else{
+      	clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storeMens();
+         clrscr();
+      	tampilan3();
+      }
+   }else if(pilihP==3){
+   	timpaSpasiStore();
+      gotoxy(4,18);printf("End of World Trio");
+      gotoxy(4,16);printf("Stok: %d",stok_trio);
+      gotoxy(4,17);printf("Price: Rp. 350.000");
+      gotoxy(4,19);printf("Masukkan Jumlah Barang: "); scanf("%ld",&jumlah);
+      gotoxy(4,20);printf("Masukkan Nominal Uang: "); scanf("%ld",&uang);
+      gotoxy(4,23);printf("Are You Sure to Buy This Item?");
+      gotoxy(4,25);printf("1. Yes        2. No");
+      gotoxy(4,28);printf("Pilih: "); scanf("%ld",&pilihPP);
+      if(pilihPP==1){
+      		harga=jumlah*350000;
+         	if(jumlah<=stok_trio){
+            	if(uang<harga){
+               clrscr();
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               BM();
+               storeMens();
+            	}else{
+               clrscr();
+      			gotoxy(4,19);printf("Jumlah Barang: %ld",jumlah);
+         		gotoxy(4,20);printf("Total Harga: %d",harga);
+               stok_trio -= jumlah;
+                  kembalian=uang-harga;
+         			gotoxy(4,21);printf("Kembalian: %d",kembalian);
+                  gotoxy(4,23);printf("Sisa Stok: %d",stok_trio);Sleep(5000);
+               clrscr();
+         		animPremium();
+         		clrscr();
+      			tampilan3();
+               }
+         	}else{
+         		clrscr();
+               gotoxy(4,19);printf("Stock Tidak Cukup");
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               BM();
+               storeMens();
+         	}
+      }else if(pilihPP==2){
+         clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storeMens();
+         clrscr();
+      	tampilan3();
+      }else{
+      	clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storeMens();
+         clrscr();
+      	tampilan3();
+      }
+   }else if(pilihP==4){
+   	timpaSpasiStore();
+      gotoxy(4,18);printf("HTTK");
+      gotoxy(4,16);printf("Stok: %d",stok_httk);
+      gotoxy(4,17);printf("Price: Rp. 270.000");
+      gotoxy(4,19);printf("Masukkan Jumlah Barang: "); scanf("%ld",&jumlah);
+      gotoxy(4,20);printf("Masukkan Nominal Uang: "); scanf("%ld",&uang);
+      gotoxy(4,23);printf("Are You Sure to Buy This Item?");
+      gotoxy(4,25);printf("1. Yes        2. No");
+      gotoxy(4,28);printf("Pilih: "); scanf("%ld",&pilihPP);
+      if(pilihPP==1){
+      		harga=jumlah*270000;
+         	if(jumlah<=stok_httk){
+            	if(uang<harga){
+               clrscr();
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               BM();
+               storeMens();
+            	}else{
+               clrscr();
+      			gotoxy(4,19);printf("Jumlah Barang: %ld",jumlah);
+         		gotoxy(4,20);printf("Total Harga: %d",harga);
+               stok_httk -= jumlah;
+                  kembalian=uang-harga;
+         			gotoxy(4,21);printf("Kembalian: %d",kembalian);
+                  gotoxy(4,23);printf("Sisa Stok: %d",stok_httk);Sleep(5000);
+               clrscr();
+         		animPremium();
+         		clrscr();
+      			tampilan3();
+               }
+         	}else{
+         		clrscr();
+               gotoxy(4,19);printf("Stock Tidak Cukup");
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               BM();
+               storeMens();
+         	}
+      }else if(pilihPP==2){
+         clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storeMens();
+         clrscr();
+      	tampilan3();
+      }else{
+      	clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storeMens();
+         clrscr();
+      	tampilan3();
+      }
+   }else{
+   	clrscr();
+      tampilan3();
+   }
+}
+
+
+
+void storeWomens(){
+	textcolor(10);
+   char as[200] = "WOMEN'S ";
+   for(int i=0; i<strlen(as); i++){
+   	if(i == 0){
+      	gotoxy(46,12);system("color 40");cprintf("          %c",as[i]);   //3,12
+      }else{
+   		gotoxy(56+i,12);system("color 40");cprintf("%c",as[i]);
+   	}
+   }
+   for(int a=1;a<=30;a++){
+   	for(int b=1;b<=120;b++){
+      	textcolor(0);
+         gotoxy(b,14);cprintf("%c",5);
+         gotoxy(b,21);cprintf("%c",5);
+      }
+   }
+   for(int a=14;a<=30;a++){
+   	for(int b=1;b<=120;b++){
+      	textcolor(0);
+         gotoxy(60,a);cprintf("%c",5);
+      }
+   }
+   gotoxy(20,16);printf("1. Ride or Dies Women's Legging");
+   gotoxy(30,19);printf("(Rp. 300.000)");
+   gotoxy(70,16);printf("3. Shadow Kimono");
+   gotoxy(80,19);printf("(Rp. 400.000)");
+   gotoxy(20,24);printf("2. Union Jack Tote Bag");
+   gotoxy(30,27);printf("(Rp. 100.000)");
+   gotoxy(70,24);printf("4. A7X - Pool Slides");
+   gotoxy(80,27);printf("(Rp. 200.000)");
+   pilihWomens();
+}
+
+
+
+void pilihWomens(){
+	int kembalian,harga;
+   long pilihP,pilihPP,uang,jumlah;
+   gotoxy(3,29);printf("Pilih: "); scanf("%ld",&pilihP);
+   if(pilihP==1){
+   	timpaSpasiStore();
+      gotoxy(4,18);printf("Ride or Dies Women's Legging");
+      gotoxy(4,16);printf("Stok: %d",stok_ride);
+      gotoxy(4,17);printf("Price: Rp. 300.000");
+      gotoxy(4,19);printf("Masukkan Jumlah Barang: "); scanf("%ld",&jumlah);
+      gotoxy(4,20);printf("Masukkan Nominal Uang: "); scanf("%ld",&uang);
+      gotoxy(4,23);printf("Are You Sure to Buy This Item?");
+      gotoxy(4,25);printf("1. Yes        2. No");
+      gotoxy(4,28);printf("Pilih: "); scanf("%ld",&pilihPP);
+      if(pilihPP==1){
+      		harga=jumlah*300000;
+         	if(jumlah<=stok_ride){
+            	if(uang<harga){
+               clrscr();
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               BM();
+               storeWomens();
+            	}else{
+               clrscr();
+      			gotoxy(4,19);printf("Jumlah Barang: %ld",jumlah);
+         		gotoxy(4,20);printf("Total Harga: %d",harga);
+               stok_ride -= jumlah;
+                  kembalian=uang-harga;
+         			gotoxy(4,21);printf("Kembalian: %d",kembalian);
+                  gotoxy(4,23);printf("Sisa Stok: %d",stok_ride);Sleep(5000);
+               clrscr();
+         		animPremium();
+         		clrscr();
+      			tampilan3();
+               }
+         	}else{
+         		clrscr();
+               gotoxy(4,19);printf("Stock Tidak Cukup");
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               BM();
+               storeWomens();
+         	}
+      }else if(pilihPP==2){
+         clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storeWomens();
+         clrscr();
+      	tampilan3();
+      	}else{
+      		clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storeWomens();
+         clrscr();
+      	tampilan3();
+      	}
+   }else if(pilihP==2){
+   	timpaSpasiStore();
+      gotoxy(4,18);printf("Union Jack Tote Bag");
+      gotoxy(4,16);printf("Stok: %d",stok_tote);
+      gotoxy(4,17);printf("Price: Rp. 100.000");
+      gotoxy(4,19);printf("Masukkan Jumlah Barang: "); scanf("%ld",&jumlah);
+      gotoxy(4,20);printf("Masukkan Nominal Uang: "); scanf("%d",&uang);
+      gotoxy(4,23);printf("Are You Sure to Buy This Item?");
+      gotoxy(4,25);printf("1. Yes        2. No");
+      gotoxy(4,28);printf("Pilih: "); scanf("%ld",&pilihPP);
+      if(pilihPP==1){
+      		harga=jumlah*100000;
+         	if(jumlah<=stok_tote){
+            	if(uang<harga){
+               clrscr();
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               BM();
+               storeWomens();
+            	}else{
+               clrscr();
+      			gotoxy(4,19);printf("Jumlah Barang: %ld",jumlah);
+         		gotoxy(4,20);printf("Total Harga: %d",harga);
+               stok_tote -= jumlah;
+                  kembalian=uang-harga;
+         			gotoxy(4,21);printf("Kembalian: %d",kembalian);
+                  gotoxy(4,23);printf("Sisa Stok: %d",stok_tote);Sleep(5000);
+               clrscr();
+         		animPremium();
+         		clrscr();
+      			tampilan3();
+               }
+         	}else{
+         		clrscr();
+               gotoxy(4,19);printf("Stock Tidak Cukup");
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               BM();
+               storeWomens();
+         	}
+      }else if(pilihPP==2){
+         clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storeWomens();
+         clrscr();
+      	tampilan3();
+      }else{
+      	clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storeWomens();
+         clrscr();
+      	tampilan3();
+      }
+   }else if(pilihP==3){
+   	timpaSpasiStore();
+      gotoxy(4,18);printf("Shadow Kimono");
+      gotoxy(4,16);printf("Stok: %d",stok_shadow);
+      gotoxy(4,17);printf("Price: Rp. 400.000");
+      gotoxy(4,19);printf("Masukkan Jumlah Barang: "); scanf("%ld",&jumlah);
+      gotoxy(4,20);printf("Masukkan Nominal Uang: "); scanf("%ld",&uang);
+      gotoxy(4,23);printf("Are You Sure to Buy This Item?");
+      gotoxy(4,25);printf("1. Yes        2. No");
+      gotoxy(4,28);printf("Pilih: "); scanf("%ld",&pilihPP);
+      if(pilihPP==1){
+      		harga=jumlah*400000;
+         	if(jumlah<=stok_shadow){
+            	if(uang<harga){
+               clrscr();
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               BM();
+               storeWomens();
+            	}else{
+               clrscr();
+      			gotoxy(4,19);printf("Jumlah Barang: %ld",jumlah);
+         		gotoxy(4,20);printf("Total Harga: %d",harga);
+               stok_shadow -= jumlah;
+                  kembalian=uang-harga;
+         			gotoxy(4,21);printf("Kembalian: %d",kembalian);
+                  gotoxy(4,23);printf("Sisa Stok: %d",stok_shadow);Sleep(5000);
+               clrscr();
+         		animPremium();
+         		clrscr();
+      			tampilan3();
+               }
+         	}else{
+         		clrscr();
+               gotoxy(4,19);printf("Stock Tidak Cukup");
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               BM();
+               storeWomens();
+         	}
+      }else if(pilihPP==2){
+         clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storeWomens();
+         clrscr();
+      	tampilan3();
+      }else{
+      	clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storeWomens();
+         clrscr();
+      	tampilan3();
+      }
+   }else if(pilihP==4){
+   	timpaSpasiStore();
+      gotoxy(4,18);printf("A7X - Pool Slides");
+      gotoxy(4,16);printf("Stok: %d",stok_pool);
+      gotoxy(4,17);printf("Price: Rp. 200.000");
+      gotoxy(4,19);printf("Masukkan Jumlah Barang: "); scanf("%ld",&jumlah);
+      gotoxy(4,20);printf("Masukkan Nominal Uang: "); scanf("%ld",&uang);
+      gotoxy(4,23);printf("Are You Sure to Buy This Item?");
+      gotoxy(4,25);printf("1. Yes        2. No");
+      gotoxy(4,28);printf("Pilih: "); scanf("%ld",&pilihPP);
+      if(pilihPP==1){
+      		harga=jumlah*200000;
+         	if(jumlah<=stok_pool){
+            	if(uang<harga){
+               clrscr();
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               BM();
+               storeWomens();
+            	}else{
+               clrscr();
+      			gotoxy(4,19);printf("Jumlah Barang: %ld",jumlah);
+         		gotoxy(4,20);printf("Total Harga: %d",harga);
+               stok_pool -= jumlah;
+                  kembalian=uang-harga;
+         			gotoxy(4,21);printf("Kembalian: %d",kembalian);
+                  gotoxy(4,23);printf("Sisa Stok: %d",stok_pool);Sleep(5000);
+               clrscr();
+         		animPremium();
+         		clrscr();
+      			tampilan3();
+               }
+         	}else{
+         		clrscr();
+               gotoxy(4,19);printf("Stock Tidak Cukup");
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               BM();
+               storeWomens();
+         	}
+      }else if(pilihPP==2){
+         clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storeWomens();
+         clrscr();
+      	tampilan3();
+      }else{
+      	clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storeWomens();
+         clrscr();
+      	tampilan3();
+      }
+   }else{
+   	clrscr();
+      tampilan3();
+   }
+}
+
+
+
+void storeAcc(){
+	textcolor(10);
+   char as[200] = "Accessories ";
+   for(int i=0; i<strlen(as); i++){
+   	if(i == 0){
+      	gotoxy(46,12);system("color 40");cprintf("          %c",as[i]);   //3,12
+      }else{
+   		gotoxy(56+i,12);system("color 40");cprintf("%c",as[i]);
+   	}
+   }
+   for(int a=1;a<=30;a++){
+   	for(int b=1;b<=120;b++){
+      	textcolor(0);
+         gotoxy(b,14);cprintf("%c",5);
+         gotoxy(b,21);cprintf("%c",5);
+      }
+   }
+   for(int a=14;a<=30;a++){
+   	for(int b=1;b<=120;b++){
+      	textcolor(0);
+         gotoxy(60,a);cprintf("%c",5);
+      }
+   }
+   gotoxy(20,16);printf("1. Rut Trucker Hat");
+   gotoxy(30,19);printf("(Rp. 300.000)");
+   gotoxy(70,16);printf("3. Deathbat - Backpack");
+   gotoxy(80,19);printf("(Rp. 700.000)");
+   gotoxy(20,24);printf("2. Hail Mug");
+   gotoxy(30,27);printf("(Rp. 110.000)");
+   gotoxy(70,24);printf("4. Original Deathbat Mask");
+   gotoxy(80,27);printf("(Rp. 95.000)");
+   pilihAcc();
+}
+
+
+
+void pilihAcc(){
+	int kembalian,harga;
+   long pilihP,pilihPP,uang,jumlah;
+   gotoxy(3,29);printf("Pilih: "); scanf("%ld",&pilihP);
+   if(pilihP==1){
+   	timpaSpasiStore();
+      gotoxy(4,18);printf("Rut Trucker Hat");
+      gotoxy(4,16);printf("Stok: %d",stok_rut);
+      gotoxy(4,17);printf("Price: Rp. 320.000");
+      gotoxy(4,19);printf("Masukkan Jumlah Barang: "); scanf("%ld",&jumlah);
+      gotoxy(4,20);printf("Masukkan Nominal Uang: "); scanf("%ld",&uang);
+      gotoxy(4,23);printf("Are You Sure to Buy This Item?");
+      gotoxy(4,25);printf("1. Yes        2. No");
+      gotoxy(4,28);printf("Pilih: "); scanf("%ld",&pilihPP);
+      if(pilihPP==1){
+      		harga=jumlah*320000;
+         	if(jumlah<=stok_rut){
+            	if(uang<harga){
+               clrscr();
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               BM();
+               storeAcc();
+            	}else{
+               clrscr();
+      			gotoxy(4,19);printf("Jumlah Barang: %ld",jumlah);
+         		gotoxy(4,20);printf("Total Harga: %d",harga);
+               stok_rut -= jumlah;
+                  kembalian=uang-harga;
+         			gotoxy(4,21);printf("Kembalian: %d",kembalian);
+                  gotoxy(4,23);printf("Sisa Stok: %d",stok_rut);Sleep(5000);
+               clrscr();
+         		animPremium();
+         		clrscr();
+      			tampilan3();
+               }
+         	}else{
+         		clrscr();
+               gotoxy(4,19);printf("Stock Tidak Cukup");
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               BM();
+               storeAcc();
+         	}
+      }else if(pilihPP==2){
+         clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storeAcc();
+         clrscr();
+      	tampilan3();
+      	}else{
+      		clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storeAcc();
+         clrscr();
+      	tampilan3();
+      	}
+   }else if(pilihP==2){
+   	timpaSpasiStore();
+      gotoxy(4,18);printf("Hail Mug");
+      gotoxy(4,16);printf("Stok: %d",stok_mug);
+      gotoxy(4,17);printf("Price: Rp. 110.000");
+      gotoxy(4,19);printf("Masukkan Jumlah Barang: "); scanf("%ld",&jumlah);
+      gotoxy(4,20);printf("Masukkan Nominal Uang: "); scanf("%ld",&uang);
+      gotoxy(4,23);printf("Are You Sure to Buy This Item?");
+      gotoxy(4,25);printf("1. Yes        2. No");
+      gotoxy(4,28);printf("Pilih: "); scanf("%ld",&pilihPP);
+      if(pilihPP==1){
+      		harga=jumlah*110000;
+         	if(jumlah<=stok_mug){
+            	if(uang<harga){
+               clrscr();
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               BM();
+               storeAcc();
+            	}else{
+               clrscr();
+      			gotoxy(4,19);printf("Jumlah Barang: %ld",jumlah);
+         		gotoxy(4,20);printf("Total Harga: %d",harga);
+               stok_mug -= jumlah;
+                  kembalian=uang-harga;
+         			gotoxy(4,21);printf("Kembalian: %d",kembalian);
+                  gotoxy(4,23);printf("Sisa Stok: %d",stok_mug);Sleep(5000);
+               clrscr();
+         		animPremium();
+         		clrscr();
+      			tampilan3();
+               }
+         	}else{
+         		clrscr();
+               gotoxy(4,19);printf("Stock Tidak Cukup");
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               BM();
+               storeAcc();
+         	}
+      }else if(pilihPP==2){
+         clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storeAcc();
+         clrscr();
+      	tampilan3();
+      }else{
+      	clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storeAcc();
+         clrscr();
+      	tampilan3();
+      }
+   }else if(pilihP==3){
+   	timpaSpasiStore();
+      gotoxy(4,18);printf("Deathbat - Backpack");
+      gotoxy(4,16);printf("Stok: %d",stok_deat);
+      gotoxy(4,17);printf("Price: Rp. 700.000");
+      gotoxy(4,19);printf("Masukkan Jumlah Barang: "); scanf("%ld",&jumlah);
+      gotoxy(4,20);printf("Masukkan Nominal Uang: "); scanf("%ld",&uang);
+      gotoxy(4,23);printf("Are You Sure to Buy This Item?");
+      gotoxy(4,25);printf("1. Yes        2. No");
+      gotoxy(4,28);printf("Pilih: "); scanf("%ld",&pilihPP);
+      if(pilihPP==1){
+      		harga=jumlah*700000;
+         	if(jumlah<=stok_deat){
+            	if(uang<harga){
+               clrscr();
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               BM();
+               storeAcc();
+            	}else{
+               clrscr();
+      			gotoxy(4,19);printf("Jumlah Barang: %ld",jumlah);
+         		gotoxy(4,20);printf("Total Harga: %d",harga);
+               stok_deat -= jumlah;
+                  kembalian=uang-harga;
+         			gotoxy(4,21);printf("Kembalian: %d",kembalian);
+                  gotoxy(4,23);printf("Sisa Stok: %d",stok_deat);Sleep(5000);
+               clrscr();
+         		animPremium();
+         		clrscr();
+      			tampilan3();
+               }
+         	}else{
+         		clrscr();
+               gotoxy(4,19);printf("Stock Tidak Cukup");
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               BM();
+               storeAcc();
+         	}
+      }else if(pilihPP==2){
+         clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storeAcc();
+         clrscr();
+      	tampilan3();
+      }else{
+      	clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storeAcc();
+         clrscr();
+      	tampilan3();
+      }
+   }else if(pilihP==4){
+   	timpaSpasiStore();
+      gotoxy(4,18);printf("Original Deathbat Mask");
+      gotoxy(4,16);printf("Stok: %d",stok_mask);
+      gotoxy(4,17);printf("Price: Rp. 95.000");
+      gotoxy(4,19);printf("Masukkan Jumlah Barang: "); scanf("%ld",&jumlah);
+      gotoxy(4,20);printf("Masukkan Nominal Uang: "); scanf("%ld",&uang);
+      gotoxy(4,23);printf("Are You Sure to Buy This Item?");
+      gotoxy(4,25);printf("1. Yes        2. No");
+      gotoxy(4,28);printf("Pilih: "); scanf("%ld",&pilihPP);
+      if(pilihPP==1){
+      		harga=jumlah*95000;
+         	if(jumlah<=stok_mask){
+            	if(uang<harga){
+               clrscr();
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               gotoxy(4,19);printf("Uang Anda Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                     ");Sleep(500);
+               BM();
+               storeAcc();
+            	}else{
+               clrscr();
+      			gotoxy(4,19);printf("Jumlah Barang: %ld",jumlah);
+         		gotoxy(4,20);printf("Total Harga: %d",harga);
+               stok_mask -= jumlah;
+                  kembalian=uang-harga;
+         			gotoxy(4,21);printf("Kembalian: %d",kembalian);
+                  gotoxy(4,23);printf("Sisa Stok: %d",stok_mask);Sleep(5000);
+               clrscr();
+         		animPremium();
+         		clrscr();
+      			tampilan3();
+               }
+         	}else{
+         		clrscr();
+               gotoxy(4,19);printf("Stock Tidak Cukup");
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               gotoxy(4,19);printf("Stock Tidak Cukup");Sleep(500);
+               gotoxy(4,19);printf("                 ");Sleep(500);
+               BM();
+               storeAcc();
+         	}
+      }else if(pilihPP==2){
+         clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storeAcc();
+         clrscr();
+      	tampilan3();
+      }else{
+      	clrscr();
+         for(int a=1;a<=30;a++){
+   			for(int b=1;b<=120;b++){
+      			textcolor(0);
+      			gotoxy(1,a);cprintf("%c",5);
+         		gotoxy(120,a);cprintf("%c",5);
+         		gotoxy(b,1);cprintf("%c",5);
+         		gotoxy(b,10);cprintf("%c",5);
+         		gotoxy(b,30);cprintf("%c",5);
+      		}
+   		}
+   		textcolor(10);
+   		char as[200] = "A7X WORLD: THE BLACK MARKET ";
+   		for(int i=0; i<strlen(as); i++){
+   			if(i == 0){
+      			gotoxy(35,3);system("color 40");cprintf("          %c",as[i]);
+      		}else{
+   				gotoxy(45+i,3);system("color 40");cprintf("%c",as[i]);
+   			}
+   		}
+      	storeAcc();
+         clrscr();
+      	tampilan3();
+      }
+   }else{
+   	clrscr();
+      tampilan3();
+   }
+}
+
+
+
+void tampilan4(){
+for(int a=1;a<=30;a++){
+   	for(int b=1;b<=120;b++){
+      	textcolor(0);
+      	gotoxy(1,a);cprintf("%c",219);
+         gotoxy(60,a);cprintf("%c",219);
+         gotoxy(120,a);cprintf("%c",219);
+         gotoxy(b,1);cprintf("%c",219);
+         gotoxy(b,30);cprintf("%c",219);
+      }
+   }
+for(int a=1;a<=30;a++){
+   	for(int b=61;b<=120;b++){
+      	textcolor(0);
+         gotoxy(b,5);cprintf("%c",219);
+      }
+   }
+textcolor(10);
+char as[200] = "TOP SONGS ";
+for(int i=0; i<strlen(as); i++){
+	if(i == 0){
+		gotoxy(76,3);system("color 40");cprintf("          %c",as[i]);   //3,12
+   }else{
+   	gotoxy(86+i,3);system("color 40");cprintf("%c",as[i]);
+   }
+}
+skull();
+   gotoxy(63,7);cprintf("SONGS:");
+	gotoxy(65,9);cprintf("AFTERLIFE                     AN EPIC OF TIME WASTED");
+	gotoxy(65,10);cprintf("DEAR GOD                      LOST");
+	gotoxy(65,11);cprintf("SO FAR AWAY                   DANGER LINE");
+	gotoxy(65,12);cprintf("UNHOLY CONFESSIONS            COMING HOME");
+   gotoxy(65,13);cprintf("A LITTLE PIECE OF HEAVEN      M. I. A.");
+   gotoxy(65,14);cprintf("BAT COUNTRY                   SCREAM");
+   gotoxy(65,15);cprintf("UNHOLY CONFESSIONS            WELCOME TO THE FAMILY");
+   gotoxy(65,16);cprintf("SEIZE THE DAY                 THE WICKED END");
+   gotoxy(65,17);cprintf("CRITICAL ACCLAIM              ETERNAL REST");
+   gotoxy(65,18);cprintf("ALMOST EASY                   SAVE ME");
+   gotoxy(65,19);cprintf("SHEPHERD OF FIRE              STRENGTH OF THE WORLD");
+   gotoxy(65,20);cprintf("CHAPTER FOUR                  FICTION");
+   gotoxy(65,21);cprintf("BEAST AND THE HARLOT          SIDEWINDER");
+   gotoxy(65,22);cprintf("SECOND HEARTBEAT              BURIED ALIVE");
+   gotoxy(65,23);cprintf("THIS MEANS WAR                GOD DAMN");
+   gotoxy(63,26);cprintf("1.Home");
+   pilihMusic();
+}
+void pilihMusic(){
+   int upil;
+	gotoxy(63,28);cprintf("Pilih: "); scanf("%d",&upil);
+   if(upil==1){
+   	clrscr();
+      tampilan2();
+   }else{
+   	gotoxy(63,28);cprintf("INCORRECT!");Sleep(500);
+      gotoxy(63,28);cprintf("          ");Sleep(500);
+      gotoxy(63,28);cprintf("INCORRECT!");Sleep(500);
+      gotoxy(63,28);cprintf("          ");Sleep(500);
+      gotoxy(63,28);cprintf("Pilih: ");
+      clrscr();
+      tampilan4();
+   }
+}
+
+
+void skull(){
+	textcolor(14);
+	gotoxy(2,2);cprintf("                      HHHHHHHHHHHHHHH\n");
+	gotoxy(2,3);cprintf("                 HHHHHH             HHHHHH\n");
+	gotoxy(2,4);cprintf("              HHHH                       HHHH\n");
+	gotoxy(2,5);cprintf("             HHH                            HHH\n");
+	gotoxy(2,6);cprintf("            HH                                HH\n");
+	gotoxy(2,7);cprintf("          HH                                   HH\n");
+	gotoxy(2,8);cprintf("          HH HH                             HH HH\n");
+	gotoxy(2,9);cprintf("          HH HH                             HH HH\n");
+	gotoxy(2,10);cprintf("          HH HH                             HH HH\n");
+	gotoxy(2,11);cprintf("          HH  HH                           HH HH\n");
+	gotoxy(2,12);cprintf("          HH  HH                           HH HH\n");
+	gotoxy(2,13);cprintf("            HHHH HHHHHHHHHH     HHHHHHHHHH HHHH\n");
+   gotoxy(2,14);cprintf("             HHH HHHHHHHHHH     HHHHHHHHHH HHH\n");
+	gotoxy(2,15);cprintf("   HHHH      HH  HHHHHHHHH       HHHHHHHHH  HH      HHHH\n");
+	gotoxy(2,16);cprintf("  HHHHHH     HH   HHHHHHH   HHH   HHHHHHH   HH     HHHHHH\n");
+	gotoxy(2,17);cprintf("  HHH     HHHH  HH        HHHHHHH        HH  HHHH    HHH\n");
+	gotoxy(2,18);cprintf("HH        HHHHHHHHH       HHHHHHH      HHHHHHHHH        HH\n");
+	gotoxy(2,19);cprintf(" HHHH HHHHHH     HH HHH              HHH HH     HHHHHH HHH\n");
+	gotoxy(2,20);cprintf("           HHHHHH  HHH HH           HH  HHH  HHHHHH\n");
+	gotoxy(2,21);cprintf("              HHHHHH HH HHHHHHHHHHH HH HHHHHH\n");
+	gotoxy(2,22);cprintf("                  HH HH H H H H H H HH HH\n");
+	gotoxy(2,23);cprintf("                HHHH  H H H H H H H H  HHHH\n");
+	gotoxy(2,24);cprintf("            HHHHH HH   HHHHHHHHHHHHH   HH HHHHH\n");
+	gotoxy(2,25);cprintf("   HH           HHHHHHH             HHHHHHH           HH\n");
+	gotoxy(2,26);cprintf("   HHH     HHHHH      HHHHHHHHHHHHHHH     HHHHH     HHH\n");
+	gotoxy(2,27);cprintf("      HH   HHH           HHHHHHHHH           HHH   HH\n");
+	gotoxy(2,28);cprintf("      HH  HH                                   HH  HH\n");
+	gotoxy(2,29);cprintf("       HHHHH                                    HHHH\n");
+}
+
+
+
+main(){
+
+	login();
+	//tampilan2();
+	//skull();
+   //menuStore();
+getch();
+}

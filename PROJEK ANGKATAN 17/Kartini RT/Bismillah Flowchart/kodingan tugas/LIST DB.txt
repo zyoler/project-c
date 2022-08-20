@@ -1,0 +1,8 @@
+bismillah    form                                              default
+dlaporan     user, paket, j, m, harga			       0,0,0,0,0
+start        nilai                                             0
+
+perbaiki format simpan data ke dlaporan.txt
+perbaiki membaca file data rental billing
+validasi
+tampilan o, l, c

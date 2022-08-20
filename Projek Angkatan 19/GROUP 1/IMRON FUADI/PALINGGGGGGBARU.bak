@@ -1,0 +1,1800 @@
+//==============================================================================
+//===================      BISMILLAHIRRAHMAANIRRAHIIM     ======================
+//==                             FIRST PROJECT                                ==
+//==                         CREATED BY IMRON FUADI                           ==
+//==                        D3 MANAJEMEN INFORMATIKA                          ==
+//==                           PUB'19 [NEOPHYTE]                              ==
+//==                              WIDTH: 120                                  ==
+//===================             HEIGHT: 40              ======================
+//==============================================================================
+
+
+#include<stdio.h>
+#include<conio.h>
+#include<windows.h>
+
+
+////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////VARIABEL GLOBAL////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+char pilih;
+char nama[30];
+char alamat[100];
+char nohp[100];
+char nik[100];
+char jumlah[100];
+char booking[100];
+char bulan[100];
+char tahun[100];
+int jml;
+int total;
+int tah,bul,tang;
+char jmlpkt;
+int paketHemat[100]={3000000,4000000,8000000,1000000,3000000,5000000,1500000,1500000};
+int paketSultan[100]={5000000,6000000,11000000,2000000,4000000,70000000,2500000,2500000};
+char hargaBalihemat[100]={3000000};
+
+int validasihuruf(char a[]);
+int validasiangka(char a[]);
+int validasialamat(char a[]);
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////PROTOTYPE///////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+void awal();
+void tdant();
+void loading();
+void login();
+void about();
+void kotak3();
+void tdant2();
+void pktHemat1();
+void pktSultan1();
+void pktHematkomodo();
+void pktSultankomodo();
+void pktHematraja();
+void pktSultanraja();
+void pktHematdieng();
+void pktSultandieng();
+void pktHematkarimun();
+void pktSultankarimun();
+void pktHematwakatobi();
+void pktSultanwakatobi();
+void pktHematbromo();
+void pktSultanbromo();
+void pktHematjogja();
+void pktSultanjogja();
+void kotak4();
+void kotak5();
+void kotakPesan();
+void pilihPaket1();
+void pilihPaket2();
+void pilihPaket3();
+void pilihPaket4();
+void pilihPaket5();
+void pilihPaket6();
+void pilihPaket7();
+void pilihPaket8();
+void namaTuris();
+void visitBali();
+void visitKomodo();
+void visitRaja();
+void visitDieng();
+void visitKJ();
+void visitWakatobi();
+void visitBromo();
+void visitJogja();
+void bayar();
+void validasi_nama();
+void validasi_nik();
+void validasi_nohp();
+void validasi_alamat();
+void validasi_jmlpaket();
+void validasi_tglbooking();
+void validasi_bulan();
+void validasi_tahun();
+void data();
+void penutup();
+
+////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////BINGKAI////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+
+void bingkai(){
+   for(int a=1;a<=40;a++){
+   	textcolor(9);
+   	gotoxy(1,a);cprintf("%c",219);
+   	gotoxy(120,a);cprintf("%c",219);
+      textcolor(9);
+      gotoxy(2,a);cprintf("%c",219);
+      gotoxy(119,a);cprintf("%c",219);
+   }
+
+	for(int b=1;b<=120;b++){
+   	textcolor(9);
+   	gotoxy(b,1);cprintf("%c",219);
+   	gotoxy(b,40);cprintf("%c",219);
+   }
+   tdant();
+   loading();
+}
+void layar(){
+
+   textcolor(0);
+	for(int x=3;x<119;x++){
+   	for(int y=2;y<40;y++){
+      	gotoxy(x,y);cprintf("%c",219);
+      }
+   }
+}
+
+void tdant(){
+	for(int a=3;a<=20;a++){
+   	textcolor(a);
+   	gotoxy(a,15);cprintf("     %c%c%c%c    %c%c%c%c%c%c    %c%c%c%c%c%c        %c%c%c%c%c%c      %c%c%c%c      %c%c    %c%c    %c%c%c%c%c%c",3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3);Sleep(20);
+   	gotoxy(a,16);cprintf("     %c%c%c%c    %c%c%c%c%c%c    %c%c%c%c%c%c        %c%c%c%c%c%c    %c%c%c%c%c%c%c%c    %c%c    %c%c    %c%c%c%c%c%c%c%c",3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3);Sleep(20);
+   	gotoxy(a,17);cprintf("       %c%c    %c%c          %c%c            %c%c      %c%c    %c%c    %c%c    %c%c    %c%c    %c%c",3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3);Sleep(20);
+   	gotoxy(a,18);cprintf("       %c%c    %c%c          %c%c     %c%c     %c%c      %c%c    %c%c    %c%c    %c%c    %c%c    %c%c",3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3);Sleep(20);
+   	gotoxy(a,19);cprintf("       %c%c    %c%c%c%c%c%c      %c%c    %c%c%c%c    %c%c      %c%c    %c%c    %c%c    %c%c    %c%c%c%c%c%c%c%c",3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3);Sleep(20);
+   	gotoxy(a,20);cprintf("       %c%c    %c%c%c%c%c%c      %c%c    %c%c%c%c    %c%c      %c%c    %c%c    %c%c    %c%c    %c%c%c%c%c%c",3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3);Sleep(20);
+   	gotoxy(a,21);cprintf("       %c%c    %c%c          %c%c     %c%c     %c%c      %c%c    %c%c    %c%c    %c%c    %c%c  %c%c",3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3);Sleep(20);
+   	gotoxy(a,22);cprintf(" %c%c    %c%c    %c%c          %c%c            %c%c      %c%c    %c%c    %c%c    %c%c    %c%c   %c%c",3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3);Sleep(20);
+   	gotoxy(a,23);cprintf(" %c%c%c%c%c%c%c%c    %c%c%c%c%c%c      %c%c            %c%c      %c%c%c%c%c%c%c%c    %c%c%c%c%c%c%c%c    %c%c    %c%c",3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3);Sleep(20);
+   	gotoxy(a,24);cprintf("   %c%c%c%c      %c%c%c%c%c%c      %c%c            %c%c        %c%c%c%c        %c%c%c%c      %c%c     %c%c",3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3);Sleep(20);
+   	textcolor(10);
+   	gotoxy(40,26);cprintf("---GET THE BEST EXPERIENCE ONLY WITH US---");
+   }
+}
+
+
+void tdant2(){
+	textcolor(7);
+	gotoxy(34,3);cprintf("  %c%c%c  %c%c%c%c  %c%c%c%c%c        %c%c%c%c%c   %c%c%c   %c   %c  %c%c%c%c  ",5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5);
+   gotoxy(34,4);cprintf("    %c  %c       %c            %c    %c   %c  %c   %c  %c   %c ",5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5);
+   gotoxy(34,5);cprintf("    %c  %c%c%c     %c    %c%c%c%c    %c    %c   %c  %c   %c  %c%c%c%c  ",5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5);
+   gotoxy(34,6);cprintf(" %c  %c  %c       %c            %c    %c   %c  %c   %c  %c  %c  ",5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5);
+   gotoxy(34,7);cprintf("  %c%c   %c%c%c%c    %c            %c     %c%c%c    %c%c%c   %c   %c ",5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5);
+}
+
+
+
+void loading(){
+	for(int a=1,b=1;a<=100;a++){
+   	gotoxy(55,30);cprintf("Loading %d %",a);Sleep(10);
+
+      if(a%2==0){
+      	textcolor(7);
+         gotoxy(b+35,32);cprintf("%c",219);Sleep(10);b++;
+      }
+   }
+
+}
+void awal(){
+   bingkai();
+	layar();
+   //textbackground(3);
+	for(int a=1;a<=20;a++){
+   	for(int b=1;b<=50;b++){
+      	if(a==1||b==1||a==20||b==50){
+         	textcolor(9);
+         	gotoxy(b+35,a+10);cprintf("%c",219);Sleep(1);
+         }else{
+         	textcolor(6);
+         	gotoxy(b+35,a+10);cprintf(" ");
+         }
+      }
+   }
+   textcolor(7);
+   gotoxy(54,14);cprintf("1. L O G I N");
+   gotoxy(54,17);cprintf("2. A B O U T");
+   gotoxy(54,20);cprintf("3. E X I T");
+
+
+      gotoxy(48,25);cprintf("Masukan Pilihan Anda : ");
+      gotoxy(71,25);pilih=getche();
+         while(pilih){
+      		if(pilih=='1'){
+         		layar();
+               login();
+            	break;
+         	}else if(pilih=='2'){
+         		layar();
+               about();
+            	break;
+         	}else if(pilih=='3'){
+         		exit(0);
+         	}else{
+         		gotoxy(52,27);cprintf("Inputan Anda Salah");Sleep(1000);
+            	gotoxy(52,27);printf("                              ");
+            	gotoxy(71,25);printf("           ");
+            	gotoxy(71,25);pilih=getche();
+         	}
+      	}
+}
+void login(){
+   layar();
+   char user[150];
+   char pass[150];
+
+   for(int a=1;a<=10;a++){
+   	for(int b=1;b<=40;b++){
+      	if(a==1||b==1||a==10||b==40){
+         	textcolor(9);
+         	gotoxy(b+40,a+15);cprintf("%c",219);
+         }else{
+         	textcolor(0);
+         	gotoxy(b+40,a+15);cprintf("%c",219);
+         }
+      }
+   }
+   textcolor(7);
+   gotoxy(45,19);cprintf("USERNAME :");
+   gotoxy(45,21);cprintf("PASSWORD :");
+   gotoxy(56,19);gets(user);
+	gotoxy(56,21);gets(pass);
+
+   int x=1;
+   while(x<=3){
+		if(strcmp(user,"imron")==0&&strcmp(pass,"fuadi")==0){
+      	layar();
+         kotak3();
+         break;
+      }else if(strcmp(user,"imron")!=0){
+      	gotoxy(45,23);printf("USERNAME SALAH");Sleep(1000);
+         gotoxy(45,23);printf("               ");
+         gotoxy(56,19);printf("                        ");
+			gotoxy(56,21);printf("                        ");
+
+      }else if(strcmp(pass,"fuadi")!=0){
+      	gotoxy(45,23);printf("PASSWORD SALAH");Sleep(1000);
+         gotoxy(45,23);printf("               ");
+         gotoxy(56,19);printf("                        ");
+			gotoxy(56,21);printf("                        ");
+
+      }else{
+      	gotoxy(45,23);printf("USERNAME DAN PASSWORD SALAH");Sleep(1000);
+         gotoxy(45,23);printf("                            ");
+         gotoxy(56,19);printf("                        ");
+			gotoxy(56,21);printf("                        ");
+      }
+       gotoxy(56,19);scanf("%s",&user);
+       gotoxy(56,21);scanf("%s",&pass);
+       x++;
+	}
+}
+
+void about(){
+	textcolor(9);
+	for(int a=1;a<=30;a++){
+   	for(int b=1;b<=80;b++){
+      	if(a==1||b==1||a==30||b==80){
+         	textcolor(9);
+         	gotoxy(b+20,a+5);cprintf("%c",219);
+         }else{
+         	textcolor(0);
+         	gotoxy(b+20,a+5);cprintf("%c",219);
+         }
+      }
+	}
+   	textcolor(7);
+   	gotoxy(55,8);cprintf("P R O F I L");
+  		gotoxy(28,10);cprintf("JET-TOUR adalah agen pariwisata terbaik di bidangnya. Kami agen    ");
+   	gotoxy(28,11);cprintf("terpercaya yang telah menemani ratusan bahkan ribuan wisatawan yang");
+   	gotoxy(28,12);cprintf("ingin berlibur untuk menikmati keindahan yang dimiliki oleh        ");
+   	gotoxy(28,13);cprintf("Indonesia. Kami berdiri sejak tahun 2000. Kami beralamatkan di Kota");
+   	gotoxy(28,14);cprintf("Bandung,Jawa Barat,Indonesia.  Kami selalu siap kapanpun untuk     ");
+   	gotoxy(28,15);cprintf("menemani liburan anda. Dan kami akan selalu melayani anda dengan   ");
+   	gotoxy(28,16);cprintf("sepenuh hati karena kepuasan anda adalah kebahagian bagi kami.     ");
+      gotoxy(43,18);cprintf("P R O S E D U R  D A N  P E R A T U R A N");
+   	gotoxy(28,20);cprintf("Berikut ini adalah prosedur pembayaran yang berlaku di             ");
+   	gotoxy(28,21);cprintf("JET-TOUR :                                                         ");
+   	gotoxy(28,22);cprintf("1. Pembayaran hanya dapat dilakukan dengan cara mentransfer ke     ");
+   	gotoxy(28,23);cprintf("   nomer rekening kami.                                            ");
+   	gotoxy(28,24);cprintf("2. Apabila dalam 3 hari setelah memesan pelanggan tidak mentransfer");
+   	gotoxy(28,25);cprintf("   maka pesanan akan dibatalkan secara otomatis.                   ");
+   	gotoxy(28,26);cprintf("3. Apabila dalam 7 hari sebelum keberangkatan pelanggan melakukan  ");
+   	gotoxy(28,27);cprintf("   pembatalan maka uang yang sudah ditransfer tidak dapat          ");
+   	gotoxy(28,28);cprintf("   dikembalikan.                                                   ");
+   	gotoxy(28,29);cprintf("4. Nomer rekening = (928082019209) atas nama Fuadi                 ");
+   	gotoxy(28,30);cprintf("5. Untuk informasi lebih lanjut hubungi kami: 0895421587320        ");
+
+		textcolor(10);
+   	gotoxy(45,37);cprintf ("Tekan Sembarang Untuk Kembali !!!");
+      getch();
+      layar();
+      awal();
+}
+
+void kotak3(){
+	tdant2();
+	for(int a=1;a<=120;a++){
+   	textcolor(9);
+   	gotoxy(a+1,9);cprintf("%c",219);
+      gotoxy(a+1,33);cprintf("%c",219);
+	}
+   for(int a=1;a<=60;a++){
+   	gotoxy(a+1,15);cprintf("%c",219);
+      gotoxy(a+1,21);cprintf("%c",219);
+      gotoxy(a+1,27);cprintf("%c",219);
+   }
+   for(int a=1;a<=24;a++){
+   	gotoxy(30,a+8);cprintf("%c",219);Sleep(0);
+   }
+   for(int a=1;a<=40;a++){
+   	gotoxy(61,a+8);cprintf("%c",219);Sleep(0);
+   }
+   textcolor(7);
+   gotoxy(5,12);cprintf("1. BALI");
+   gotoxy(5,18);cprintf("2. PULAU KOMODO");
+   gotoxy(5,24);cprintf("3. RAJA AMPAT");
+   gotoxy(5,30);cprintf("4. DIENG");
+   gotoxy(34,12);cprintf("5. KARIMUNJAWA");
+   gotoxy(34,18);cprintf("6. WAKATOBI");
+   gotoxy(34,24);cprintf("7. BROMO TENGGER SEMERU");
+   gotoxy(34,30);cprintf("8. JOGJA");
+
+   gotoxy(12,36);cprintf("Masukan Pilihan Destinasi Anda (1 - 8)");
+   pilih=getch();
+      	while(pilih){
+      			if(pilih=='1'){
+               	visitBali();
+         			break;
+         		}else if(pilih=='2'){
+                  visitKomodo();
+         			break;
+         		}else if(pilih=='3'){
+                  visitRaja();
+         			break;
+               }else if(pilih=='4'){
+                  visitDieng();
+         			break;
+               }else if(pilih=='5'){
+                  visitKJ();
+         			break;
+               }else if(pilih=='6'){
+                  visitWakatobi();
+         			break;
+               }else if(pilih=='7'){
+                  visitBromo();
+         			break;
+               }else if(pilih=='8'){
+                  visitJogja();
+         			break;
+         		}else{
+         			gotoxy(20,38);cprintf(" Inputan Anda Salah ");Sleep(1000);
+            		gotoxy(20,38);printf("                    ");
+              		pilih=getch();
+         		}
+			}
+}
+
+void visitBali(){
+	textcolor(7);
+   gotoxy(65,11);printf("                  ~ B A L I ~                       ");Sleep(50);
+   gotoxy(65,14);printf("Siapa tak kenal Bali, pulau yang terkenal dengan    ");Sleep(50);
+   gotoxy(65,16);printf("keindahann pantainya ini merupakan top destinasi    ");Sleep(50);
+   gotoxy(65,18);printf("terbaik dunia. Bahkan Bali menduduki peringkat      ");Sleep(50);
+   gotoxy(65,20);printf("pertama dari 25 destinasi terbaik dunia mengalahkan ");Sleep(50);
+   gotoxy(65,22);printf("destinasi di Eropa,Amerika hingga Timur tenggah.    ");Sleep(50);
+   gotoxy(65,24);printf("pulau Bali di Indonesia merupakan destinasi favorit,");Sleep(50);
+   gotoxy(65,26);printf("baik untuk wisatawan yang butuh rileksasi sekaligus ");Sleep(50);
+   gotoxy(65,28);printf("petualangan. Bagi traveler yang mendambakan budaya, ");Sleep(50);
+   gotoxy(65,30);printf("petualangan atau keindahan pantai, Bali jawabannya! ");Sleep(50);
+   gotoxy(70,36);cprintf("Apakah Ingin Lanjut?(Y/T)");
+   pilih=getch();
+   while(pilih){
+   	if(pilih=='Y'||pilih=='y'){
+         layar();
+         kotak4();
+         pktHemat1();
+         kotak5();
+         pktSultan1();
+         pilihPaket1();
+
+      }else if(pilih=='T'||pilih=='t'){
+         layar();
+      	kotak3();
+      }else{
+   		gotoxy(75,37);cprintf("Inputan Anda Salah");Sleep(1000);
+      	gotoxy(75,37);printf("                   ");
+      	gotoxy(101,36);printf("      ");
+      	gotoxy(101,36);pilih=getch();
+      }
+   }
+
+}
+
+void visitKomodo(){
+	textcolor(7);
+	gotoxy(65,11);printf("            ~ P U L A U  K O M O D O ~              ");Sleep(50);
+   gotoxy(65,14);printf("Pulau komodo adalah salah satu dari 7 keajaiban     ");Sleep(50);
+   gotoxy(65,16);printf("dunia. Taman Nasional Komodo terdiri dari 3 pulau   ");Sleep(50);
+   gotoxy(65,18);printf("besar yaitu Pulau Komodo, Pulau Rinca, dan Pulau    ");Sleep(50);
+	gotoxy(65,20);printf("Padar. Di Pulau Komodo, hewan Komodo hidup dan      ");Sleep(50);
+   gotoxy(65,22);printf("berkembang biak dengan baik. Komodo adalah species  ");Sleep(50);
+	gotoxy(65,24);printf("kadal terbesar di dunia, dengan panjamg rata-rata   ");Sleep(50);
+   gotoxy(65,26);printf("2-3 meter, dan berat tubuh sedikitnya 90 kg. Tempat ");Sleep(50);
+	gotoxy(65,28);printf("ini sangat cocok untuk anda yang ingin melihat hewan");Sleep(50);
+   gotoxy(65,30);printf("yang sangat langka ini secara dekat.                ");Sleep(50);
+   gotoxy(70,36);cprintf("Apakah Ingin Lanjut?(Y/T)");
+   pilih=getch();
+   while(pilih){
+   	if(pilih=='Y'||pilih=='y'){
+         layar();
+         kotak4();
+         pktHematkomodo();
+         kotak5();
+         pktSultankomodo();
+         pilihPaket2();
+
+
+      }else if(pilih=='T'||pilih=='t'){
+         layar();
+      	kotak3();
+      }else{
+   		gotoxy(75,37);cprintf("Inputan Anda Salah");Sleep(1000);
+      	gotoxy(75,37);printf("                   ");
+      	gotoxy(101,36);printf("      ");
+      	gotoxy(101,36);pilih=getch();
+      }
+   }
+}
+
+void visitRaja(){
+	textcolor(7);
+	gotoxy(65,11);printf("               ~ R A J A  A M P A T ~               ");Sleep(50);
+   gotoxy(65,14);printf("Kepulauan yang terrletak di ujung barat laut pulau  ");Sleep(50);
+   gotoxy(65,16);printf("Papua ini memang sudah dikenal luas sebagai 'tambang");Sleep(50);
+   gotoxy(65,18);printf("emas' bagi para penggila petualangan. Sedangkan,bagi");Sleep(50);
+	gotoxy(65,20);printf("para penyelam dalam maupun luar negeri, Raja Ampat  ");Sleep(50);
+   gotoxy(65,22);printf("dikenal sebagai surga yang tidak dapat diungkapkan  ");Sleep(50);
+	gotoxy(65,24);printf("dengan kata-kata. Satu-satunya cara untuk           ");Sleep(50);
+   gotoxy(65,26);printf("membuktikan berbgai pendapat ini adalah dengan      ");Sleep(50);
+	gotoxy(65,28);printf("datang langsung menikmati 'Sang Mutiara' dari ujung ");Sleep(50);
+   gotoxy(65,30);printf("Papua ini.                                          ");Sleep(50);
+   gotoxy(70,36);cprintf("Apakah Ingin Lanjut?(Y/T)");
+   pilih=getch();
+   while(pilih){
+   	if(pilih=='Y'||pilih=='y'){
+         layar();
+         kotak4();
+         pktHematraja();
+         kotak5();
+         pktSultanraja();
+         pilihPaket3();
+
+      }else if(pilih=='T'||pilih=='t'){
+         layar();
+      	kotak3();
+      }else{
+   		gotoxy(75,37);cprintf("Inputan Anda Salah");Sleep(1000);
+      	gotoxy(75,37);printf("                   ");
+      	gotoxy(101,36);printf("      ");
+      	gotoxy(101,36);pilih=getch();
+      }
+   }
+}
+
+void visitDieng(){
+	textcolor(7);
+	gotoxy(65,11);printf("                   ~ D I E N G ~                    ");Sleep(50);
+   gotoxy(65,14);printf("Dieng begitu erat dengan suasana alam. Tidak heran  ");Sleep(50);
+   gotoxy(65,16);printf("karena dieng sendiri merupakan daerah dataran tinggi");Sleep(50);
+   gotoxy(65,18);printf("vulkanik yang masih aktif di Provinsi Jawa Tengah.  ");Sleep(50);
+	gotoxy(65,20);printf("Lokasinya berada diantara 2 kabupaten yaitu         ");Sleep(50);
+   gotoxy(65,22);printf("Kab.Banjarnegara dan Kab.Wonosobo. Oleh karena      ");Sleep(50);
+	gotoxy(65,24);printf("berada sekitar 2000 meter diatas permukaan laut ,   ");Sleep(50);
+   gotoxy(65,26);printf("sudah pasti Dieng memiliki suhu yang cukup dingin,  ");Sleep(50);
+	gotoxy(65,28);printf("NAMUN TIDAK SEDINGIN SIKAP DIA HEHE :V canda guys   ");Sleep(50);
+   gotoxy(65,30);printf("NB: TIDAK COCOK BAGI YANG JOMBLO!!! canda juga :)   ");Sleep(50);
+   gotoxy(70,36);cprintf("Apakah Ingin Lanjut?(Y/T)");
+   pilih=getch();
+   while(pilih){
+   	if(pilih=='Y'||pilih=='y'){
+         layar();
+         kotak4();
+         pktHematdieng();
+         kotak5();
+         pktSultandieng();
+         pilihPaket4();
+
+      }else if(pilih=='T'||pilih=='t'){
+         layar();
+      	kotak3();
+      }else{
+   		gotoxy(75,37);cprintf("Inputan Anda Salah");Sleep(1000);
+      	gotoxy(75,37);printf("                   ");
+      	gotoxy(101,36);printf("      ");
+      	gotoxy(101,36);pilih=getch();
+      }
+   }
+}
+
+void visitKJ(){
+	textcolor(7);
+	gotoxy(65,11);printf("             ~ K A R I M U N J A W A ~              ");Sleep(50);
+   gotoxy(65,14);printf("Tidak perlu jauh jauh ke Maladewa, Hawaii, Karibia. ");Sleep(50);
+   gotoxy(65,16);printf("Anda bisa dengan mudah menemukan pantai indah dengan");Sleep(50);
+   gotoxy(65,18);printf("panorama alam yang memukau di Indonesia. Di utara   ");Sleep(50);
+	gotoxy(65,20);printf("Pulau jawa, ada gugusan pulau yang cantik bernama   ");Sleep(50);
+   gotoxy(65,22);printf("Karimunjawa yang berada dalam wilayah Kab. Jepara.  ");Sleep(50);
+	gotoxy(65,24);printf("Karimunjawa memiliki 27 pulau yang 22 diantaranya   ");Sleep(50);
+   gotoxy(65,26);printf("tidak berpenghuni. Dengan jarak antar pulau yang    ");Sleep(50);
+	gotoxy(65,28);printf("tidak terlalu jauh membuat kita mudah untuk         ");Sleep(50);
+   gotoxy(65,30);printf("meng explore keindahan Karimunjawa ini.             ");Sleep(50);
+   gotoxy(70,36);cprintf("Apakah Ingin Lanjut?(Y/T)");
+   pilih=getch();
+   while(pilih){
+   	if(pilih=='Y'||pilih=='y'){
+         layar();
+         kotak4();
+         pktHematkarimun();
+         kotak5();
+         pktSultankarimun();
+         pilihPaket5();
+
+      }else if(pilih=='T'||pilih=='t'){
+         layar();
+      	kotak3();
+      }else{
+   		gotoxy(75,37);cprintf("Inputan Anda Salah");Sleep(1000);
+      	gotoxy(75,37);printf("                   ");
+      	gotoxy(101,36);printf("      ");
+      	gotoxy(101,36);pilih=getch();
+      }
+   }
+}
+
+void visitWakatobi(){
+	textcolor(7);
+	gotoxy(65,11);printf("                ~ W A K A T O B I ~                 ");Sleep(50);
+   gotoxy(65,14);printf("Wakatobi adalah satu dari sekian banyak keindahan   ");Sleep(50);
+   gotoxy(65,16);printf("yang dimiliki Indonesia. Lokasinya terletak di      ");Sleep(50);
+   gotoxy(65,18);printf("Kab.Wakatobi, Sulawesi Tenggara. Taman Nasional ini ");Sleep(50);
+	gotoxy(65,20);printf("merupakan Taman Nasional Laut(TNL) terluas kedua di ");Sleep(50);
+   gotoxy(65,22);printf("Indonesia. Dan menjadi habitat bagi 90% jenis karang");Sleep(50);
+	gotoxy(65,24);printf("yag ada di dunia serta lebih dari 942 spesies ikan. ");Sleep(50);
+   gotoxy(65,26);printf("Kekayaan hayati yang melimpah itupun menggerakan    ");Sleep(50);
+	gotoxy(65,28);printf("World Wildlife Fund (WWF) untuk turun tangan dalam  ");Sleep(50);
+   gotoxy(65,30);printf("upaya pengelolaan dan pelestarian alam Wakatobi.    ");Sleep(50);
+   gotoxy(70,36);cprintf("Apakah Ingin Lanjut?(Y/T)");
+   pilih=getch();
+   while(pilih){
+   	if(pilih=='Y'||pilih=='y'){
+         layar();
+         kotak4();
+         pktHematwakatobi();
+         kotak5();
+         pktSultanwakatobi();
+         pilihPaket6();
+      	//break();
+      }else if(pilih=='T'||pilih=='t'){
+         layar();
+      	kotak3();
+      }else{
+   		gotoxy(75,37);cprintf("Inputan Anda Salah");Sleep(1000);
+      	gotoxy(75,37);printf("                   ");
+      	gotoxy(101,36);printf("      ");
+      	gotoxy(101,36);pilih=getch();
+      }
+   }
+}
+void visitBromo(){
+	textcolor(7);
+	gotoxy(65,11);printf("     ~ B R O M O  T E N G G E R  S E M E R U ~      ");Sleep(50);
+   gotoxy(65,14);printf("Gunung Bromo terkenal sebagai objek wisata utama di ");Sleep(50);
+   gotoxy(65,16);printf("Jawa Timur. Sebagai sebuah objek wisata, Bromo      ");Sleep(50);
+   gotoxy(65,18);printf("menjadi menarik karena statusnya sebagai gunung     ");Sleep(50);
+	gotoxy(65,20);printf("berapi yang masih aktif. Gunung Bromo termasuk dalam");Sleep(50);
+   gotoxy(65,22);printf("kawasan Taman Nasional Bromo Tengger Semeru.        ");Sleep(50);
+	gotoxy(65,24);printf("Keindahan Gunung Bromo sudah tidak perlu diragukan  ");Sleep(50);
+   gotoxy(65,26);printf("lagi karena Gunung Bromo tidak hanya terkenal di    ");Sleep(50);
+	gotoxy(65,28);printf("Indonesia saja, Gunung Bromo bahkan sudah diterkenal");Sleep(50);
+   gotoxy(65,30);printf("hingga mancanegara. Jadi tidak bisa diragukan lagi  ");Sleep(50);
+   gotoxy(70,36);cprintf("Apakah Ingin Lanjut?(Y/T)");
+   pilih=getch();
+   while(pilih){
+   	if(pilih=='Y'||pilih=='y'){
+         layar();
+         kotak4();
+         pktHematbromo();
+         kotak5();
+         pktSultanbromo();
+         pilihPaket7();
+
+      }else if(pilih=='T'||pilih=='t'){
+         layar();
+      	kotak3();
+      }else{
+   		gotoxy(75,37);cprintf("Inputan Anda Salah");Sleep(1000);
+      	gotoxy(75,37);printf("                   ");
+      	gotoxy(101,36);printf("      ");
+      	gotoxy(101,36);pilih=getch();
+      }
+   }
+}
+void visitJogja(){
+	textcolor(7);
+	gotoxy(65,11);printf("                    ~ J O G J A ~                   ");Sleep(50);
+   gotoxy(65,14);printf("Siapa sih yang tak kenal dengan Kota Yogyakarta?    ");Sleep(50);
+   gotoxy(65,16);printf("Selain dikenal sebagai kota pelajar Jogja dikenal   ");Sleep(50);
+   gotoxy(65,18);printf("juga karena keindahan alamnya. Keindahan Jogja yang ");Sleep(50);
+	gotoxy(65,20);printf("paling dapat dilihat adalah dari objek wisata di    ");Sleep(50);
+   gotoxy(65,22);printf("Jogja yang begitu menawan. Baik objek wisata alam   ");Sleep(50);
+	gotoxy(65,24);printf("maupun objek wisata buatan yang ada di Jogja sangat ");Sleep(50);
+   gotoxy(65,26);printf("memikat hati. Jogja juga sangat cocok untuk         ");Sleep(50);
+	gotoxy(65,28);printf("berwisata sekaligus belajar budaya karena Jogja kaya");Sleep(50);
+   gotoxy(65,30);printf("akan budayanya terutama budaya Jawa.                ");Sleep(50);
+   gotoxy(70,36);cprintf("Apakah Ingin Lanjut?(Y/T)");
+   pilih=getch();
+   while(pilih){
+   	if(pilih=='Y'||pilih=='y'){
+         layar();
+         kotak4();
+         pktHematjogja();
+         kotak5();
+         pktSultanjogja();
+         pilihPaket8();
+
+      }else if(pilih=='T'||pilih=='t'){
+         layar();
+      	kotak3();
+      }else{
+   		gotoxy(75,37);cprintf("Inputan Anda Salah");Sleep(1000);
+      	gotoxy(75,37);printf("                   ");
+      	gotoxy(101,36);printf("      ");
+      	gotoxy(101,36);pilih=getch();
+      }
+   }
+}
+
+
+
+void kotak4(){
+	 for(int a=1;a<=20;a++){
+   	for(int b=1;b<=33;b++){
+      	if(a==1||b==1||a==20||b==33){
+         	textcolor(9);
+         	gotoxy(b+19,a+9);cprintf("%c",219);
+         }else{
+         	textcolor(0);
+         	gotoxy(b+19,a+9);cprintf("%c",219);
+         }
+      }
+   }
+
+
+}
+
+void kotak5(){
+	for(int a=1;a<=20;a++){
+   	for(int b=1;b<=34;b++){
+      	if(a==1||b==1||a==20||b==34){
+         	textcolor(9);
+         	gotoxy(b+68,a+9);cprintf("%c",219);
+         }else{
+         	textcolor(0);
+         	gotoxy(b+68,a+9);cprintf("%c",219);
+         }
+      }
+   }
+}
+
+
+
+
+
+void pilihPaket1(){
+   gotoxy(45,35);cprintf("Pilih Paket Yang Diinginkan(1/2)");
+   gotoxy(78,35);pilih=getch();
+	while(pilih){
+   	if(pilih=='1'){
+      	layar();
+         kotakPesan();
+         int x=0;
+         while(x!=1){
+         gotoxy(25,23);cprintf("Apakah Data Sudah Benar(Y/T)?");
+   		pilih=getch();
+      		if(pilih=='Y'||pilih=='y'){
+         		total=paketHemat[0]*jml;
+      			gotoxy(43,26);printf("Total Yang Harus Di Bayar  Rp  %d",total);
+            	x++;
+            	gotoxy(27,28);printf("Transaksi akan diproses setelah pelanggan mentransfer uang pembayaran");
+   			}else if(pilih=='T'||pilih=='t'){
+         		kotakPesan();
+   			}else{
+   				gotoxy(25,24);cprintf("Inputan Anda Salah");Sleep(1000);
+      			gotoxy(25,24);printf("                   ");
+      			gotoxy(57,22);printf("      ");
+      		  	gotoxy(57,22);pilih=getch();
+            	x=0;
+   			}
+   		}
+      	x=NULL;
+      }else if(pilih=='2'){
+      	layar();
+         kotakPesan();
+         int x=0;
+   		while(x!=1){
+         gotoxy(25,23);cprintf("Apakah Data Sudah Benar(Y/T)?");
+   		pilih=getch();
+      	if(pilih=='Y'||pilih=='y'){
+         		total=paketSultan[0]*jml;
+      			gotoxy(43,26);printf("Total Yang Harus Di Bayar  Rp  %d",total);
+            	x++;
+            	gotoxy(27,28);printf("Transaksi akan diproses setelah pelanggan mentransfer uang pembayaran");
+   			}else if(pilih=='T'||pilih=='t'){
+         		kotakPesan();
+   			}else{
+   				gotoxy(25,24);cprintf("Inputan Anda Salah");Sleep(1000);
+      			gotoxy(25,24);printf("                   ");
+      			gotoxy(57,22);printf("      ");
+      		  	gotoxy(57,22);pilih=getch();
+            	x=0;
+   			}
+   		}
+      	x=NULL;
+      }else{
+      	gotoxy(53,38);cprintf("Inputan Anda Salah");Sleep(1000);
+         gotoxy(53,38);cprintf("                  ");
+         gotoxy(78,35);cprintf("  ");
+			gotoxy(78,35);pilih=getch();
+      }
+   }
+}
+
+void pilihPaket2(){
+   gotoxy(45,35);cprintf("Pilih Paket Yang Diinginkan(1/2)");
+   gotoxy(78,35);pilih=getch();
+	while(pilih){
+   	if(pilih=='1'){
+      	layar();
+         kotakPesan();
+         int x=0;
+   		while(x!=1){
+         gotoxy(25,23);cprintf("Apakah Data Sudah Benar(Y/T)?");
+   		pilih=getch();
+   			if(pilih=='Y'||pilih=='y'){
+         		total=paketHemat[1]*jml;
+      			gotoxy(43,26);printf("Total Yang Harus Di Bayar  Rp  %d",total);
+            	x++;
+            	gotoxy(27,28);printf("Transaksi akan diproses setelah pelanggan mentransfer uang pembayaran");
+   			}else if(pilih=='T'||pilih=='t'){
+         		kotakPesan();
+   			}else{
+   				gotoxy(25,24);cprintf("Inputan Anda Salah");Sleep(1000);
+      			gotoxy(25,24);printf("                   ");
+      			gotoxy(57,22);printf("      ");
+      		  	gotoxy(57,22);pilih=getch();
+            	x=0;
+   			}
+   		}
+      	x=NULL;
+      }else if(pilih=='2'){
+      	layar();
+         kotakPesan();
+         int x=0;
+   		while(x!=1){
+         gotoxy(25,23);cprintf("Apakah Data Sudah Benar(Y/T)?");
+   		pilih=getch();
+   			if(pilih=='Y'||pilih=='y'){
+         		total=paketSultan[1]*jml;
+      			gotoxy(43,26);printf("Total Yang Harus Di Bayar  Rp  %d",total);
+            	x++;
+            	gotoxy(27,28);printf("Transaksi akan diproses setelah pelanggan mentransfer uang pembayaran");
+   			}else if(pilih=='T'||pilih=='t'){
+         		kotakPesan();
+   			}else{
+   				gotoxy(25,24);cprintf("Inputan Anda Salah");Sleep(1000);
+      			gotoxy(25,24);printf("                   ");
+      			gotoxy(57,22);printf("      ");
+      		  	gotoxy(57,22);pilih=getch();
+            	x=0;
+   			}
+   		}
+      	x=NULL;
+      }else{
+      	gotoxy(53,38);cprintf("Inputan Anda Salah");Sleep(1000);
+         gotoxy(53,38);cprintf("                  ");
+         gotoxy(78,35);cprintf("  ");
+			gotoxy(78,35);pilih=getch();
+      }
+   }
+}
+
+void pilihPaket3(){
+   gotoxy(45,35);cprintf("Pilih Paket Yang Diinginkan(1/2)");
+   gotoxy(78,35);pilih=getch();
+	while(pilih){
+   	if(pilih=='1'){
+      	layar();
+         kotakPesan();
+         int x=0;
+   		while(x!=1){
+         gotoxy(25,23);cprintf("Apakah Data Sudah Benar(Y/T)?");
+   		pilih=getch();
+   			if(pilih=='Y'||pilih=='y'){
+         		total=paketHemat[2]*jml;
+      			gotoxy(43,26);printf("Total Yang Harus Di Bayar  Rp  %d",total);
+            	x++;
+            	gotoxy(27,28);printf("Transaksi akan diproses setelah pelanggan mentransfer uang pembayaran");
+   			}else if(pilih=='T'||pilih=='t'){
+         		kotakPesan();
+   			}else{
+   				gotoxy(25,24);cprintf("Inputan Anda Salah");Sleep(1000);
+      			gotoxy(25,24);printf("                   ");
+      			gotoxy(57,22);printf("      ");
+      		  	gotoxy(57,22);pilih=getch();
+            	x=0;
+   			}
+   		}
+      	x=NULL;
+      }else if(pilih=='2'){
+      	layar();
+         kotakPesan();
+         int x=0;
+   		while(x!=1){
+         gotoxy(25,23);cprintf("Apakah Data Sudah Benar(Y/T)?");
+   		pilih=getch();
+   			if(pilih=='Y'||pilih=='y'){
+         		total=paketSultan[2]*jml;
+      			gotoxy(43,26);printf("Total Yang Harus Di Bayar  Rp  %d",total);
+            	x++;
+            	gotoxy(27,28);printf("Transaksi akan diproses setelah pelanggan mentransfer uang pembayaran");
+   			}else if(pilih=='T'||pilih=='t'){
+         		kotakPesan();
+   			}else{
+   				gotoxy(25,24);cprintf("Inputan Anda Salah");Sleep(1000);
+      			gotoxy(25,24);printf("                   ");
+      			gotoxy(57,22);printf("      ");
+      		  	gotoxy(57,22);pilih=getch();
+            	x=0;
+   			}
+   		}
+      	x=NULL;
+      }else{
+      	gotoxy(53,38);cprintf("Inputan Anda Salah");Sleep(1000);
+         gotoxy(53,38);cprintf("                  ");
+         gotoxy(78,35);cprintf("  ");
+			gotoxy(78,35);pilih=getch();
+      }
+   }
+}
+
+void pilihPaket4(){
+   gotoxy(45,35);cprintf("Pilih Paket Yang Diinginkan(1/2)");
+   gotoxy(78,35);pilih=getch();
+	while(pilih){
+   	if(pilih=='1'){
+      	layar();
+         kotakPesan();
+         int x=0;
+   		while(x!=1){
+         gotoxy(25,23);cprintf("Apakah Data Sudah Benar(Y/T)?");
+   		pilih=getch();
+   			if(pilih=='Y'||pilih=='y'){
+         		total=paketHemat[3]*jml;
+      			gotoxy(43,26);printf("Total Yang Harus Di Bayar  Rp  %d",total);
+            	x++;
+            	gotoxy(27,28);printf("Transaksi akan diproses setelah pelanggan mentransfer uang pembayaran");
+   			}else if(pilih=='T'||pilih=='t'){
+         		kotakPesan();
+   			}else{
+   				gotoxy(25,24);cprintf("Inputan Anda Salah");Sleep(1000);
+      			gotoxy(25,24);printf("                   ");
+      			gotoxy(57,22);printf("      ");
+      		  	gotoxy(57,22);pilih=getch();
+            	x=0;
+   			}
+   		}
+      	x=NULL;
+      }else if(pilih=='2'){
+      	layar();
+         kotakPesan();
+         int x=0;
+   		while(x!=1){
+         gotoxy(25,23);cprintf("Apakah Data Sudah Benar(Y/T)?");
+   		pilih=getch();
+   			if(pilih=='Y'||pilih=='y'){
+         		total=paketSultan[3]*jml;
+      			gotoxy(43,26);printf("Total Yang Harus Di Bayar  Rp  %d",total);
+            	x++;
+            	gotoxy(27,28);printf("Transaksi akan diproses setelah pelanggan mentransfer uang pembayaran");
+   			}else if(pilih=='T'||pilih=='t'){
+         		kotakPesan();
+   			}else{
+   				gotoxy(25,24);cprintf("Inputan Anda Salah");Sleep(1000);
+      			gotoxy(25,24);printf("                   ");
+      			gotoxy(57,22);printf("      ");
+      		  	gotoxy(57,22);pilih=getch();
+            	x=0;
+   			}
+   		}
+      	x=NULL;
+      }else{
+      	gotoxy(53,38);cprintf("Inputan Anda Salah");Sleep(1000);
+         gotoxy(53,38);cprintf("                  ");
+         gotoxy(78,35);cprintf("  ");
+			gotoxy(78,35);pilih=getch();
+      }
+   }
+}
+
+void pilihPaket5(){
+   gotoxy(45,35);cprintf("Pilih Paket Yang Diinginkan(1/2)");
+   gotoxy(78,35);pilih=getch();
+	while(pilih){
+   	if(pilih=='1'){
+      	layar();
+         kotakPesan();
+         int x=0;
+   		while(x!=1){
+         gotoxy(25,23);cprintf("Apakah Data Sudah Benar(Y/T)?");
+   		pilih=getch();
+   			if(pilih=='Y'||pilih=='y'){
+         		total=paketHemat[4]*jml;
+      			gotoxy(43,26);printf("Total Yang Harus Di Bayar  Rp  %d",total);
+            	x++;
+            	gotoxy(27,28);printf("Transaksi akan diproses setelah pelanggan mentransfer uang pembayaran");
+   			}else if(pilih=='T'||pilih=='t'){
+         		kotakPesan();
+   			}else{
+   				gotoxy(25,24);cprintf("Inputan Anda Salah");Sleep(1000);
+      			gotoxy(25,24);printf("                   ");
+      			gotoxy(57,22);printf("      ");
+      		  	gotoxy(57,22);pilih=getch();
+            	x=0;
+   			}
+   		}
+      	x=NULL;
+      }else if(pilih=='2'){
+      	layar();
+         kotakPesan();
+         int x=0;
+   		while(x!=1){
+         gotoxy(25,23);cprintf("Apakah Data Sudah Benar(Y/T)?");
+   		pilih=getch();
+   			if(pilih=='Y'||pilih=='y'){
+         		total=paketSultan[4]*jml;
+      			gotoxy(43,26);printf("Total Yang Harus Di Bayar  Rp  %d",total);
+            	x++;
+            	gotoxy(27,28);printf("Transaksi akan diproses setelah pelanggan mentransfer uang pembayaran");
+   			}else if(pilih=='T'||pilih=='t'){
+         		kotakPesan();
+   			}else{
+   				gotoxy(25,24);cprintf("Inputan Anda Salah");Sleep(1000);
+      			gotoxy(25,24);printf("                   ");
+      			gotoxy(57,22);printf("      ");
+      		  	gotoxy(57,22);pilih=getch();
+            	x=0;
+   			}
+   		}
+      	x=NULL;
+      }else{
+      	gotoxy(53,38);cprintf("Inputan Anda Salah");Sleep(1000);
+         gotoxy(53,38);cprintf("                  ");
+         gotoxy(78,35);cprintf("  ");
+			gotoxy(78,35);pilih=getch();
+      }
+   }
+}
+
+void pilihPaket6(){
+   gotoxy(45,35);cprintf("Pilih Paket Yang Diinginkan(1/2)");
+   gotoxy(78,35);pilih=getch();
+	while(pilih){
+   	if(pilih=='1'){
+      	layar();
+         kotakPesan();
+         int x=0;
+   		while(x!=1){
+         gotoxy(25,23);cprintf("Apakah Data Sudah Benar(Y/T)?");
+   		pilih=getch();
+   			if(pilih=='Y'||pilih=='y'){
+         		total=paketHemat[5]*jml;
+      			gotoxy(43,26);printf("Total Yang Harus Di Bayar  Rp  %d",total);
+            	x++;
+            	gotoxy(27,28);printf("Transaksi akan diproses setelah pelanggan mentransfer uang pembayaran");
+   			}else if(pilih=='T'||pilih=='t'){
+         		kotakPesan();
+   			}else{
+   				gotoxy(25,24);cprintf("Inputan Anda Salah");Sleep(1000);
+      			gotoxy(25,24);printf("                   ");
+      			gotoxy(57,22);printf("      ");
+      		  	gotoxy(57,22);pilih=getch();
+            	x=0;
+   			}
+   		}
+      	x=NULL;
+      }else if(pilih=='2'){
+      	layar();
+         kotakPesan();
+         int x=0;
+   		while(x!=1){
+         gotoxy(25,23);cprintf("Apakah Data Sudah Benar(Y/T)?");
+   		pilih=getch();
+   			if(pilih=='Y'||pilih=='y'){
+         		total=paketSultan[5]*jml;
+      			gotoxy(43,26);printf("Total Yang Harus Di Bayar  Rp  %d",total);
+            	x++;
+            	gotoxy(27,28);printf("Transaksi akan diproses setelah pelanggan mentransfer uang pembayaran");
+   			}else if(pilih=='T'||pilih=='t'){
+         		kotakPesan();
+   			}else{
+   				gotoxy(25,24);cprintf("Inputan Anda Salah");Sleep(1000);
+      			gotoxy(25,24);printf("                   ");
+      			gotoxy(57,22);printf("      ");
+      		  	gotoxy(57,22);pilih=getch();
+            	x=0;
+   			}
+   		}
+      	x=NULL;
+      }else{
+      	gotoxy(53,38);cprintf("Inputan Anda Salah");Sleep(1000);
+         gotoxy(53,38);cprintf("                  ");
+         gotoxy(78,35);cprintf("  ");
+			gotoxy(78,35);pilih=getch();
+      }
+   }
+}
+
+void pilihPaket7(){
+   gotoxy(45,35);cprintf("Pilih Paket Yang Diinginkan(1/2)");
+   gotoxy(78,35);pilih=getch();
+	while(pilih){
+   	if(pilih=='1'){
+      	layar();
+         kotakPesan();
+         int x=0;
+   		while(x!=1){
+         gotoxy(25,23);cprintf("Apakah Data Sudah Benar(Y/T)?");
+   		pilih=getch();
+   			if(pilih=='Y'||pilih=='y'){
+         		total=paketHemat[6]*jml;
+      			gotoxy(43,26);printf("Total Yang Harus Di Bayar  Rp  %d",total);
+            	x++;
+            	gotoxy(27,28);printf("Transaksi akan diproses setelah pelanggan mentransfer uang pembayaran");
+   			}else if(pilih=='T'||pilih=='t'){
+         		kotakPesan();
+   			}else{
+   				gotoxy(25,24);cprintf("Inputan Anda Salah");Sleep(1000);
+      			gotoxy(25,24);printf("                   ");
+      			gotoxy(57,22);printf("      ");
+      		  	gotoxy(57,22);pilih=getch();
+            	x=0;
+   			}
+   		}
+      	x=NULL;
+      }else if(pilih=='2'){
+      	layar();
+         kotakPesan();
+         int x=0;
+   		while(x!=1){
+         gotoxy(25,23);cprintf("Apakah Data Sudah Benar(Y/T)?");
+   		pilih=getch();
+   			if(pilih=='Y'||pilih=='y'){
+         		total=paketSultan[6]*jml;
+      			gotoxy(43,26);printf("Total Yang Harus Di Bayar  Rp  %d",total);
+            	x++;
+            	gotoxy(27,28);printf("Transaksi akan diproses setelah pelanggan mentransfer uang pembayaran");
+   			}else if(pilih=='T'||pilih=='t'){
+         		kotakPesan();
+   			}else{
+   				gotoxy(25,24);cprintf("Inputan Anda Salah");Sleep(1000);
+      			gotoxy(25,24);printf("                   ");
+      			gotoxy(57,22);printf("      ");
+      		  	gotoxy(57,22);pilih=getch();
+            	x=0;
+   			}
+   		}
+      	x=NULL;
+      }else{
+      	gotoxy(53,38);cprintf("Inputan Anda Salah");Sleep(1000);
+         gotoxy(53,38);cprintf("                  ");
+         gotoxy(78,35);cprintf("  ");
+			gotoxy(78,35);pilih=getch();
+      }
+   }
+}
+
+void pilihPaket8(){
+   gotoxy(45,35);cprintf("Pilih Paket Yang Diinginkan(1/2)");
+   gotoxy(78,35);pilih=getch();
+	while(pilih){
+   	if(pilih=='1'){
+      	layar();
+         kotakPesan();
+         int x=0;
+   		while(x!=1){
+         gotoxy(25,23);cprintf("Apakah Data Sudah Benar(Y/T)?");
+   		pilih=getch();
+   			if(pilih=='Y'||pilih=='y'){
+         		total=paketHemat[7]*jml;
+      			gotoxy(43,26);printf("Total Yang Harus Di Bayar  Rp  %d",total);
+            	x++;
+            	gotoxy(27,28);printf("Transaksi akan diproses setelah pelanggan mentransfer uang pembayaran");
+   			}else if(pilih=='T'||pilih=='t'){
+         		kotakPesan();
+   			}else{
+   				gotoxy(25,24);cprintf("Inputan Anda Salah");Sleep(1000);
+      			gotoxy(25,24);printf("                   ");
+      			gotoxy(57,22);printf("      ");
+      		  	gotoxy(57,22);pilih=getch();
+            	x=0;
+   			}
+   		}
+      	x=NULL;
+      }else if(pilih=='2'){
+      	layar();
+         kotakPesan();
+         int x=0;
+   		while(x!=1){
+         gotoxy(25,23);cprintf("Apakah Data Sudah Benar(Y/T)?");
+   		pilih=getch();
+   			if(pilih=='Y'||pilih=='y'){
+         		total=paketSultan[7]*jml;
+      			gotoxy(43,26);printf("Total Yang Harus Di Bayar  Rp  %d",total);
+            	x++;
+            	gotoxy(27,28);printf("Transaksi akan diproses setelah pelanggan mentransfer uang pembayaran");
+   			}else if(pilih=='T'||pilih=='t'){
+         		kotakPesan();
+   			}else{
+   				gotoxy(25,24);cprintf("Inputan Anda Salah");Sleep(1000);
+      			gotoxy(25,24);printf("                   ");
+      			gotoxy(57,22);printf("      ");
+      		  	gotoxy(57,22);pilih=getch();
+            	x=0;
+   			}
+   		}
+      	x=NULL;
+      }else{
+      	gotoxy(53,38);cprintf("Inputan Anda Salah");Sleep(1000);
+         gotoxy(53,38);cprintf("                  ");
+         gotoxy(78,35);cprintf("  ");
+			gotoxy(78,35);pilih=getch();
+      }
+   }
+}
+
+
+void pktHemat1(){
+   textcolor(7);
+   gotoxy(21,11);cprintf(" ----------------------------- ");
+   gotoxy(21,12);cprintf(" ====(1)PAKET HEMAT(4D/3N)==== ");
+   gotoxy(21,13);cprintf(" -------(3.000.000/pax)------- ");
+   gotoxy(21,14);cprintf("  ~Fasilitas Yang Didapatkan~  ");
+   gotoxy(21,15);cprintf(" 1. Hotel Bintang 3            ");
+   gotoxy(21,16);cprintf(" 2. Tiket Wisata               ");
+   gotoxy(21,17);cprintf(" 3. Transportasi Darat Full AC ");
+   gotoxy(21,18);cprintf(" 4. Asuransi                   ");
+   gotoxy(21,19);cprintf(" 5. Makan 3x Sehari            ");
+   gotoxy(21,20);cprintf(" 6. Air Mineral                ");
+   gotoxy(21,21);cprintf(" 7. 1 Tour Guide               ");
+   gotoxy(21,22);cprintf(" 8. 1 Porter                   ");
+   gotoxy(21,23);cprintf(" 9. P3K                        ");
+   gotoxy(21,24);cprintf("                               ");
+   gotoxy(21,25);cprintf("                               ");
+   gotoxy(21,26);cprintf("                               ");
+   gotoxy(21,27);cprintf("                               ");
+   gotoxy(21,28);cprintf(" ----------------------------- ");
+
+}
+
+void pktSultan1(){
+   textcolor(7);
+   gotoxy(70,11);cprintf(" ------------------------------ ");
+   gotoxy(70,12);cprintf(" ====(2)PAKET SULTAN(5D/4N)==== ");
+   gotoxy(70,13);cprintf(" -------(5.000.000 /pax)------- ");
+   gotoxy(70,14);cprintf("  ~Fasilitas Yang Didapatkan~   ");
+   gotoxy(70,15);cprintf(" 1. Hotel Bintang 6             ");
+   gotoxy(70,16);cprintf(" 2. Tiket Pesawat PP            ");
+   gotoxy(70,17);cprintf(" 3. Tiket Wisata                ");
+   gotoxy(70,18);cprintf(" 4. Transportasi Darat Full AC  ");
+   gotoxy(70,19);cprintf(" 5. Transportasi laut           ");
+   gotoxy(70,20);cprintf(" 6. Asuransi                    ");
+	gotoxy(70,21);cprintf(" 7. Makan 4x sehari             ");
+   gotoxy(70,22);cprintf(" 8. Snack dan Air Mineral       ");
+   gotoxy(70,23);cprintf(" 9. 2 Tour Guide                ");
+   gotoxy(70,24);cprintf(" 10. 2 Porter                   ");
+   gotoxy(70,25);cprintf(" 11. Dokumentasi                ");
+	gotoxy(70,26);cprintf(" 12. Free Merchedise            ");
+   gotoxy(70,27);cprintf(" 13. P3K                        ");
+   gotoxy(70,28);cprintf(" ------------------------------ ");
+
+}
+
+
+
+void pktHematkomodo(){
+   textcolor(7);
+   gotoxy(21,11);cprintf(" ----------------------------- ");
+   gotoxy(21,12);cprintf(" ====(1)PAKET HEMAT(4D/3N)==== ");
+   gotoxy(21,13);cprintf(" -------(4.000.000/pax)------- ");
+   gotoxy(21,14);cprintf("  ~Fasilitas Yang Didapatkan~  ");
+   gotoxy(21,15);cprintf(" 1. Kapal Sailing Class B      ");
+   gotoxy(21,16);cprintf(" 2. Tiket Wisata               ");
+   gotoxy(21,17);cprintf(" 3. Transportasi Full AC       ");
+   gotoxy(21,18);cprintf(" 4. Asuransi                   ");
+   gotoxy(21,19);cprintf(" 5. Makan 3x Sehari            ");
+   gotoxy(21,20);cprintf(" 6. Air Mineral                ");
+   gotoxy(21,21);cprintf(" 7. 1 Tour Guide               ");
+   gotoxy(21,22);cprintf(" 8. 1 Porter                   ");
+   gotoxy(21,23);cprintf(" 9. P3K                        ");
+   gotoxy(21,24);cprintf("                               ");
+   gotoxy(21,25);cprintf("                               ");
+   gotoxy(21,26);cprintf("                               ");
+   gotoxy(21,27);cprintf("                               ");
+   gotoxy(21,28);cprintf(" ----------------------------- ");
+
+}
+
+void pktSultankomodo(){
+   textcolor(7);
+   gotoxy(70,11);cprintf(" ------------------------------ ");
+   gotoxy(70,12);cprintf(" ====(2)PAKET SULTAN(5D/4N)==== ");
+   gotoxy(70,13);cprintf(" -------(6.000.000 /pax)------- ");
+   gotoxy(70,14);cprintf("  ~Fasilitas Yang Didapatkan~   ");
+   gotoxy(70,15);cprintf(" 1. Kapal Sailing Class A       ");
+   gotoxy(70,16);cprintf(" 2. Tiket Pesawat PP            ");
+   gotoxy(70,17);cprintf(" 3. Tiket Wisata                ");
+   gotoxy(70,18);cprintf(" 4. Transportasi Full AC        ");
+   gotoxy(70,19);cprintf(" 5. Asuransi                    ");
+	gotoxy(70,20);cprintf(" 6. Makan 4x sehari             ");
+   gotoxy(70,21);cprintf(" 7. Snack dan Air Mineral       ");
+   gotoxy(70,22);cprintf(" 8. 2 Tour Guide                ");
+   gotoxy(70,23);cprintf(" 9. 2 Porter                    ");
+   gotoxy(70,24);cprintf(" 10. Dokumentasi                ");
+	gotoxy(70,25);cprintf(" 11. Free Merchedise            ");
+   gotoxy(70,26);cprintf(" 12. P3K                        ");
+   gotoxy(70,27);cprintf("                                ");
+   gotoxy(70,28);cprintf(" ------------------------------ ");
+
+}
+
+void pktHematraja(){
+   textcolor(7);
+   gotoxy(21,11);cprintf(" ----------------------------- ");
+   gotoxy(21,12);cprintf(" ====(1)PAKET HEMAT(6D/5N)==== ");
+   gotoxy(21,13);cprintf(" -------(8.000.000/pax)------- ");
+   gotoxy(21,14);cprintf("  ~Fasilitas Yang Didapatkan~  ");
+   gotoxy(21,15);cprintf(" 1. Kapal Sailing Class B      ");
+   gotoxy(21,16);cprintf(" 2. Tiket Wisata               ");
+   gotoxy(21,17);cprintf(" 3. Transportasi Full AC       ");
+   gotoxy(21,18);cprintf(" 4. Asuransi                   ");
+   gotoxy(21,19);cprintf(" 5. Makan 3x Sehari            ");
+   gotoxy(21,20);cprintf(" 6. Air Mineral                ");
+   gotoxy(21,21);cprintf(" 7. 1 Tour Guide               ");
+   gotoxy(21,22);cprintf(" 8. 1 Porter                   ");
+   gotoxy(21,23);cprintf(" 9. P3K                        ");
+   gotoxy(21,24);cprintf("                               ");
+   gotoxy(21,25);cprintf("                               ");
+   gotoxy(21,26);cprintf("                               ");
+   gotoxy(21,27);cprintf("                               ");
+   gotoxy(21,28);cprintf(" ----------------------------- ");
+
+}
+
+void pktSultanraja(){
+   textcolor(7);
+   gotoxy(70,11);cprintf(" ------------------------------ ");
+   gotoxy(70,12);cprintf(" ====(2)PAKET SULTAN(7D/6N)==== ");
+   gotoxy(70,13);cprintf(" -------(11.000.000/pax)------- ");
+   gotoxy(70,14);cprintf("  ~Fasilitas Yang Didapatkan~   ");
+   gotoxy(70,15);cprintf(" 1. Kapal Sailing Class A       ");
+   gotoxy(70,16);cprintf(" 2. Tiket Pesawat PP            ");
+   gotoxy(70,17);cprintf(" 3. Tiket Wisata                ");
+   gotoxy(70,18);cprintf(" 4. Transportasi Full AC        ");
+   gotoxy(70,19);cprintf(" 5. Asuransi                    ");
+	gotoxy(70,20);cprintf(" 6. Makan 4x sehari             ");
+   gotoxy(70,21);cprintf(" 7. Snack dan Air Mineral       ");
+   gotoxy(70,22);cprintf(" 8. 2 Tour Guide                ");
+   gotoxy(70,23);cprintf(" 9. 2 Porter                    ");
+   gotoxy(70,24);cprintf(" 10. Dokumentasi                ");
+	gotoxy(70,25);cprintf(" 11. Free Merchedise            ");
+   gotoxy(70,26);cprintf(" 12. P3K                        ");
+   gotoxy(70,27);cprintf("                                ");
+   gotoxy(70,28);cprintf(" ------------------------------ ");
+
+}
+
+void pktHematdieng(){
+   textcolor(7);
+   gotoxy(21,11);cprintf(" ----------------------------- ");
+   gotoxy(21,12);cprintf(" ====(1)PAKET HEMAT(2D/1N)==== ");
+   gotoxy(21,13);cprintf(" -------(1.000.000/pax)------- ");
+   gotoxy(21,14);cprintf("  ~Fasilitas Yang Didapatkan~  ");
+   gotoxy(21,15);cprintf(" 1. Home Stay                  ");
+   gotoxy(21,16);cprintf(" 2. Tiket Wisata               ");
+   gotoxy(21,17);cprintf(" 3. Transportasi Darat Full AC ");
+   gotoxy(21,18);cprintf(" 4. Asuransi                   ");
+   gotoxy(21,19);cprintf(" 5. Makan 3x Sehari            ");
+   gotoxy(21,20);cprintf(" 6. Air Mineral                ");
+   gotoxy(21,21);cprintf(" 7. 1 Tour Guide               ");
+   gotoxy(21,22);cprintf(" 8. 1 Porter                   ");
+   gotoxy(21,23);cprintf(" 9. P3K                        ");
+   gotoxy(21,24);cprintf("                               ");
+   gotoxy(21,25);cprintf("                               ");
+   gotoxy(21,26);cprintf("                               ");
+   gotoxy(21,27);cprintf("                               ");
+   gotoxy(21,28);cprintf(" ----------------------------- ");
+
+}
+
+void pktSultandieng(){
+   textcolor(7);
+   gotoxy(70,11);cprintf(" ------------------------------ ");
+   gotoxy(70,12);cprintf(" ====(2)PAKET SULTAN(3D/2N)==== ");
+   gotoxy(70,13);cprintf(" -------(2.000.000 /pax)------- ");
+   gotoxy(70,14);cprintf("  ~Fasilitas Yang Didapatkan~   ");
+   gotoxy(70,15);cprintf(" 1. Villa                       ");
+   gotoxy(70,16);cprintf(" 2. Tiket Pesawat PP            ");
+   gotoxy(70,17);cprintf(" 3. Tiket Wisata                ");
+   gotoxy(70,18);cprintf(" 4. Transportasi Darat Full AC  ");
+   gotoxy(70,19);cprintf(" 5. Asuransi                    ");
+	gotoxy(70,20);cprintf(" 6. Makan 4x sehari             ");
+   gotoxy(70,21);cprintf(" 7. Snack dan Air Mineral       ");
+   gotoxy(70,22);cprintf(" 8. 2 Tour Guide                ");
+   gotoxy(70,23);cprintf(" 9. 2 Porter                    ");
+   gotoxy(70,24);cprintf(" 10. Dokumentasi                ");
+	gotoxy(70,25);cprintf(" 11. Free Merchedise            ");
+   gotoxy(70,26);cprintf(" 12. P3K                        ");
+   gotoxy(70,27);cprintf("                                ");
+   gotoxy(70,28);cprintf(" ------------------------------ ");
+
+}
+
+void pktHematkarimun(){
+   textcolor(7);
+   gotoxy(21,11);cprintf(" ----------------------------- ");
+   gotoxy(21,12);cprintf(" ====(1)PAKET HEMAT(3D/2N)==== ");
+   gotoxy(21,13);cprintf(" -------(3.000.000/pax)------- ");
+   gotoxy(21,14);cprintf("  ~Fasilitas Yang Didapatkan~  ");
+   gotoxy(21,15);cprintf(" 1. Hotel Bintang 3            ");
+   gotoxy(21,16);cprintf(" 2. Tiket Wisata               ");
+   gotoxy(21,17);cprintf(" 3. Transportasi Darat Full AC ");
+   gotoxy(21,18);cprintf(" 4. Asuransi                   ");
+   gotoxy(21,19);cprintf(" 5. Makan 3x Sehari            ");
+   gotoxy(21,20);cprintf(" 6. Air Mineral                ");
+   gotoxy(21,21);cprintf(" 7. 1 Tour Guide               ");
+   gotoxy(21,22);cprintf(" 8. 1 Porter                   ");
+   gotoxy(21,23);cprintf(" 9. P3K                        ");
+   gotoxy(21,24);cprintf("                               ");
+   gotoxy(21,25);cprintf("                               ");
+   gotoxy(21,26);cprintf("                               ");
+   gotoxy(21,27);cprintf("                               ");
+   gotoxy(21,28);cprintf(" ----------------------------- ");
+
+}
+
+void pktSultankarimun(){
+   textcolor(7);
+   gotoxy(70,11);cprintf(" ------------------------------ ");
+   gotoxy(70,12);cprintf(" ====(2)PAKET SULTAN(4D/3N)==== ");
+   gotoxy(70,13);cprintf(" -------(4.000.000 /pax)------- ");
+   gotoxy(70,14);cprintf("  ~Fasilitas Yang Didapatkan~   ");
+   gotoxy(70,15);cprintf(" 1. Hotel bintang 5             ");
+   gotoxy(70,16);cprintf(" 2. Tiket Pesawat PP            ");
+   gotoxy(70,17);cprintf(" 3. Tiket Wisata                ");
+   gotoxy(70,18);cprintf(" 4. Transportasi Darat Full AC  ");
+   gotoxy(70,19);cprintf(" 5. Transportasi laut           ");
+   gotoxy(70,20);cprintf(" 6. Asuransi                    ");
+	gotoxy(70,21);cprintf(" 7. Makan 4x sehari             ");
+   gotoxy(70,22);cprintf(" 8. Snack dan Air Mineral       ");
+   gotoxy(70,23);cprintf(" 9. 2 Tour Guide                ");
+   gotoxy(70,24);cprintf(" 10. 2 Porter                   ");
+   gotoxy(70,25);cprintf(" 11. Dokumentasi                ");
+	gotoxy(70,26);cprintf(" 12. Free Merchedise            ");
+   gotoxy(70,27);cprintf(" 13. P3K                        ");
+   gotoxy(70,28);cprintf(" ------------------------------ ");
+
+}
+
+void pktHematwakatobi(){
+   textcolor(7);
+   gotoxy(21,11);cprintf(" ----------------------------- ");
+   gotoxy(21,12);cprintf(" ====(1)PAKET HEMAT(4D/3N)==== ");
+   gotoxy(21,13);cprintf(" -------(5.000.000/pax)------- ");
+   gotoxy(21,14);cprintf("  ~Fasilitas Yang Didapatkan~  ");
+   gotoxy(21,15);cprintf(" 1. Hotel Bintang 3            ");
+   gotoxy(21,16);cprintf(" 2. Tiket Wisata               ");
+   gotoxy(21,17);cprintf(" 3. Transportasi Darat Full AC ");
+   gotoxy(21,18);cprintf(" 4. Asuransi                   ");
+   gotoxy(21,19);cprintf(" 5. Makan 3x Sehari            ");
+   gotoxy(21,20);cprintf(" 6. Air Mineral                ");
+   gotoxy(21,21);cprintf(" 7. 1 Tour Guide               ");
+   gotoxy(21,22);cprintf(" 8. 1 Porter                   ");
+   gotoxy(21,23);cprintf(" 9. P3K                        ");
+   gotoxy(21,24);cprintf("                               ");
+   gotoxy(21,25);cprintf("                               ");
+   gotoxy(21,26);cprintf("                               ");
+   gotoxy(21,27);cprintf("                               ");
+   gotoxy(21,28);cprintf(" ----------------------------- ");
+
+}
+
+void pktSultanwakatobi(){
+   textcolor(7);
+   gotoxy(70,11);cprintf(" ------------------------------ ");
+   gotoxy(70,12);cprintf(" ====(2)PAKET SULTAN(5D/4N)==== ");
+   gotoxy(70,13);cprintf(" -------(7.000.000 /pax)------- ");
+   gotoxy(70,14);cprintf("  ~Fasilitas Yang Didapatkan~   ");
+   gotoxy(70,15);cprintf(" 1. Hotel bintang 5             ");
+   gotoxy(70,16);cprintf(" 2. Tiket Pesawat PP            ");
+   gotoxy(70,17);cprintf(" 3. Tiket Wisata                ");
+   gotoxy(70,18);cprintf(" 4. Transportasi Darat Full AC  ");
+   gotoxy(70,19);cprintf(" 5. Transportasi laut           ");
+   gotoxy(70,20);cprintf(" 6. Asuransi                    ");
+	gotoxy(70,21);cprintf(" 7. Makan 4x sehari             ");
+   gotoxy(70,22);cprintf(" 8. Snack dan Air Mineral       ");
+   gotoxy(70,23);cprintf(" 9. 2 Tour Guide                ");
+   gotoxy(70,24);cprintf(" 10. 2 Porter                   ");
+   gotoxy(70,25);cprintf(" 11. Dokumentasi                ");
+	gotoxy(70,26);cprintf(" 12. Free Merchedise            ");
+   gotoxy(70,27);cprintf(" 13. P3K                        ");
+   gotoxy(70,28);cprintf(" ------------------------------ ");
+
+}
+
+void pktHematbromo(){
+   textcolor(7);
+   gotoxy(21,11);cprintf(" ----------------------------- ");
+   gotoxy(21,12);cprintf(" ====(1)PAKET HEMAT(2D/1N)==== ");
+   gotoxy(21,13);cprintf(" -------(1.500.000/pax)------- ");
+   gotoxy(21,14);cprintf("  ~Fasilitas Yang Didapatkan~  ");
+   gotoxy(21,15);cprintf(" 1. Hotel Bintang 3            ");
+   gotoxy(21,16);cprintf(" 2. Tiket Wisata               ");
+   gotoxy(21,17);cprintf(" 3. Transportasi Darat Full AC ");
+   gotoxy(21,18);cprintf(" 4. Asuransi                   ");
+   gotoxy(21,19);cprintf(" 5. Makan 3x Sehari            ");
+   gotoxy(21,20);cprintf(" 6. Air Mineral                ");
+   gotoxy(21,21);cprintf(" 7. 1 Tour Guide               ");
+   gotoxy(21,22);cprintf(" 8. 1 Porter                   ");
+   gotoxy(21,23);cprintf(" 9. P3K                        ");
+   gotoxy(21,24);cprintf("                               ");
+   gotoxy(21,25);cprintf("                               ");
+   gotoxy(21,26);cprintf("                               ");
+   gotoxy(21,27);cprintf("                               ");
+   gotoxy(21,28);cprintf(" ----------------------------- ");
+
+}
+
+void pktSultanbromo(){
+   textcolor(7);
+   gotoxy(70,11);cprintf(" ------------------------------ ");
+   gotoxy(70,12);cprintf(" ====(2)PAKET SULTAN(3D/2N)==== ");
+   gotoxy(70,13);cprintf(" -------(2.500.000 /pax)------- ");
+   gotoxy(70,14);cprintf("  ~Fasilitas Yang Didapatkan~   ");
+   gotoxy(70,15);cprintf(" 1. Hotel Bintang 6             ");
+   gotoxy(70,16);cprintf(" 2. Tiket Pesawat PP            ");
+   gotoxy(70,17);cprintf(" 3. Tiket Wisata                ");
+   gotoxy(70,18);cprintf(" 4. Transportasi Darat Full AC  ");
+   gotoxy(70,19);cprintf(" 5. Transportasi laut           ");
+   gotoxy(70,20);cprintf(" 6. Asuransi                    ");
+	gotoxy(70,21);cprintf(" 7. Makan 4x sehari             ");
+   gotoxy(70,22);cprintf(" 8. Snack dan Air Mineral       ");
+   gotoxy(70,23);cprintf(" 9. 2 Tour Guide                ");
+   gotoxy(70,24);cprintf(" 10. 2 Porter                   ");
+   gotoxy(70,25);cprintf(" 11. Dokumentasi                ");
+	gotoxy(70,26);cprintf(" 12. Free Merchedise            ");
+   gotoxy(70,27);cprintf(" 13. P3K                        ");
+   gotoxy(70,28);cprintf(" ------------------------------ ");
+
+}
+
+void pktHematjogja(){
+   textcolor(7);
+   gotoxy(21,11);cprintf(" ----------------------------- ");
+   gotoxy(21,12);cprintf(" ====(1)PAKET HEMAT(2D/1N)==== ");
+   gotoxy(21,13);cprintf(" -------(1.500.000/pax)------- ");
+   gotoxy(21,14);cprintf("  ~Fasilitas Yang Didapatkan~  ");
+   gotoxy(21,15);cprintf(" 1. Hotel Bintang 3            ");
+   gotoxy(21,16);cprintf(" 2. Tiket Wisata               ");
+   gotoxy(21,17);cprintf(" 3. Transportasi Darat Full AC ");
+   gotoxy(21,18);cprintf(" 4. Asuransi                   ");
+   gotoxy(21,19);cprintf(" 5. Makan 3x Sehari            ");
+   gotoxy(21,20);cprintf(" 6. Air Mineral                ");
+   gotoxy(21,21);cprintf(" 7. 1 Tour Guide               ");
+   gotoxy(21,22);cprintf(" 8. 1 Porter                   ");
+   gotoxy(21,23);cprintf(" 9. P3K                        ");
+   gotoxy(21,24);cprintf("                               ");
+   gotoxy(21,25);cprintf("                               ");
+   gotoxy(21,26);cprintf("                               ");
+   gotoxy(21,27);cprintf("                               ");
+   gotoxy(21,28);cprintf(" ----------------------------- ");
+
+}
+
+void pktSultanjogja(){
+   textcolor(7);
+   gotoxy(70,11);cprintf(" ------------------------------ ");
+   gotoxy(70,12);cprintf(" ====(2)PAKET SULTAN(3D/2N)==== ");
+   gotoxy(70,13);cprintf(" -------(2.500.000 /pax)------- ");
+   gotoxy(70,14);cprintf("  ~Fasilitas Yang Didapatkan~   ");
+   gotoxy(70,15);cprintf(" 1. Hotel Bintang 6             ");
+   gotoxy(70,16);cprintf(" 2. Tiket Pesawat PP            ");
+   gotoxy(70,17);cprintf(" 3. Tiket Wisata                ");
+   gotoxy(70,18);cprintf(" 4. Transportasi Darat Full AC  ");
+   gotoxy(70,19);cprintf(" 5. Transportasi laut           ");
+   gotoxy(70,20);cprintf(" 6. Asuransi                    ");
+	gotoxy(70,21);cprintf(" 7. Makan 4x sehari             ");
+   gotoxy(70,22);cprintf(" 8. Snack dan Air Mineral       ");
+   gotoxy(70,23);cprintf(" 9. 2 Tour Guide                ");
+   gotoxy(70,24);cprintf(" 10. 2 Porter                   ");
+   gotoxy(70,25);cprintf(" 11. Dokumentasi                ");
+	gotoxy(70,26);cprintf(" 12. Free Merchedise            ");
+   gotoxy(70,27);cprintf(" 13. P3K                        ");
+   gotoxy(70,28);cprintf(" ------------------------------ ");
+
+}
+
+
+void kotakPesan(){
+	for(int a=1;a<=30;a++){
+   	for(int b=1;b<=80;b++){
+      	if(a==1||b==1||a==30||b==80){
+         	textcolor(9);
+         	gotoxy(b+20,a+5);cprintf("%c",219);
+         }else{
+         	textcolor(0);
+         	gotoxy(b+20,a+5);cprintf("%c",219);
+         }
+      }
+	}
+   namaTuris();
+}
+/////////////////////////////IDENTITAS PELANGGAN////////////////////////////////
+
+void namaTuris(){
+	textcolor(7);
+   gotoxy(53,8);cprintf("DATA PELANGGAN");
+   gotoxy(25,9);cprintf("========================================================================");
+	gotoxy(25,11);cprintf("NAMA            : ");
+	gotoxy(25,13);cprintf("NIK             : ");
+   gotoxy(25,15);cprintf("NOMER HP        : ");
+   gotoxy(25,17);cprintf("ALAMAT          : ");
+	gotoxy(25,19);cprintf("JML PAKET       : ");
+   gotoxy(25,21);cprintf("TGL BOOKING     : ");
+   gotoxy(50,21);cprintf("BULAN : ");
+   gotoxy(65,21);cprintf("TAHUN : ");
+   gotoxy(25,30);cprintf("========================================================================");
+   validasi_nama();
+   penutup();
+}
+
+void validasi_nama(){
+   gotoxy(43,11);gets(nama);
+   if(validasihuruf(nama)==0 && strlen(nama)<=25&&strlen(nama)!=0){
+   	validasi_nik();
+   }else if(strlen(nama)>25){
+      gotoxy(43,11);cprintf("Maksimal 25 Huruf");Sleep(1000);
+      gotoxy(43,11);cprintf("                                ");
+      gotoxy(43,11);cprintf("                                ");
+      validasi_nama();
+   }else{
+      gotoxy(43,11);cprintf("Inputan tidak Valid");Sleep(1000);
+      gotoxy(43,11);cprintf("                               ");
+      gotoxy(43,11);cprintf("                               ");
+      validasi_nama();
+   }
+
+}
+
+void validasi_nik(){
+   gotoxy(43,13);gets(nik);
+   if(validasiangka(nik)==0 && strlen(nik)==16 && strlen(nik)!=0){
+   	validasi_nohp();
+   }else if(strlen(nik)>16){
+      gotoxy(43,13);cprintf("Maksimal 16 Angka");Sleep(1000);
+      gotoxy(43,13);cprintf("                             ");
+      gotoxy(43,13);cprintf("                             ");
+      validasi_nik();
+   }else{
+      gotoxy(43,13);cprintf("Inputan tidak Valid");Sleep(1000);
+      gotoxy(43,13);cprintf("                               ");
+      gotoxy(43,13);cprintf("                               ");
+      validasi_nik();
+   }
+}
+
+void validasi_nohp(){
+   gotoxy(43,15);gets(nohp);
+   if(validasiangka(nohp)==0 && strlen(nohp)>=11 && strlen(nohp)<=13&&(nohp[0]=='0'&&nohp[1]=='8'&&(nohp[2]=='3'||nohp[2]=='7'||nohp[2]=='5'||nohp[2]=='9'||nohp[2]=='2'||nohp[2]=='1'))&&strlen(nohp)!=0){
+   	validasi_alamat();
+   }else if(strlen(nohp)>13){
+      gotoxy(43,15);cprintf("Maksimal 13 Angka");Sleep(1000);
+      gotoxy(43,15);cprintf("                             ");
+      gotoxy(43,15);cprintf("                             ");
+      validasi_nohp();
+   }else{
+      gotoxy(43,15);cprintf("Inputan tidak Valid");Sleep(1000);
+      gotoxy(43,15);cprintf("                   ");
+      gotoxy(43,15);cprintf("                   ");
+      validasi_nohp();
+   }
+
+}
+
+void validasi_alamat(){
+   gotoxy(43,17);gets(alamat);
+   if(validasialamat(alamat)==0 && strlen(alamat)<30&&strlen(alamat)!=0){
+   	validasi_jmlpaket();
+   }else if(strlen(nama)>30){
+      gotoxy(43,17);cprintf("Maksimal 30 Huruf");Sleep(1000);
+      gotoxy(43,17);cprintf("                                                ");
+      gotoxy(43,17);cprintf("                                                ");
+      validasi_alamat();
+   }else{
+      gotoxy(43,17);cprintf("Inputan tidak Valid");Sleep(1000);
+      gotoxy(43,17);cprintf("                   ");
+      gotoxy(43,17);cprintf("                   ");
+      validasi_alamat();
+   }
+
+}
+
+void validasi_jmlpaket(){
+   int jumlah1;
+   gotoxy(43,19);gets(jumlah);
+   while(validasiangka(jumlah) && strlen(jumlah)<=2){
+   gotoxy(43,19);gets(jumlah);
+   }jumlah1=atoi(jumlah);
+   if(jumlah1>=1 && jumlah1<=10){
+   	validasi_tglbooking();
+   }
+   else if(jumlah1>10){
+      gotoxy(43,19);cprintf("Maksimal 10 paket");Sleep(1000);
+      gotoxy(43,19);cprintf("                 ");
+      gotoxy(43,19);cprintf("                 ");
+      validasi_jmlpaket();
+   }else{
+      gotoxy(43,19);cprintf("Inputan tidak Valid");Sleep(1000);
+      gotoxy(43,19);cprintf("                   ");
+      gotoxy(43,19);cprintf("                   ");
+      validasi_jmlpaket();
+   }
+}
+
+void validasi_tglbooking(){
+	int total,total1;
+	jml = atoi(jumlah);
+   gotoxy(43,21);gets(booking);
+   tang = atoi(booking);
+   if(tang<=31&&tang>0){
+   	if(validasiangka(booking)==0 && strlen(booking)<=2&&strlen(booking)!=0){
+   		validasi_bulan();
+   	}else if(strlen(booking)>25){
+      	gotoxy(43,21);cprintf("Tanggal Salah    ");Sleep(1000);
+      	gotoxy(43,21);cprintf("                 ");
+      	gotoxy(43,21);cprintf("                 ");
+      	validasi_tglbooking();
+   	}else{
+      	gotoxy(43,21);cprintf("Inputan tidak Valid");Sleep(1000);
+      	gotoxy(43,21);cprintf("                   ");
+      	gotoxy(43,21);cprintf("                   ");
+      	validasi_tglbooking();
+   	}
+   }else{
+   	validasi_tglbooking();
+   }
+}
+
+void validasi_bulan(){
+   gotoxy(60,21);gets(bulan);
+   bul = atoi(bulan);
+   if(bul<=12&&bul>0){
+   	if(validasiangka(bulan)==0 && strlen(bulan)<=2 && strlen(bulan)!=0){
+   		validasi_tahun();
+   	}else if(strlen(bulan)>12){
+      	gotoxy(60,21);cprintf("Bulan Salah ");Sleep(1000);
+      	gotoxy(60,21);cprintf("                             ");
+      	gotoxy(60,21);cprintf("                             ");
+      	validasi_bulan();
+   	}else{
+      	gotoxy(60,21);cprintf("Inputan tidak Valid");Sleep(1000);
+      	gotoxy(60,21);cprintf("                               ");
+      	gotoxy(60,21);cprintf("                               ");
+      	validasi_bulan();
+   	}
+   }else{
+   	validasi_bulan();
+   }
+}
+
+void validasi_tahun(){
+   gotoxy(75,21);gets(tahun);
+   tah = atoi(tahun);
+   if(tah<=2999&&tah>2000){
+   	if(validasiangka(tahun)==0 && strlen(tahun)<=4 && strlen(tahun)!=0){
+
+   	}else if(strlen(tahun)<2020){
+      	gotoxy(75,21);cprintf("Tahun Salah");Sleep(1000);
+      	gotoxy(75,21);cprintf("                             ");
+      	gotoxy(75,21);cprintf("                             ");
+      	validasi_tahun();
+   	}else{
+      	gotoxy(75,21);cprintf("Inputan tidak Valid");Sleep(1000);
+      	gotoxy(75,21);cprintf("                               ");
+      	gotoxy(75,21);cprintf("                               ");
+      	validasi_tahun();
+   	}
+   }else{
+      validasi_tahun();
+   }
+}
+void penutup(){
+	for(int a=3;a<=20;a++){
+	textcolor(7);
+   gotoxy(a,15);cprintf("****** ****** ****** ** ***   *** ****** **  ** ****** ***** **  ** ");Sleep(20);
+   gotoxy(a,16);cprintf("  **   **     **  ** ** **** **** **  ** ** **  **  ** **    **  ** ");Sleep(20);
+   gotoxy(a,17);cprintf("  **   ****** *****  ** ** *** ** ****** ****   ****** ***** ****** ");Sleep(20);
+   gotoxy(a,18);cprintf("  **   **     ** **  ** **  *  ** **  ** ** **  **  **    ** **  ** ");Sleep(20);
+   gotoxy(a,19);cprintf("  **   ****** **  ** ** **     ** **  ** **  ** **  ** ***** **  ** ");Sleep(20);
+   gotoxy(40,25);cprintf("Tekan Sembarang Untuk Keluar");getch();
+   exit(0);
+
+}
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////VALIDASI HURUF//////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+int validasihuruf(char a[]){
+	int valhur=0; int huruf2=0;
+   	if(a[0]==' '||a[strlen(a)-1]==' '||a[0]=='\''){
+      	huruf2=1;
+      	return huruf2;
+    	}
+	for(int i=0;i<strlen(a);i++){
+ 		if(!(a[i]>='a'&&a[i]<='z'||a[i]>='A'&&a[i]<='Z'||a[i]==' '&&a[i+1]!=' '||a[i]=='\''&&a[i+1]!='\''||a[i]=='-'&&a[i+1]!='-'||a[i]==' '&&a[i+1]!='-'&&a[i+1]!=' ')){
+    		valhur++;
+  		}
+	}
+   return valhur;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////VALIDASI ANGKA///////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+int validasiangka(char a[]){
+   int valAng=0;int huruf2=0;
+   	if(a[0]==' '||a[strlen(a)-1]==' '){
+   		huruf2=1;
+      	return huruf2;
+	   }
+		for(int i=0;i<strlen(a);i++){
+ 			if(!(a[i]>='0'&&a[i]<='9')){
+     		valAng++;
+  		}
+ 	}
+   return valAng;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////VALIDASI ALAMAT//////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+int validasialamat(char a[]){
+   int val=0;int huruf2=0;
+   if(a[0]==' '||a[0]=='.'||a[0]==','||a[0]=='-'||a[strlen(a)-1]==' '){
+   	huruf2=1;
+      return huruf2;
+   }
+	for(int i=0;i<strlen(a);i++){
+ 		if(!(a[i]>='a'&&a[i]<='z'||a[i]>='A'&&a[i]<='Z'||a[i]=='.'&&a[i+1]!='.'||a[i]>='0'&&a[i]<='9'||a[i]=='-'&&a[i+1]!='-'||a[i]==','&&a[i+1]!=','||a[i]==' '&&a[i+1]!=' ')){
+    		val++;
+ 		}
+	}
+   return val;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+main(){
+    awal();
+
+getch();
+}
+

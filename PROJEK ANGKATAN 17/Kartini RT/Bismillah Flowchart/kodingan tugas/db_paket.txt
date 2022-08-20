@@ -1,0 +1,5 @@
+Paket 2000#2000#40
+Paket 1 Jam#3000#60
+Paket 2 Jam#5000#120
+Paket 3 Jam#8000#180
+Paket 5 Jam#10000#300

@@ -1,0 +1,2066 @@
+#include<stdio.h>
+#include<conio.h>
+#include<windows.h>
+
+//////////////////////////////// PROTOTYPE /////////////////////////////////////
+void welcome();                	void pembeli();				void pelapak();
+void user();							void login_pembeli();		void login_pelapak();
+void Kode();							void daftar_pembeli();		void daftar_pelapak();
+void loading();						void akun_pembeli();			void akun_pelapak();
+void tampilan();						void info_Pembeli();			void jualproduk();
+void informasi();
+void hapusinformasi();												   void lihatstok();
+void blank();							void datadiripembeli();		void datadiri();
+void blank_b();						void bayar();					void info_Pengusaha();
+void table();																void kodeuploadbarang();
+void infoAplikasi();													  	void kodebarang();
+void tablekhusus();
+void help1();
+void help2();
+
+
+//----------------------------------------------------------------------------//
+int validasi(char cek[]);//angka
+int validasiHuruf(char cek[]);//huruf
+int validasiemail(char mail[]);//email
+void harusangka(int a,int b);
+void harushuruf(int x,int y);
+void inputansalah(int a,int b);
+void harusdiisi(int a,int b);
+//----------------------------------------------------------------------------//
+
+////////////////////////////////  VARIABEL GLOBAL  /////////////////////////////
+//ARRAY
+char inp_user[100][100];//pelapak
+char inp_pass[100][100];//pelapak
+char inp_user_p[100][100];//pembeli
+char inp_pass_p[100][100];//pembeli
+char nama_pelapak[100][100];
+//INPUT
+char username[100];// pelapak
+char pass[100];// pasword pelapak
+char user_p[100];//PEMBELI
+char pass_p[100];//pas pembeli
+
+char namaproduk[100][100][100];//untukdipelapak
+char stok[100][100][100];//untuknampung sebelum di konvert ke int
+char keadaan[100][100]; //jual produk
+char harga[100][100];   //jual produk
+
+char nomerhp[100][100];//data diri
+char email[100][100];  //data diri
+char nomerrekening[100][100];//data diri
+
+char namapembeli[100][100];
+char alamatlengkap[100][100];
+
+char namaprodukyangdibeli[100][100];
+char namapelapaknya[100][100];
+int hargayangdibeli[100];
+int pesanyangdibeli[100];
+char tamp[1][100]={""};
+
+char namaprodukjual[100][100];//untukdipembelian
+int stokterbaru[100][100];//untuk di pelapak
+int stokpenjualan[100];//untuk di pembelian converttan dari 2 dimensi
+int jumlahbarang[100][100]={0};//untuk bedain jumlah barang tiap user
+
+int a=0;//pelapak
+int b=0;//pembeli
+int ke;
+int ked;//akun ke
+int sekian=0;
+int total=0;
+
+int index=0;//jumlah produk
+int jumlahuser=0;//untuk tampil namapelapak di pembelian
+int jumlahpembeli=0;
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+                       ///////////////////////   /////////
+                       //   DIO PRASETIYO   //   //     //
+                       // WIDHT : 132       //   //     //
+                       // HEIGHT: 42        //   //     //
+                       // KODE AKSES : 2104 //   //     //
+                       //                   //   //     //
+                       ///////////////////////   //     //
+                                                 //     //
+                                ///////          /////////
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////// VALIDASI ANGKA //////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+int validasi(char cek[]){
+   int test;
+	for(int i=0;i<strlen(cek);i++){
+		if(cek[i]>=48 && cek[i]<=57){
+			test=0;
+		}
+		else{
+			test=1;
+			break;
+		}
+	}
+	return test;
+
+}
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////// VALIDASI HURUF //////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+int validasiHuruf(char cek[]){
+   int test;
+
+
+	for(int i=0;i<strlen(cek);i++){
+		if(cek[i]>='a' && cek[i]<='z' || cek[i]>='A' && cek[i]<='Z' || cek[i]==' '){
+			if(strlen(cek)<3){
+				return test=4;
+			}
+			else if (cek[i-1]==' ' &&cek[i]==' '){
+				return test=1;
+			}
+			test=0;
+		}
+		else {
+			test=1;
+			break;
+
+		}
+
+	}
+	return test;
+
+}
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+int validasiemail(char mail[]){
+	int salah;
+	for(int a=0;a<strlen(mail);a++){
+		if(mail[a]>='a'&&mail[a]<='z' || mail[a]>='A'&&mail[a]<='Z' || mail[a]=='@' || mail[a]=='.' || mail[a]=='_' ||mail[a]>='0'&&mail[a]<='9'){
+			salah=0;
+		}else{
+			salah=1;
+			break;
+		}
+	}
+	return salah;
+
+}
+
+
+////////////////////////// inputan harus angka /////////////////////////////////
+void harusangka(int a,int b){
+
+	for(int tampil=0;tampil<6;tampil++){
+      	if (tampil%2==0){
+        	textcolor(12);
+           	gotoxy(a,b);cprintf(" INPUTAN HARUS ANGKA!");Sleep(500);
+        }
+        else{
+        		textcolor(16);
+           	gotoxy(a,b);cprintf(" INPUTAN HARUS ANGKA!");Sleep(500);
+        }
+    }
+
+}
+
+void harushuruf(int x,int y){
+	for(int tampil=0;tampil<6;tampil++){
+   	if (tampil%2==0){
+     		textcolor(12);
+        	gotoxy(x,y);cprintf("INPUTAN HARUS HURUF !!");Sleep(500);
+      }
+      else{
+      	textcolor(16);
+       	gotoxy(x,y);cprintf("INPUTAN HARUS HURUF !!");Sleep(500);
+      }
+   }
+
+}
+
+
+void inputansalah(int a,int b){
+
+	for(int tampil=0;tampil<6;tampil++){
+		if (tampil%2==0){
+			textcolor(12);
+			gotoxy(a,b);cprintf(" INPUTAN SALAH !!");Sleep(500);
+		}else{
+			textcolor(16);
+			gotoxy(a,b);cprintf(" INPUTAN SALAH !!");Sleep(500);
+     	}
+  	}
+}
+
+void harusdiisi(int a,int b){
+
+	for(int tampil=0;tampil<6;tampil++){
+		if (tampil%2==0){
+			textcolor(12);
+			gotoxy(a,b);cprintf("HARUS DI ISI !!");Sleep(500);
+     	}
+		else{
+			textcolor(16);
+			gotoxy(a,b);cprintf("HARUS DI ISI !!");Sleep(500);
+		}
+	}
+
+}
+
+////////////////////////// void informasi //////////////////////////////////////
+void informasi(){
+
+
+	for (int i=0;i<10;i++){
+		for (int j=0;j<37;j++){
+			if(j>33 && i==0){
+				textbackground(12);
+				gotoxy(25+j,20+i);cprintf(" ");
+				gotoxy(60,20);cprintf("x");
+			}
+			else if( i==0 && j<30){
+				textbackground(2);
+				gotoxy(25+j,20+i);cprintf("   ");
+			}
+			else if( j>30 && j<34 && i==0){
+				textbackground(15);
+				gotoxy(25+j,20);cprintf("   ");
+			}
+			else if( j>28 && j<31 && i==0){
+				textbackground(13);
+				textcolor(14);
+				gotoxy(23+j,20);cprintf(" - ");
+			}
+			else{
+				textbackground(6);
+				gotoxy(25+j,20+i);cprintf(" ");
+			}
+		}printf("\n");
+	}
+}
+////////////////////////////////////////////////////////////////////////////////
+void hapusinformasi(){
+
+
+	for (int i=0;i<10;i++){
+		for (int j=0;j<37;j++){
+
+				textbackground(16);
+				gotoxy(25+j,20+i);cprintf(" ");
+
+		}Sleep(21);printf("\n");
+	}
+}
+
+//////////////////////////////////////  VOID HELP   ////////////////////////////
+void help1(){
+   textcolor(16);
+   gotoxy(40,22);cprintf("HELP");
+   gotoxy(30,24);cprintf("silahkan anda pilih apakah anda");
+   gotoxy(28,25);cprintf("pelapak untuk bisa menjual produk ");
+   gotoxy(28,26);cprintf("atau anda pembeli untuk membeli");
+   gotoxy(28,27);cprintf("suatu produk dari pelapak.");
+   gotoxy(28,29);cprintf("PRESS ANY KEY TO CONTINUE..");
+   getch();
+   blank();
+   user();
+}
+
+void help2(){
+   textcolor(16);
+   gotoxy(40,22);cprintf("HELP");
+   gotoxy(30,24);cprintf("silahkan anda mendaftar,untuk ");
+   gotoxy(28,25);cprintf("pengguna baru atau log in untuk ");
+   gotoxy(28,26);cprintf("pengguna lama atau yang sudah");
+   gotoxy(28,27);cprintf("memiliki akun terdaftar  ");
+   gotoxy(28,28);cprintf(" ");
+   gotoxy(28,29);cprintf("PRESS ANY KEY TO CONTINUE..");
+   getch();
+   blank();
+}
+
+////////////////////////// VOID INFO APLIKASI  /////////////////////////////////
+void infoAplikasi(){
+
+	textcolor(14);
+	gotoxy(30,10);cprintf(" Assalamu'alaikum Wr.Wb");
+	gotoxy(15,13);cprintf("Pembuatan aplikasi ini didasari karena programmer dulunya bercita cita");
+	gotoxy(10,15);cprintf("menjadi pengusaha,tapi nasib menuntun sekarang jadi programmer akhirnya dibu-");
+	gotoxy(10,17);cprintf("atlah HARDWARE SHOP yang Merupakan aplikasi jual beli perangkat keras komputer.");
+	gotoxy(15,19);cprintf("aplikasi yang di harapkan mampu mempermudah menjual atau membeli");
+	gotoxy(10,21);cprintf("perangkat keras komputer (HARDWARE) juga diharapkan bisa memunculkan");
+	gotoxy(10,23);cprintf("pengusaha-pengusaha muda sehingga berkurangnya pengangguran di negeri ini");
+	gotoxy(10,25);cprintf("juga bisa mengatasi tingginya tingkat ke miskinan");
+	gotoxy(28,27);cprintf("Wassalamu'alaikum Wr. Wb");
+	gotoxy(28,29);cprintf("PRESS ANY KEY TO CONTINUE..");
+	getch();
+	blank();
+
+}
+////////////////////////////  VOID INFO PENGUSAHA //////////////////////////////
+void info_Pengusaha(){
+	textcolor(14);
+	gotoxy(30,10);cprintf("SELAMAT DATANG CALON PENGUSAHA SUKSES");
+	gotoxy(13,15);cprintf("INI MERUPAKAN APLIKASI PENJUALAN HARDWARE-HARDWARE KOMPUTER,APLIKASI INI ");
+	gotoxy(8,16);cprintf("DI BUAT AGAR MEMUDAHKAN PARA TEKNISI KOMPUTER DAN ORANG BANYAK MENCARI HARDWARE.");
+	gotoxy(13,18);cprintf("DENGAN ADANYA APLIKASI INI DIHARAPKAN TUMBUH PENGUSAHA-PENGUSAHA MUDA");
+	gotoxy(8,19);cprintf("BAIK LULUSAN SEKOLAH KOMPUTER MAUPUN YANG LAINNYA.");
+	gotoxy(8,21);cprintf("SILAHKAN DAFTARKAN DIRI ANDA MENJADI PENGUSAHA ATAU MASUK DENGAN AKUN YANG ADA");
+	gotoxy(8,22);cprintf("SETELAH ANDA MENJADI MITRA KAMI ANDA AKAN DI SUGUHKAN DENGAN FITUR :");
+	gotoxy(8,24);cprintf(" 1. JUAL BARANG        3. DATA DIRI");
+	gotoxy(8,25);cprintf(" 2. LIHAT STOK/TAMBAH              ");
+	gotoxy(65,29);cprintf(" BANDUNG, 24 JANUARI 2019");
+	gotoxy(38,31);cprintf(" Copyright - 2019");
+	getch();
+	blank();
+	table();
+	pelapak();
+}
+
+//////////////////////////////  VOID INFO PEMBELI  /////////////////////////////
+void info_Pembeli(){
+	textcolor(14);
+	gotoxy(40,10);cprintf("SELAMAT DATANG ");
+	gotoxy(15,15);cprintf("SILAHKAN ANDA LOGIN TERLEBIH DAHULU UNTUK BISA MELIHAT PRODUK YANG DIJUAL");
+	gotoxy(10,18);cprintf("KALAU BELUM MEMMILIKI AKUN TERDAFTAR SILAHKAN DAFTARKAN DIRI ANDA KARENA DI    ");
+	gotoxy(10,21);cprintf("JAMIN ANDA AKAN MERASAKAN KEMUDAHAN DAN KESERUAN SAAT BERBELANJA DI SINI       ");
+	gotoxy(65,29);cprintf(" BANDUNG, 24 JANUARI 2019");
+	gotoxy(38,31);cprintf(" Copyright - 2019");
+	getch();
+	blank();
+	table();
+	pembeli();
+
+}
+/////////////////////////////////////  VOID TABLE //////////////////////////////
+void table(){
+	textcolor(11);
+	for(int x=1;x<=25;x++){
+        for(int y=1;y<=82;y++){
+            if(x==1 || x==25 || y==1 && x<25 || y==82 && x<25 || y==40 && x<20 || x==20){
+            	gotoxy(5+y,7+x);cprintf("%c",219);
+            }else{
+				cprintf(" ");
+            }
+		}
+            printf("\n");
+    }
+}
+
+////////////////////////////////  VOID TABEL KHUSUS  ///////////////////////////
+void tablekhusus(){
+	textcolor(11);
+	for(int x=1;x<=25;x++){
+        for(int y=1;y<=82;y++){
+            if(x==1 || x==25 || y==1 && x<25 || y==82 && x<25 || y==40 && x<25 ){
+            	gotoxy(5+y,7+x);cprintf("%c",219);
+            }else{
+				cprintf(" ");
+            }
+        }
+            printf("\n");
+    }
+}
+
+////////////////////////////////   void blank biru   ///////////////////////////
+void blank_b(){
+   textbackground(9);
+	for(int bl=4;bl<35;bl++){
+		for(int cl=4;cl<90;cl++){
+			gotoxy(cl,bl);cprintf(" ");
+		}Sleep(4);
+	}
+}
+//////////////////////////////   void blank hitam    ///////////////////////////
+void blank(){
+	textbackground(16);
+	for(int bl=4;bl<35;bl++){
+		for(int cl=4;cl<90;cl++){
+			gotoxy(cl,bl);cprintf(" ");
+		}
+
+	}
+}
+/////////////////////////////////////   void tampilan    ///////////////////////
+void tampilan(){
+
+	for(int a=1;a<=40;a++){
+		for(int b=1;b<=130;b++){
+      	textcolor(11);
+			if(b==90 && a>=3 && a<=35 || b==3 && a>=3 && a<=35  ||a==3 && b<=90 && b>=3 || a==35 && b<=90 && b>=3 || a==40 && b>=28 && b<=63 || a==39 && b>=28 && b<=63){
+				cprintf("%c",219);
+				Sleep(1);
+			}
+			else if(a==3 && b>=100 && b<=130 || b==130 && a>=3 || b==100 && a>=3 || a==40 && b>=100 && b<=130 ){
+        		cprintf("%c",219);
+				Sleep(1);
+			}
+			else{
+				cprintf(" ");
+			}
+		}
+			printf("\n");
+
+	}
+   textcolor(14);
+   gotoxy(103,37);cprintf("Created by. Dio Prasetiyo");
+   gotoxy(108,38);cprintf("Copyright - 2019");
+}
+
+//////////////////////////////// WELCOME  //////////////////////////////////////
+void welcome(){
+	for(int warna=1;warna<=11;warna++){
+		textcolor(warna);
+		gotoxy(14,10);cprintf("w       w       w  eeeee  l       cccc    ooo    m       m  eeeee");Sleep(10);
+		gotoxy(14,11);cprintf(" w     w w     w   e      l      c      o     o  mm     mm  e    ");Sleep(20);
+		gotoxy(14,12);cprintf("  w   w   w   w    eeeee  l      c      o     o  m m   m m  eeeee");Sleep(30);
+		gotoxy(14,13);cprintf("   w w     w w     e      l      c      o     o  m  m m  m  e    ");Sleep(40);
+		gotoxy(14,14);cprintf("    w       w      eeeee  lllll   cccc    ooo    m   m   m  eeeee");Sleep(50);
+	}
+
+	char nama[100]="programming by Dio Prasetiyo";
+	textcolor(11);
+
+
+	for(int a=0; a<=strlen(nama);a++){
+		gotoxy(33+a,30);cprintf("%c",nama[a]);
+		Sleep(100);
+	}
+
+}
+
+///////////////////////////////// KODE  ////////////////////////////////////////
+void Kode(){
+   char inp_kode[4];
+
+   	for(int b=0;b<5;b++){
+   		for(int c=0;c<40;c++){
+            textbackground(6);
+         	gotoxy(26+c,21+b);cprintf(" ");
+      	}printf("\n");
+    	}
+	textcolor(11);
+  	gotoxy(34,23);cprintf("KODE AKSES = ");
+	textbackground(16);
+	gotoxy(47,23);cprintf("        ");
+	gotoxy(49,23);gets(inp_kode);
+	int cek;
+	cek=validasi(inp_kode);
+	if(cek==0){
+        if(strcmp(inp_kode,"2104")==0){
+      		blank();
+   			loading();
+        }else{
+   			for(int tampil=0;tampil<6;tampil++){
+      			if (tampil%2==0){
+         			textcolor(12);
+            		gotoxy(35,27);cprintf(" KODE ANDA SALAH !!");Sleep(500);
+				}
+         	  	else{
+					cprintf("%c",7);
+					textcolor(16);
+					gotoxy(35,27);cprintf(" KODE ANDA SALAH !!");Sleep(500);
+         		}
+            }
+            Kode();
+        }
+	}
+	else{
+		if(strcmp(inp_kode,"")==0){
+			harusdiisi(40,27);
+		}else{
+			harusangka(35,27);
+		}
+		Kode();
+
+	}
+}
+////////////////////////////////  void loading  ///////////////////////////////
+
+void loading(){
+
+	textcolor(11);
+
+  		for(int a=1;a<=5;a++){
+			gotoxy(35,19);printf("=========================");
+			gotoxy(35,20);printf("=                       =");
+			gotoxy(35,21);printf("=========================");
+			for(int loading=1;loading<=20;loading++){
+				gotoxy(40,18);printf("MOHON TUNGGU ...");
+				gotoxy(37+loading,20);cprintf("%c",219);
+				Sleep(50);
+			}
+		}
+    blank();
+    user();
+}
+
+//////////////////////////////////  USER  ///////////////////////////////////
+void user(){
+        textcolor(14);
+        gotoxy(103,5); printf("+------------------------+");
+        gotoxy(103,6); printf("+                        +");
+        gotoxy(103,7); printf("+------------------------+");
+        gotoxy(103,8); printf("+                        +");
+        gotoxy(103,9); printf("+                        +");
+        gotoxy(103,10);printf("+                        +");
+        gotoxy(103,11);printf("+                        +");
+        gotoxy(103,12);printf("+                        +");
+        gotoxy(103,13);printf("+                        +");
+        gotoxy(103,14);printf("+                        +");
+        gotoxy(103,15);printf("+------------------------+");
+
+        gotoxy(115,6);cprintf("HINT");
+        gotoxy(110,9);cprintf("i. Info aplikasi");
+        gotoxy(110,11);cprintf("h. Help");
+        gotoxy(110,13);cprintf("x. Keluar");
+
+        textcolor(11);
+        table();
+        gotoxy(40,6);cprintf("HARDWARE SHOP");
+        int cek=0;
+        	while(cek==0){
+        		char anda;
+        		textcolor(11);
+        		textbackground(16);
+        		gotoxy(20,10);cprintf("1. PELAPAK");
+            gotoxy(63,10);cprintf("2. PEMBELI");
+		  		gotoxy(38,30);cprintf("Siapakah Anda ? : ");anda=getche();
+        		if(anda=='1'){
+					cek=1;
+					blank();
+					table();
+					pelapak();
+        		}else if(anda=='2'){
+					cek=1;
+        			pembeli();
+        		}else if(anda=='h' || anda=='H'){
+           		informasi();
+					help1();
+					table();
+        		}else if(anda=='x' ||anda=='X'){
+					blank();
+					exit(0);
+        		}else if(anda=='i' || anda=='I'){
+           		blank_b();
+					infoAplikasi();
+					table();
+        		}else{
+           		cprintf("%c",7);
+					inputansalah(55,30);
+					user();
+        		}
+        	}
+}
+///////////////////////////////////// VOID PEMBELI /////////////////////////////
+void pembeli(){
+
+	textcolor(11);
+	char pengguna;
+   table();
+   gotoxy(40,6);cprintf("HARDWARE SHOP");
+   gotoxy(20,10);cprintf("PELAPAK");
+   gotoxy(63,10);cprintf("PEMBELI");
+   gotoxy(50,12);cprintf("SILAHKAN :");
+   gotoxy(54,14);cprintf("1. DAFTAR ");
+   gotoxy(54,15);cprintf("2. MASUK ");
+   gotoxy(54,16);cprintf("3. INFO ");
+   gotoxy(54,17);cprintf("0. KEMBALI KE MENU SEBELUMNYA ");
+   gotoxy(54,18);cprintf("x. EXIT ");
+   gotoxy(50,20);cprintf("Pilih : ");pengguna=getch();
+        if(pengguna=='0'){
+            blank();
+            table();
+         	user();
+        }
+        else if(pengguna=='1'){
+         	blank();
+            table();
+				daftar_pembeli();
+        }else if(pengguna=='h' || pengguna=='H'){
+           	informasi();
+            help2();
+            table();
+            pembeli();
+        }else if(pengguna=='2'){
+         	blank();
+            table();
+         	login_pembeli();
+        }else if(pengguna=='3'){
+         	blank_b();
+            info_Pembeli();
+        }else if(pengguna=='i' || pengguna=='I'){
+            blank_b();
+            infoAplikasi();
+            table();
+            pembeli();
+        }else if(pengguna=='x'||pengguna=='X'){
+            blank();
+         	exit(0);
+        }else{
+         	inputansalah(60,20);
+         	pembeli();
+        }
+}
+
+//----------------------------------------------------------------------------//
+
+void login_pembeli(){
+
+			textbackground(16);
+        gotoxy(103,5);printf("                          ");
+        gotoxy(103,6);printf("                          ");
+        gotoxy(103,7);printf("                          ");
+        gotoxy(103,8);printf("                          ");
+        gotoxy(103,9);printf("                          ");
+        gotoxy(103,10);printf("                          ");
+        gotoxy(103,11);printf("                          ");
+        gotoxy(103,12);printf("                          ");
+        gotoxy(103,13);printf("                          ");
+        gotoxy(103,14);printf("                          ");
+        gotoxy(103,15);printf("                          ");
+        textcolor(11);
+        gotoxy(40,6);cprintf("HARDWARE SHOP");
+        gotoxy(20,10);cprintf("PELAPAK");
+        gotoxy(63,10);cprintf("PEMBELI");
+        gotoxy(57,12);cprintf("SILAHKAN LOGIN");
+            for(int BG=1;BG<=8;BG++){
+           		for(int GB=1;GB<=35;GB++){
+            		textbackground(6);
+					gotoxy(48+GB,13+BG);cprintf(" ");
+           		}printf("\n");
+         	}
+        gotoxy(51,16);cprintf(" username : ");
+        gotoxy(51,19);cprintf(" password : ");
+        textbackground(16);
+        gotoxy(61,16);cprintf("                   ");
+        gotoxy(61,19);cprintf("                   ");
+        int salah;
+        do{
+         	salah=0;
+         	gotoxy(61,16);cprintf("                    ");
+         	gotoxy(61,19);cprintf("                    ");
+         	gotoxy(61,16);gets(user_p);
+         	if(strcmp(user_p,"")==0){
+					salah=1;
+					harusdiisi(61,16);
+         	}
+         }while(salah!=0);
+         do{
+         	salah=0;
+         	gotoxy(61,19);cprintf("            ");
+         	gotoxy(61,19);gets(pass_p);
+         	if(strcmp(pass_p,"")==0){
+         		salah=1;
+					harusdiisi(61,19);
+         	}
+         }while(salah!=0);
+            int hasil=0,c;
+            for(c=0;hasil!=1 && c<50;c++){
+            	if(strcmp(user_p,inp_user_p[c])==0 && strcmp(pass_p,inp_pass_p[c])==0 || strcmp(user_p,"admin")==0 && strcmp(pass_p,"admin")==0){
+                  hasil=1;
+                  jumlahpembeli=c+1;
+            	}else{
+
+                  hasil=0;
+            	}
+            }
+
+            if(hasil==1){
+            	gotoxy(55,24);cprintf(" SUKSES ");
+               gotoxy(55,26);cprintf(" PRESS ANY KEY TO CONTINUE ");
+               getch();
+               blank();
+               akun_pembeli();
+
+            }else{
+            	int cek=1;
+               while(cek!=0){
+            		textcolor(12);
+               	char pilih;
+               	gotoxy(50,22);cprintf(" KETERANGAN :");
+               	gotoxy(55,23);cprintf(" System tidak menemukan ");
+               	gotoxy(50,24);cprintf(" akun yang anda masukan  " );
+               	gotoxy(50,25);cprintf(" Silahkan mendaftar(y/n) : " );pilih=getche();
+              		if(pilih=='y' || pilih=='Y'){
+                  	cek=0;
+               		blank();
+                  	table();
+               		daftar_pembeli();
+               	}else if(pilih=='n' || pilih=='N'){
+                  	cek=0;
+                  	blank();
+                  	table();
+               		login_pembeli();
+               	}else{
+                  cek=1;
+                  }
+               }
+            }
+
+}
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+///////////////////////////////  DAFTAR PEMBELI  ///////////////////////////////
+
+void daftar_pembeli(){
+	textcolor(11);
+         gotoxy(40,6);cprintf("HARDWARE SHOP");
+         gotoxy(20,10);cprintf("PELAPAK");
+   		gotoxy(63,10);cprintf("PEMBELI");
+         gotoxy(53,12);cprintf("SILAHKAN MENDAFTAR KE SYSTEM");
+         for(int BG=1;BG<=8;BG++){
+           	for(int GB=1;GB<=33;GB++){
+            	textbackground(6);
+					gotoxy(48+GB,13+BG);cprintf(" ");
+
+            }printf("\n");
+         }
+         gotoxy(51,16);cprintf(" username : ");
+         gotoxy(51,19);cprintf(" password : ");
+         textbackground(16);
+         int r;
+         do{
+            r=0;
+         	gotoxy(61,16);cprintf("                    ");
+         	gotoxy(61,19);cprintf("                    ");
+         	gotoxy(61,16);gets(inp_user_p[b]);
+         	if(strcmp(inp_user_p[b],"")==0){
+         		r=1;
+					harusdiisi(61,16);
+         	}
+			for(int l=0;l<b;l++){
+				if(strcmp(inp_user_p[b],inp_user_p[l])==0){
+					informasi();
+					textcolor(16);
+					gotoxy(40,22);cprintf("PERINGATAN");
+					gotoxy(28,25);cprintf("Username yang anda inputkan sudah");
+					gotoxy(28,26);cprintf("terpakai ");
+					gotoxy(28,29);cprintf("PRESS ANY KEY TO CONTINUE..");
+					getch();
+					blank();
+					table();
+					daftar_pembeli();
+				}
+			}
+         }while(r!=0);
+         int u;
+         do{
+         u=0;
+         	gotoxy(22,19);cprintf("            ");
+         	gotoxy(61,19);gets(inp_pass_p[b]);
+         	if(strcmp(inp_pass_p[b],"")==0){
+         		u=1;
+               harusdiisi(61,19);
+         	}
+         }while(u!=0);
+
+
+         for(int loading=1;loading<=20;loading++){
+            textcolor(11);
+      		gotoxy(50,23);cprintf("SAVING ");
+            gotoxy(80,23);cprintf("100%");
+				gotoxy(58+loading,23);cprintf("%c ",219);
+      		Sleep(100);
+
+         }
+
+         gotoxy(50,25);cprintf("Data Berhasil Di Inputkan Ke System");
+         getch();b++;
+         pembeli();
+
+
+}
+
+
+
+void pelapak(){
+
+//------------------------------ Deklarasi -----------------------------------//
+	textcolor(11);
+
+   char pengguna;
+
+   		gotoxy(40,6);cprintf("HARDWARE SHOP");
+         gotoxy(20,10);cprintf("PELAPAK");
+   		gotoxy(63,10);cprintf("PEMBELI");
+         gotoxy(10,12);cprintf("SILAHKAN :");
+         gotoxy(12,14);cprintf("1. DAFTAR ");
+         gotoxy(12,15);cprintf("2. MASUK ");
+         gotoxy(12,16);cprintf("3. INFO ");
+         gotoxy(12,17);cprintf("0. KEMBALI KE MENU SEBELUMNYA ");
+         gotoxy(12,18);cprintf("x. EXIT ");
+
+         gotoxy(15,20);cprintf("Pilih : ");pengguna=getch();
+
+         if(pengguna=='0'){
+            blank();
+            table();
+         	user();
+         }
+         else if(pengguna=='1'){
+         	blank();
+            tablekhusus();
+				daftar_pelapak();
+
+         }else if(pengguna=='2'){
+         	blank();
+            table();
+         	login_pelapak();
+         }else if(pengguna=='h' || pengguna=='H'){
+            	informasi();
+               help2();
+               table();
+               pelapak();
+
+         }else if(pengguna=='i' || pengguna=='I'){
+            blank_b();
+            infoAplikasi();
+            table();
+            pelapak();
+         }else if(pengguna=='3'){
+         	blank_b();
+            info_Pengusaha();
+         }else if(pengguna=='x' || pengguna=='X'){
+            blank();
+         	exit(0);
+         }
+         else{
+         	inputansalah(22,20);
+            pelapak();
+         }
+
+}
+////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////// VOID LOGIN  ///////////////////////////////
+void login_pelapak(){
+textcolor(11);
+
+//----------------------------------------------------------------------------//
+
+
+
+         textbackground(16);
+         gotoxy(103,5);printf("                          ");
+         gotoxy(103,6);printf("                          ");
+         gotoxy(103,7);printf("                          ");
+         gotoxy(103,8);printf("                          ");
+         gotoxy(103,9);printf("                          ");
+         gotoxy(103,10);printf("                          ");
+         gotoxy(103,11);printf("                          ");
+         gotoxy(103,12);printf("                          ");
+         gotoxy(103,13);printf("                          ");
+         gotoxy(103,14);printf("                          ");
+         gotoxy(103,15);printf("                          ");
+
+         textcolor(11);
+         gotoxy(40,6);cprintf("HARDWARE SHOP");
+
+         gotoxy(20,10);cprintf("PELAPAK");
+   		gotoxy(63,10);cprintf("PEMBELI");
+         gotoxy(17,12);cprintf("SILAHKAN LOGIN");
+         for(int BG=1;BG<=8;BG++){
+           	for(int GB=1;GB<=35;GB++){
+            	textbackground(6);
+					gotoxy(8+GB,13+BG);cprintf(" ");
+
+            }printf("\n");
+         }
+         gotoxy(11,16);cprintf(" username : ");
+         gotoxy(11,19);cprintf(" password : ");
+         textbackground(16);
+         int salah;
+         do{
+         	salah=0;
+         	gotoxy(22,16);cprintf("                    ");
+         	gotoxy(22,19);cprintf("                    ");
+         	gotoxy(22,16);gets(username);
+         	if(strcmp(username,"")==0){
+         		salah=1;
+               harusdiisi(22,16);
+         	}
+         }while(salah!=0);
+         do{
+         	salah=0;
+         	gotoxy(22,19);cprintf("            ");
+         	gotoxy(22,19);gets(pass);
+         	if(strcmp(pass,"")==0){
+         		salah=1;
+               harusdiisi(22,19);
+         	}
+         }while(salah!=0);
+          int hasil=0,z;
+         
+         
+
+            for(z=0;hasil!=1 && strcmp(inp_user[z],"")!=0;z++){
+            	if(strcmp(username,inp_user[z])==0 && strcmp(pass,inp_pass[z])==0 ){
+                  ked=z;
+                  hasil=1;
+                  break;
+            	}else{
+
+                  hasil=0;
+            	}
+            }
+         
+            textcolor(11);
+            if(hasil==1){
+            	gotoxy(16,22);cprintf(" SUKSES ");
+               gotoxy(14,24);cprintf(" PRESS ANY KEY TO CONTINUE ");
+               getch();
+               akun_pelapak();
+            }else{
+            	textcolor(12);
+
+               gotoxy(8,22);cprintf(" KETERANGAN : ");
+               gotoxy(10,23);cprintf(" System tidak menemukan akun ");
+               char pilih;
+               int retur=1;
+               do{
+               	textcolor(12);
+               	gotoxy(8,24);cprintf("yang anda masukan.");
+               	gotoxy(8,25);cprintf("Silahkan mendaftar(y/n) " );pilih=getch();
+               	if(pilih=='y' || pilih=='Y'){
+               		blank();
+                  	tablekhusus();
+               		daftar_pelapak();
+               	}
+              	 	else if(pilih=='n'|| pilih=='N'){
+                  	blank();
+                  	table();
+               		login_pelapak();
+               	}
+               	else{
+               		retur=1;
+                  	inputansalah(25,26);
+               	}
+
+               }while(retur==1);
+
+
+            }//tutup else atas
+
+}
+
+//////////////////////////////////// VOID DAFTAR ///////////////////////////////
+void daftar_pelapak(){
+
+		textcolor(11);
+      gotoxy(40,6);cprintf("HARDWARE SHOP");
+      gotoxy(20,10);cprintf("PELAPAK");
+   	gotoxy(63,10);cprintf("PEMBELI");
+		gotoxy(11,12);cprintf("SILAHKAN MENDAFTAR KE SYSTEM");
+		for(int BG=1;BG<=12;BG++){
+           	for(int GB=1;GB<=35;GB++){
+            	textbackground(6);
+					gotoxy(7+GB,13+BG);cprintf(" ");
+            }printf("\n");
+      }
+      gotoxy(8,16);cprintf(" Username : ");
+      gotoxy(8,18);cprintf(" Password : ");
+
+      gotoxy(15,24);cprintf("DAFTAR (Y/N) : ");
+      textbackground(16);
+      gotoxy(20,16);cprintf("                      ");
+      gotoxy(20,18);cprintf("                      ");
+
+		int r;
+      do{
+      	r=0;
+         gotoxy(20,16);cprintf("                    ");
+         gotoxy(20,16);gets(inp_user[a]);
+         if(strcmp(inp_user[a],"")==0){
+         	r=1;
+				harusdiisi(21,16);
+         }
+			for(int l=0;l<a;l++){
+				if(strcmp(inp_user[a],inp_user[l])==0){
+					informasi();
+					textcolor(16);
+					gotoxy(40,22);cprintf("PERINGATAN");
+					gotoxy(28,25);cprintf("Username yang anda inputkan sudah");
+					gotoxy(28,26);cprintf("terpakai ");
+					gotoxy(28,29);cprintf("PRESS ANY KEY TO CONTINUE..");
+					getch();
+					blank();
+					tablekhusus();
+					daftar_pelapak();
+				}
+			}
+
+      }while(r!=0);
+      int u;
+      do{
+          u=0;
+         	gotoxy(20,18);cprintf("              ");
+         	gotoxy(20,18);gets(inp_pass[a]);
+         	if(strcmp(inp_pass[a],"")==0){
+         		u=1;
+					harusdiisi(21,18);
+         	}
+      }while(u!=0);
+
+       int cx=0;
+       do{
+         textcolor(6);
+         gotoxy(31,24);cprintf("%c%c%c%c%c%c%c%c%c%c%c%c",219,219,219,219,219,219,219,219,219,219,219,219);
+			char milih;
+         gotoxy(31,24);milih=getche();
+         if(milih=='y' || milih=='Y'){
+         	for(int loading=1;loading<=20;loading++){
+            	textcolor(11);
+      			gotoxy(9,27);cprintf("SAVING ");
+            	gotoxy(40,27);cprintf("100%");
+					gotoxy(15+loading,27);cprintf("%c ",219);
+      			Sleep(100);
+         	}
+         	gotoxy(9,29);cprintf("Data Berhasil Di Inputkan Ke System");Sleep(250);
+         	informasi();
+            kodeuploadbarang();
+            a++;
+            table();
+         	pelapak();
+         }else if(milih=='n' || milih=='N'){
+         	strcpy(inp_user[a],"");
+            strcpy(inp_pass[a],"");
+            blank();
+         	table();
+         	pelapak();
+         }else{
+            cx=1;
+         }
+    	}while(cx!=0);
+
+}
+
+//----------------------------------------------------------------------------//
+///////////////////////////// kode untuk upload barang  ////////////////////////
+void kodeuploadbarang(){
+
+	textcolor(16);
+   gotoxy(37,22);cprintf("HARAP DI CATAT");
+   gotoxy(28,24);cprintf("Username : %s ",inp_user[a]);
+   gotoxy(28,25);cprintf("Password : %s ",inp_pass[a]);
+   gotoxy(28,26);cprintf("kode untuk upload barang : %d",a+1);
+   gotoxy(28,27);cprintf(" ");
+   gotoxy(28,28);cprintf(" ");
+   gotoxy(28,29);cprintf("PRESS ANY KEY TO CONTINUE..");
+
+   getch();
+   blank();
+}
+//////////////////////////////////// AKUN //////////////////////////////////////
+void akun_pelapak(){
+
+	blank();
+
+         char fitur;
+         textcolor(11);
+         textbackground(16);
+         gotoxy(35,5);cprintf("SELAMAT DATANG %s",strupr(username));
+         gotoxy(10,6);cprintf("-------------------------------------------------------------------------");
+         gotoxy(10,7);cprintf("Silahkan pilih fitur dibawah");
+
+
+
+         gotoxy(10,9);cprintf("+-----------------------+");
+         gotoxy(10,10);cprintf("|                       |");
+         gotoxy(10,11);cprintf("| 1. Jual Produk        |");
+         gotoxy(10,12);cprintf("|                       |");
+         gotoxy(10,13);cprintf("+-----------------------+");
+
+         gotoxy(10,15);cprintf("+-----------------------+");
+         gotoxy(10,16);cprintf("|                       |");
+         gotoxy(10,17);cprintf("| 2. Lihat stok / tambah|");
+         gotoxy(10,18);cprintf("|                       |");
+         gotoxy(10,19);cprintf("+-----------------------+");
+
+        	gotoxy(10,21);cprintf("+-----------------------+");
+         gotoxy(10,22);cprintf("|                       |");
+         gotoxy(10,23);cprintf("| 3. Data diri/usaha    |");
+         gotoxy(10,24);cprintf("|                       |");
+         gotoxy(10,25);cprintf("+-----------------------+");
+
+
+         textbackground(15);
+         gotoxy(4,34);cprintf("                                                                                      " );
+         textcolor(12);
+         gotoxy(10,34);cprintf("Tekan 0 untuk kembali sebelumnya / tekan M untuk ke menu awal" );
+         int benar=0;
+         while(benar==0){
+         	textbackground(16);
+         	textcolor(11);
+         	gotoxy(13,33);cprintf("Pilih : ");fitur=getch();
+
+         	if(fitur=='1'){
+               kodebarang();
+
+         	}else if(fitur=='2'){
+            	lihatstok();
+         	}else if(fitur=='3'){
+            	datadiri();
+            }else if(fitur=='0'){
+            	if(strcmp(nomerhp[ked],"")!=0){
+               	blank();
+               	table();
+               	login_pelapak();
+               }else{
+               	informasi();
+                  textcolor(16);
+   					gotoxy(40,22);cprintf("PERHATIAN");
+                  gotoxy(28,25);cprintf("Isi data diri atau usaha anda");
+   					gotoxy(28,29);cprintf("PRESS ANY KEY TO CONTINUE..");
+   					getch();hapusinformasi();
+						datadiri();
+               }
+
+            }else if(fitur=='M'||fitur=='m'){
+            	if(strcmp(nomerhp[ked],"")!=0){
+               	blank();
+            		user();
+            	}else{
+               	informasi();
+                  textcolor(16);
+   					gotoxy(40,22);cprintf("PERHATIAN");
+                  gotoxy(28,25);cprintf("Isi data diri atau usaha anda");
+   					gotoxy(28,29);cprintf("PRESS ANY KEY TO CONTINUE..");
+   					getch();hapusinformasi();
+						datadiri();
+               }
+         	}else{
+            	inputansalah(22,33);
+               benar=0;
+         	}
+         }
+
+}
+////////////////////////// void kode barang ////////////////////////////////////
+void kodebarang(){
+
+
+			textcolor(12);
+			gotoxy(10,9);cprintf("+-----------------------+");
+         gotoxy(10,10);cprintf("|                       |");
+         gotoxy(10,11);cprintf("| 1. Jual Produk        |");
+         gotoxy(10,12);cprintf("|                       |");
+         gotoxy(10,13);cprintf("+-----------------------+");
+
+	int perulangan=0;
+   for(int x=0;x<25;x++){
+   	for(int y=0;y<45;y++){
+         textbackground(12);
+      	gotoxy(40+y,7+x);cprintf(" ");
+      }printf("\n");
+   }
+
+
+
+   perulangan=0;
+   do{
+   	cd:
+   	textcolor(14);
+   	char kb[100];
+      textbackground(12);
+      gotoxy(43,10);cprintf("KODE BARANG  :");
+      textbackground(16);
+      gotoxy(58,10);cprintf("                         ");
+   	gotoxy(60,10);gets(kb);
+      int k;
+   	k=validasi(kb );
+   	if(k==1){
+      	harusangka(58,10);
+         perulangan=0;
+   	}
+    else{
+      	perulangan=1;
+      }
+
+      if(strcmp(kb,"")==0){
+   		harusdiisi(60,10);
+         perulangan=0;
+   	}
+      ke=atoi(kb);//kode barang
+     	ke-=1;
+     if (ke!=ked){
+     	textbackground(12);
+     	gotoxy(58,11);cprintf("KODE BARANG TIDAK SESUAI ");Sleep(1500);
+     	gotoxy(58,11);cprintf("                          ");
+     	goto cd;
+     }
+     
+	
+
+
+   }while(perulangan==0);
+   jualproduk();
+}
+
+////////////////////////// void jual produk ////////////////////////////////////
+void jualproduk(){
+         int x,y;
+         x=jumlahbarang[ke][ke];
+    		textcolor(12);
+			gotoxy(10,9);cprintf("+-----------------------+");
+         gotoxy(10,10);cprintf("|                       |");
+         gotoxy(10,11);cprintf("| 1. Jual Produk        |");
+         gotoxy(10,12);cprintf("|                       |");
+         gotoxy(10,13);cprintf("+-----------------------+");
+	for(int x=0;x<25;x++){
+   	for(int y=0;y<45;y++){
+         textbackground(12);
+      	gotoxy(40+y,7+x);cprintf(" ");
+      }printf("\n");
+   }
+   textcolor(14);
+   gotoxy(54,8);cprintf("JUAL PRODUK ANDA");
+   gotoxy(43,12);cprintf("NAMA BARANG  :");
+   gotoxy(43,14);cprintf("STOK DI JUAL :");
+   gotoxy(43,16);cprintf("KEADAAN      :");
+   gotoxy(43,17);cprintf("(BARU/BEKAS) ");
+   gotoxy(43,20);cprintf("HARGA        :");
+
+   gotoxy(43,22);cprintf("SIMPAN (y/n) :");
+
+
+   textbackground(16);
+   textcolor(15);
+   gotoxy(58,12);cprintf("                         ");
+   gotoxy(58,14);cprintf("                         ");
+   gotoxy(58,16);cprintf("                         ");
+   gotoxy(58,20);cprintf("Rp.                      ");
+   strcpy(nama_pelapak[jumlahuser],username);
+
+////////////////////////////////// nama produk /////////////////////////////////
+
+
+   int py=0;
+   do{
+   	gotoxy(60,12);gets(namaproduk[ke][x]);
+   	if(strcmp(namaproduk[ke][x],"")==0){
+   		harusdiisi(60,12);
+	
+   	}else{
+      	py=1;
+      }
+   }while(py==0);
+
+
+
+////////////////////////////////////////// stok ////////////////////////////////
+   y:
+   int dy=0;
+   do{
+   	
+   	gotoxy(60,14);gets(stok[ke][x]);  //STOK
+   	if(strcmp(stok[ke][x],"0")==0){
+   		textcolor(12);
+   		gotoxy(60,14);cprintf("stok tidak boleh kosong");Sleep(1000);
+   		gotoxy(60,14);cprintf("                       ");goto y;
+   	}
+   	int k;
+   	k=validasi(stok[ke][x]);
+   	if(k==1){
+      	harusangka(60,14);
+   	}
+    else{
+      	dy=1;
+      }
+      if(strcmp(stok[ke][x],"")==0){
+      	harusdiisi(60,14);
+      	dy=0;
+   	}
+   }while(dy!=1);
+/////////////////////////////////// KEADAAAN ///////////////////////////////////
+   int dx=0;
+   do{
+   	gotoxy(60,16);gets(keadaan[index]); //KEADAAN
+   	int c;
+   	c=validasiHuruf(keadaan[index]);
+   	if(c==1){
+      	harushuruf(60,16);
+   	}else if(c==4){
+   		for(int tampil=0;tampil<6;tampil++){
+      		if (tampil%2==0){
+         		textcolor(14);
+            	gotoxy(60,16);cprintf("MINIMAL 3 KARAKTER !!");Sleep(500);
+            }
+         	else{
+         		textcolor(16);
+            	gotoxy(60,16);cprintf("                      ");Sleep(500);
+         	}
+      	}
+   	}
+      else{
+       	dx=1;
+      }
+
+      if(strcmp(keadaan[index],"")==0){
+         harusdiisi(60,16);
+      	dx=0;
+   	}
+   }while(dx!=1);
+////////////////////////////////////////// HARGA ///////////////////////////////
+int ulang=0;
+do{
+   gotoxy(62,20);gets(harga[index]);
+   int oi;
+   oi=validasi(harga[index]);
+   	if(oi==1){
+   		harusangka(61,20);
+   	}
+      else{
+      	ulang=1;
+      }
+
+      if(strcmp(harga[index],"")==0){
+         harusdiisi(62,20);
+      	ulang=0;
+   	}
+}while(ulang==0);
+////////////////////////////////////////// simpan //////////////////////////////
+int gy=0;
+do{
+	textbackground(12);
+   textcolor(14);
+   char simpan;
+   gotoxy(58,22);simpan=getche();
+   if (simpan=='y' || simpan=='Y'){
+       strcpy(namaprodukjual[index],namaproduk[ke][x]);  //untuk di pembeli
+       stokterbaru[ke][x]=atoi(stok[ke][x]); //interger untuk tambah stok
+       stokpenjualan[index]=stokterbaru[ke][x];
+
+      index++; jumlahuser++;x++;
+      jumlahbarang[ke][ke]=x;
+   	for(int loading=1;loading<=20;loading++){
+         textbackground(12);
+         textcolor(14);
+      		gotoxy(45,24);cprintf("SAVING ");
+            gotoxy(80,24);cprintf("100%");
+				gotoxy(55+loading,24);cprintf("%c ",219);
+      		Sleep(100);
+
+
+         }
+         akun_pelapak();
+   }
+   else if(simpan=='n' || simpan=='N') {
+   	strcpy(namaproduk[ke][index],"");
+      strcpy(stok[ke][index],"");
+   	akun_pelapak();
+   }
+   else{
+      textbackground(12);
+      gotoxy(58,22);cprintf("  ");
+      gy=1;
+   }
+}while(gy=1);
+
+}
+/////////////////////////// void lihat stok ////////////////////////////////////
+void lihatstok(){
+    		textcolor(12);
+			gotoxy(10,15);cprintf("+-----------------------+");
+         gotoxy(10,16);cprintf("|                       |");
+         gotoxy(10,17);cprintf("| 2. Lihat stok / tambah|");
+         gotoxy(10,18);cprintf("|                       |");
+         gotoxy(10,19);cprintf("+-----------------------+");
+	for(int x=0;x<25;x++){
+   	for(int y=0;y<45;y++){
+      		textbackground(3);
+      	gotoxy(40+y,7+x);cprintf(" ");
+
+      }printf("\n");
+   }
+
+
+
+   textbackground(3);
+   textcolor(14);
+   gotoxy(41,8); cprintf("+-------------+------+-------------+------+");
+   gotoxy(41,9); cprintf("| NAMA BARANG | STOK | NAMA BARANG | STOK |");
+   gotoxy(41,10);cprintf("+-------------+------+-------------+------+");
+   gotoxy(41,11);cprintf("|             |      |             |      |");
+   gotoxy(41,12);cprintf("|             |      |             |      |");
+   gotoxy(41,13);cprintf("|             |      |             |      |");
+   gotoxy(41,14);cprintf("|             |      |             |      |");
+   gotoxy(41,15);cprintf("|             |      |             |      |");
+	gotoxy(41,16);cprintf("|             |      |             |      |");
+   gotoxy(41,17);cprintf("|             |      |             |      |");
+   gotoxy(41,18);cprintf("|             |      |             |      |");
+   gotoxy(41,19);cprintf("|             |      |             |      |");
+   gotoxy(41,20);cprintf("|             |      |             |      |");
+	gotoxy(41,21);cprintf("|             |      |             |      |");
+   gotoxy(41,22);cprintf("|             |      |             |      |");
+   gotoxy(41,23);cprintf("|             |      |             |      |");
+   gotoxy(41,24);cprintf("|             |      |             |      |");
+   gotoxy(41,25);cprintf("|             |      |             |      |");
+   gotoxy(41,26);cprintf("+-------------+------+-------------+------+");
+
+   for(int st=0;st<jumlahbarang[ked][ked];st++){
+
+         if (st<15){
+         	gotoxy(43,11+st);cprintf("%d. %s",st+1,namaproduk[ked][st]);
+      		gotoxy(58,11+st);cprintf("%d",stokterbaru[ked][st]);
+
+         }
+         else{
+         	int letak=0;
+         	gotoxy(63,11+letak);cprintf("%d. %s",st+1,namaproduk[ked][st]);
+      		gotoxy(56,11+letak);cprintf("%d",stokterbaru[ked][st]);
+         	letak++;
+         }
+
+   }
+
+int rp=0;
+do{
+   textbackground(16);
+   gotoxy(4,34);cprintf("                                                                                      " );
+
+   br:
+   textbackground(15);
+   gotoxy(40,31);cprintf("                                             ");
+   textcolor(12);
+	gotoxy(40,31);cprintf("    Tekan T untuk tambah stok / 0 kembali    ");
+
+   char bm,pil[1],simp,tambahs[100];
+   int pilih,tambah;
+	bm=getch();
+   if(bm=='t' || bm=='T'){
+   textbackground(3);
+   textcolor(14);
+   	gotoxy(45,28);cprintf("Pilih barang : ");
+      gotoxy(45,29);cprintf("Tambah       : ");
+      gotoxy(45,30);cprintf("Simpan (y/n) : ");
+
+      gotoxy(60,28);pil[0]=getche();
+      pilih=atoi(pil);
+
+      if(pilih>jumlahbarang[ked][ked]){
+      	gotoxy(60,28);cprintf("Belum ada barang terjual");Sleep(1000);
+         rp=1;
+         textbackground(3);
+         gotoxy(60,28);cprintf("                        ");
+      }
+      else{
+      for(int p=0;p<jumlahbarang[ked][ked];p++){
+      	if(pilih==p+1){
+         	tm:
+         	textbackground(16);
+         	gotoxy(60,29);printf("  ");
+         	gotoxy(60,29);gets(tambahs);
+      		tambah=atoi(tambahs);
+      		if (tambah<0){
+      			textbackground(3);
+      			textcolor(14);
+      			gotoxy(60,29);cprintf("stok tidak boleh < dari 0");Sleep(2000);
+      			gotoxy(60,29);cprintf("                         ");
+      			goto tm;
+      		}else if (tambah==0){
+      			textbackground(3);
+      			textcolor(14);
+      			gotoxy(60,29);cprintf("angka tidak == boleh 0");Sleep(2000);
+      			gotoxy(60,29);cprintf("                      ");
+      			goto tm;
+      		}
+            int sp=0;
+         	do{
+            gotoxy(60,30);simp=getch();
+            	if (simp=='y' || simp=='Y'){
+						for(int a=0;a<index;a++){
+							if(stokterbaru[ked][p]==stokpenjualan[a] && strcmp(namaproduk[ked][p],namaprodukjual[a])==0){
+								stokterbaru[ked][p]+=tambah;
+								stokpenjualan[a]=stokterbaru[ked][p];
+							}
+						}
+					lihatstok();
+               }
+               else if (simp=='n' || simp=='N'){
+               	akun_pelapak();
+               }
+               else{
+
+                  sp=1;
+               }
+            }while(sp==1);
+         }
+      }
+      goto br;
+    }//tutup else
+
+
+   }
+   else if(bm=='0' ){
+   	akun_pelapak();
+      rp=1;
+   }
+   else{
+       rp=1;
+   }
+
+   }while(rp==1);
+}  //void
+
+
+/////////////////////////// void data diri  ///////////////////////////////////
+void datadiri(){
+    		textcolor(12);
+			gotoxy(10,21);cprintf("+-----------------------+");
+         gotoxy(10,22);cprintf("|                       |");
+         gotoxy(10,23);cprintf("| 3. Data diri/usaha    |");
+         gotoxy(10,24);cprintf("|                       |");
+         gotoxy(10,25);cprintf("+-----------------------+");
+	for(int x=0;x<25;x++){
+   	for(int y=0;y<45;y++){
+         textbackground(3);
+      	gotoxy(40+y,7+x);cprintf(" ");
+      }printf("\n");
+   }
+   textcolor(15);
+   gotoxy(50,12);cprintf("LENGKAPI DATA DIRI ANDA");
+   gotoxy(43,15);cprintf("NOMER HP    : ");
+   gotoxy(43,18);cprintf("E-MAIL      : ");
+   gotoxy(43,21);cprintf("NO REKENING : ");
+   gotoxy(50,23);cprintf("SIMPAN (Y/N): ");
+
+   textbackground(3);
+
+
+
+if(strcmp(nomerhp[ked],"")!=0){
+   gotoxy(57,15);cprintf("%s",nomerhp[ked]);
+   gotoxy(57,18);cprintf("%s",email[ked]);
+   gotoxy(57,21);cprintf("%s",nomerrekening[ked]);
+   gotoxy(50,23);cprintf("              ");
+
+  	textbackground(16);
+   gotoxy(4,34);cprintf("                                                                                      " );
+
+   textbackground(15);
+   gotoxy(40,31);cprintf("                                             ");
+   textcolor(12);
+b:gotoxy(40,31);cprintf("    Tekan R untuk merubah data / 0 kembali  "); char mil=getch();
+   if(mil=='R'||mil=='r'){
+   	strcpy(nomerhp[ked],"");
+      strcpy(email[ked],"");
+      strcpy(nomerrekening[ked],"");
+   	goto a;
+   }else if(mil=='0'){
+   	akun_pelapak();
+   }else{
+   	goto b;
+   }
+}
+else{
+
+a:
+	textbackground(3);
+	gotoxy(50,23);cprintf("SIMPAN (Y/N): ");
+	textbackground(16);
+	gotoxy(57,18);cprintf("                          ");
+   gotoxy(57,21);cprintf("                          ");
+   gotoxy(57,15);cprintf("                          ");
+   int ty;
+         do{
+          ty=0;
+          hp:
+         	gotoxy(57,15);cprintf("                          ");
+         	gotoxy(58,15);gets(nomerhp[ked]);
+            if(strcmp(nomerhp[ked],"")==0){
+         		ty=1;
+               	harusdiisi(58,15);
+         	}else if (nomerhp[ked][0]!='0' || nomerhp[ked][1]!='8')
+         	{
+         		textbackground(16);
+         		gotoxy(58,15);cprintf("nomer hp invalid");Sleep(1000);
+         		gotoxy(58,15);cprintf("                ");goto hp;
+         	}
+            else{
+               	ty=0;
+             	int k;
+   				k=validasi(nomerhp[ked]);
+   				if(k==1){
+      			  	harusangka(58,15);
+        			 ty=1;
+   			  	}else if(strlen(nomerhp[ked])<11 || strlen(nomerhp[ked])>13){
+            		inputansalah(58,15);
+            		ty=1;
+            	}
+   			}
+
+
+
+         }while(ty!=0);
+////////////////////////////////////////////////////////////////////////////////
+
+	int bty;
+        do{
+          bty=0;
+         	gotoxy(57,18);cprintf("                          ");
+         	gotoxy(58,18);gets(email[ked]);
+         	if (email)
+         	{
+         		/* code */
+         	}
+         	int val=validasiemail(email[ked]);
+         	if(strcmp(email[ked],"")==0){
+         		bty=1;
+            	harusdiisi(58,18);
+            }else{
+               	bty=0;
+         		if(val==1){
+         			inputansalah(58,18);
+         			bty=1;
+         		}
+         	}
+
+
+
+
+
+        }while(bty!=0);
+////////////////////////////////////////////////////////////////////////////////
+	int cty;
+         do{
+          cty=0;
+         	gotoxy(57,21);cprintf("                          ");
+         	gotoxy(58,21);gets(nomerrekening[ked]);
+             int k;
+   				k=validasi(nomerrekening[ked]);
+   				if(k==1){
+      			  	harusangka(58,21);
+        				 cty=1;
+   			  	}
+     			   else{
+               	if(strcmp(nomerrekening[ked],"")==0){
+         			cty=1;
+               	harusdiisi(58,21);
+         			}
+            		else if(strlen(nomerrekening[ked])<9 || strlen(nomerrekening[ked])>16){
+            		inputansalah(58,21);
+               	cty=1;
+            		}else{
+                  	cty=0;
+                  }
+    			    }
+
+          }while(cty!=0);
+
+int gy=0;
+do{
+   textcolor(15);
+   textbackground(3);
+   char simpan;
+   gotoxy(64,23);simpan=getche();
+   if (simpan=='y' || simpan=='Y'){
+      gotoxy(45,24);cprintf("SAVING ");
+      gotoxy(80,24);cprintf("100%");
+   	for(int loading=1;loading<=20;loading++){
+         textbackground(3);
+         textcolor(2);
+
+				gotoxy(55+loading,24);cprintf("%c ",219);
+      		Sleep(100);
+         }
+         akun_pelapak();
+   }
+   else if(simpan=='n' || simpan=='N') {
+   	strcpy(nomerhp[ked],"");
+      strcpy(email[ked],"");
+      strcpy(nomerrekening[ked],"");
+   	akun_pelapak();
+   }
+   else{
+   	textbackground(3);gotoxy(64,23);cprintf("  ");
+      gy=1;
+   }
+}while(gy=1);
+
+
+}
+
+
+}
+
+
+////////////////////////////////////  void akun pembeli  ///////////////////////
+void akun_pembeli(){
+int tempat=7;
+
+	textcolor(11);
+
+	gotoxy(30,5);cprintf("SELAMAT BERBELANJA DENGAN PUAS,%s ",strupr(user_p));
+
+	if(index==0){
+		gotoxy(20,12);cprintf("MOHON BERSABAR BELUM ADA PELAPAK YANG MENJUAL BARANG");
+		gotoxy(20,14);cprintf("  CCC    000    M         M  I  N    N    GGGGGG   ");	
+		gotoxy(20,15);cprintf(" C      0   0   MM       MM  I  NN   N   G         ");
+		gotoxy(20,16);cprintf("C      O     0  M M     M M  I  N N  N  G          ");
+		gotoxy(20,17);cprintf("C      O     0  M  M   M  M  I  N  N N  G   GG GG  ");
+		gotoxy(20,18);cprintf(" C      0   0   M   M M   M  I  N   NN   G     G   ");
+		gotoxy(20,19);cprintf("  CCC    00O    M    M    M  I  N    N    GGGGG    ");
+
+		gotoxy(30,21);cprintf("SSSSSS    OOOO      OOOO    N     N                ");
+		gotoxy(30,22);cprintf("S        O    O    O    O   NN    N                ");
+		gotoxy(30,23);cprintf("S       O      O  O      O  N N   N                ");
+		gotoxy(30,24);cprintf("SSSSSS  O      O  O      O  N  N  N                ");
+		gotoxy(30,25);cprintf("     S  O      O  O      O  N   N N                ");
+		gotoxy(30,26);cprintf("     S   O    O    O    O   N    NN                ");
+		gotoxy(30,27);cprintf("SSSSSS    OOOO      OOOO    N     N                ");
+
+	}
+   textbackground(12);
+   textcolor(15);
+   gotoxy(4,33);cprintf("                                                                                      " );
+   gotoxy(15,33);cprintf("TEKAN 0 UNTUK KEMBALI / M UNTUK KE MENU AWAL / X UNTUK KELUAR ");
+
+
+   textcolor(14);
+	for(int a=0;a<index;a++){
+		if(a<4){
+  			gotoxy(tempat,10);cprintf("+------- %d -------+",a+1);
+			gotoxy(tempat,11);cprintf("|                 |");
+			gotoxy(tempat,12);cprintf("|                 |");
+			gotoxy(tempat,13);cprintf("|                 |");
+			gotoxy(tempat,14);cprintf("|                 |");
+			gotoxy(tempat,15);cprintf("|                 |");
+			gotoxy(tempat,16);cprintf("+-----------------+");
+			tempat+=20;
+		}else{
+			if(a==4){
+				tempat=7;
+			}
+			gotoxy(tempat,18);cprintf("+------- %d -------+",a+1);
+			gotoxy(tempat,19);cprintf("|                 |");
+			gotoxy(tempat,20);cprintf("|                 |");
+			gotoxy(tempat,21);cprintf("|                 |");
+			gotoxy(tempat,22);cprintf("|                 |");
+			gotoxy(tempat,23);cprintf("|                 |");
+			gotoxy(tempat,24);cprintf("+-----------------+");
+			tempat+=20;
+		}
+	}
+	tempat=8;
+
+	for(int a=0;a<index;a++){
+		if(a<4){
+			gotoxy(tempat,11);cprintf("%s",namaprodukjual[a]);
+			gotoxy(tempat,12);cprintf("Tersedia : %d",stokpenjualan[a]);
+			gotoxy(tempat,13);cprintf("%s",keadaan[a]);
+			gotoxy(tempat,14);cprintf("Rp.%s",harga[a]);
+			gotoxy(tempat,15);cprintf("Pelapak : %s",strlwr(nama_pelapak[a]));
+			tempat+=20;
+		}else{
+			if(a==4){
+				tempat=8;
+			}
+			gotoxy(tempat,19);cprintf("%s",namaprodukjual[a]);
+			gotoxy(tempat,20);cprintf("Tersedia : %d",stokpenjualan[a]);
+			gotoxy(tempat,21);cprintf("%s",keadaan[a]);
+			gotoxy(tempat,22);cprintf("Rp.%s",harga[a]);
+			gotoxy(tempat,23);cprintf("Pelapak : %s",strlwr(nama_pelapak[a]));
+			tempat+=20;
+		}
+	}
+
+	if(strcmp(namaprodukyangdibeli[0],"")!=0){
+		gotoxy(50,8);cprintf("k.keranjang pembelian");
+	}
+
+	int m=0;
+	do{
+		k:
+		textcolor(14);
+		textbackground(16);
+		char p[1];
+		gotoxy(43,30);cprintf("Pilih : ");p[0]=getche();
+		if(p[0]=='0'){
+			blank();
+			table();
+			login_pembeli();
+		}else if(p[0]=='m' || p[0]=='M'){
+			blank();
+			table();
+			user();
+		}
+		else if(p[0]=='x' || p[0]=='X'){
+			blank();
+			exit(0);
+		}
+		else if(p[0]=='i' || p[0]=='I'){
+			blank_b();
+			infoAplikasi();
+			akun_pembeli();
+		}
+		else if(p[0]==27){
+			goto k;
+		}
+		else if(p[0]=='k'|| p[0]=='K'){
+			if(strcmp(namaprodukyangdibeli[0],"")!=0){
+				blank();
+				bayar();
+			}
+		}
+		else{
+			int o=atoi(p);
+			gotoxy(51,30);cprintf("%d",o);
+			if(o>index){
+				inputansalah(51,30);
+				m=1;
+			}else{
+				for(int i=0;i<=index;i++){
+					if(o==i ){
+						if(o==0){
+						inputansalah(51,30);goto k;
+					}else{
+						informasi();
+						gotoxy(28,22);cprintf("%s",namaprodukjual[i-1]);
+						gotoxy(28,23);cprintf("Tersedia : %d",stokpenjualan[i-1]);
+						gotoxy(28,24);cprintf("%s",keadaan[i-1]);
+						gotoxy(28,25);cprintf("Rp.%s",harga[i-1]);
+						gotoxy(28,26);cprintf("Pelapak : %s",strlwr(nama_pelapak[i-1]));
+						ulang:
+						char inp[100];
+						textbackground(16);gotoxy(58,22);cprintf("   ");
+						textbackground(6);textcolor(14);
+						gotoxy(45,22);cprintf("Beli berapa : ");gets(inp);
+                  int jumlah=atoi(inp);
+						if(strcmp(inp,"")==0){
+							goto ulang;
+						}else if(jumlah>stokpenjualan[i-1]){
+							textcolor(12);
+                  			gotoxy(28,28);cprintf("maaf stok kurang");Sleep(1000);
+                  			textbackground(6);
+                  			gotoxy(28,28);cprintf("                ");
+                  			goto ulang;
+                  		}
+						int c=validasi(inp);
+						if(c==1){
+							harusangka(25,28);
+							goto ulang;
+						}else{
+
+							lagi:
+							char lagi;
+							gotoxy(45,24);cprintf("(Y/N)");
+							gotoxy(45,23);cprintf("MAU BELI LAGI :");lagi=getche();
+							if (lagi=='y'|| lagi=='Y'){
+								for(int z=0;z<index;z++){
+									for(int a=0;a<index;a++){
+										if(stokpenjualan[i-1]==stokterbaru[z][a] && strcmp(namaprodukjual[i-1],namaproduk[z][a])==0){
+										stokpenjualan[i-1]-=jumlah;
+										stokterbaru[z][a]=stokpenjualan[a];
+									}
+								}
+							}
+							strcpy(namapelapaknya[sekian],nama_pelapak[i-1]);
+							strcpy(namaprodukyangdibeli[sekian],namaprodukjual[i-1]);
+							hargayangdibeli[sekian]=atoi(harga[i-1]);
+							pesanyangdibeli[sekian]=jumlah;
+							sekian++;
+							blank();
+							akun_pembeli();
+							}else if(lagi=='N'|| lagi=='n'){
+								milih:
+								gotoxy(25,29);cprintf("ESC UNTUK MEMBATALKAN");
+								gotoxy(25,28);cprintf("TEKAN ENTER UNTUK KEMBAYARAN ATAU ");char lih=getche();
+								if(lih==13){
+									gh:
+									stokpenjualan[i-1]-=jumlah;
+									strcpy(namapelapaknya[sekian],nama_pelapak[i-1]);
+									strcpy(namaprodukyangdibeli[sekian],namaprodukjual[i-1]);
+									hargayangdibeli[sekian]=atoi(harga[i-1]);
+									pesanyangdibeli[sekian]=jumlah;
+									sekian++;
+									if(strcmp(namapembeli[jumlahpembeli],"")==0){
+										blank();
+										datadiripembeli();
+									}else{
+										blank();
+										bayar();
+									}
+
+								}else if(lih==27){
+									blank();
+									akun_pembeli();
+								}else{
+									goto milih;
+								}
+							}else{
+								goto lagi;
+							}
+						}
+
+					}
+				}
+			}
+			}//else
+
+		}
+}while(m==1);
+
+
+}
+/////////////////////////// isi data diri pembeli //////////////////////////////
+void datadiripembeli(){
+   textcolor(11);
+	gotoxy(35,10);cprintf("Lengkapi Identitas Anda");
+   gotoxy(12,15);cprintf("Nama Lengkap   :      ");
+   gotoxy(12,18);cprintf("Alamat Lengkap :      ");
+   gotoxy(12,20);cprintf("                          +-------+  +-------+   +--------+ ");
+   gotoxy(12,21);cprintf("Pilih Metode pengiriman : |1. Jne |  |2. J&T |   |3. Tiki | ");
+   gotoxy(12,22);cprintf("                          +-------+  +-------+   +--------+ ");
+   gotoxy(12,25);cprintf("Simpan (y/n)   : ");
+
+   //nama
+   h:
+   gotoxy(29,15);gets(namapembeli[jumlahpembeli]); int c=validasiHuruf(namapembeli[jumlahpembeli]);
+	if(c==1){
+   		harushuruf(29,15);
+   		goto h;
+   	}
+   	else{
+   		
+   	}
+   gotoxy(29,18);gets(alamatlengkap[jumlahpembeli]);
+   metode:
+   char metode;
+   gotoxy(72,21);metode=getch();
+   if(metode=='1'){
+   textcolor(12);
+   gotoxy(38,20);cprintf("+-------+  ");
+   gotoxy(38,21);cprintf("|1. Jne |  ");
+   gotoxy(38,22);cprintf("+-------+  ");
+   }else if(metode=='2'){
+   textcolor(12);
+   gotoxy(49,20);cprintf("+-------+  ");
+   gotoxy(49,21);cprintf("|2. J&T |  ");
+   gotoxy(49,22);cprintf("+-------+  ");
+   }else if(metode=='3'){
+   textcolor(12);
+   gotoxy(61,20);cprintf("+--------+ ");
+   gotoxy(61,21);cprintf("|3. Tiki | ");
+   gotoxy(61,22);cprintf("+--------+ ");
+   }else{
+   	goto metode;
+   }
+   char save;
+   gotoxy(29,25);save=getch();
+   if (save=='y'||save=='Y'){
+   	blank();
+      bayar();
+   }else if(save=='n'||save=='N'){
+   	strcpy(namapembeli[jumlahpembeli],"");
+      strcpy(alamatlengkap[jumlahpembeli],"");
+   }else{
+   	goto metode;
+   }
+ getch();
+
+}
+/////////////////////////// pembayaran /////////////////////////////////////////
+void bayar(){
+   textcolor(14);
+   textbackground(16);
+	gotoxy(15,8); cprintf("+-------------+-----------------+-------+-----------+----------+");
+	gotoxy(15,9); cprintf("|   PELAPAK   |   NAMA BARANG   | PESAN |   HARGA   |  JUMLAH  |");
+	gotoxy(15,10);cprintf("+-------------+-----------------+-------+-----------+----------+");
+	gotoxy(15,11);cprintf("|             |                 |       |           |          |");
+	gotoxy(15,12);cprintf("|             |                 |       |           |          |");
+	gotoxy(15,13);cprintf("|             |                 |       |           |          |");
+	gotoxy(15,14);cprintf("|             |                 |       |           |          |");
+	gotoxy(15,15);cprintf("|             |                 |       |           |          |");
+	gotoxy(15,16);cprintf("|             |                 |       |           |          |");
+	gotoxy(15,17);cprintf("|             |                 |       |           |          |");
+	gotoxy(15,18);cprintf("|             |                 |       |           |          |");
+	gotoxy(15,19);cprintf("|             |                 |       |           |          |");
+	gotoxy(15,20);cprintf("|             |                 |       |           |          |");
+	gotoxy(15,21);cprintf("|             |                 |       |           |          |");
+	gotoxy(15,22);cprintf("|             |                 |       |           |          |");
+	gotoxy(15,23);cprintf("|             |                 |       |           |          |");
+	gotoxy(15,24);cprintf("+-------------+-----------------+-------+-----------+----------+");
+	gotoxy(15,25);cprintf("|                  JUMLAH                           |          |");
+	gotoxy(15,26);cprintf("+-------------+-----------------+-------+-----------+----------+");
+	textbackground(12);
+   	textcolor(15);
+   	gotoxy(4,32);cprintf(" Silahkan pilih nomer pelapak untuk mengetahui kontak dari pelapak untuk pembayaran   " );
+   	gotoxy(4,33);cprintf("                                                                                      " );
+   	gotoxy(15,33);cprintf("TEKAN 0 UNTUK KEMBALI / M UNTUK KE MENU AWAL / X UNTUK KELUAR ");
+
+
+   for(int x=0;x<sekian;x++){
+   		textbackground(16);
+      		gotoxy(17,11+x);cprintf("%d. %s",x+1,namapelapaknya[x]);
+         	gotoxy(31,11+x);cprintf("%s",namaprodukyangdibeli[x]);
+      		gotoxy(49,11+x);cprintf("%d",pesanyangdibeli[x]);
+				gotoxy(57,11+x);cprintf("%d",hargayangdibeli[x]);
+      		int jumlah[100];
+      		jumlah[x]=pesanyangdibeli[x]*hargayangdibeli[x];
+      		gotoxy(69,11+x);cprintf("%d",jumlah[x]);
+            total+=jumlah[x];
+   }
+   gotoxy(70,25);cprintf("%d",total);
+   z:
+   gotoxy(35,30);cprintf("Pilih Info Pelapak :");
+   char pi[1];
+   pi[0]=getch();
+
+   if(pi[0]=='0'){
+   	blank();
+      akun_pembeli();
+   }else if(pi[0]=='m'||pi[0]=='M'){
+   	blank();
+      user();
+   }else if (pi[0]=='x'||pi[0]=='X')
+   {
+   	blank();
+   	exit(0);
+   }
+   else{
+   	int ip=atoi(pi);
+   	for(int o=0;o<sekian;o++){
+   		if(ip>sekian){
+   			inputansalah(56,30);
+   		}
+      	if(strcmp(namapelapaknya[ip-1],inp_user[o])==0){
+         	informasi();
+         	textcolor(15);
+   			gotoxy(35,22);cprintf("Info kontak person");
+   			gotoxy(25,25);cprintf("Nomer hp    : %s",nomerhp[o]);
+   			gotoxy(25,26);cprintf("E-Mail      : %s",email[o]);
+   			gotoxy(25,27);cprintf("No Rekening : %s",nomerrekening[o]);
+   			gotoxy(25,29);cprintf("PRESS ANY KEY TO CONTINUE..");
+   			getch();
+  	 		blank();
+  	 		bayar();
+         
+   getch();
+         }
+      }
+   	goto z;
+   }
+
+
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////  main ////////////////////////////////////////////
+main(){
+
+	tampilan();
+  	welcome();
+	Kode();
+}

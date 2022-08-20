@@ -1,0 +1,1539 @@
+#include <stdio.h>
+#include <conio.h>
+#include <windows.h>
+
+
+//========================== BIODATA =============================//
+//         Nama         : Raihan Rizqi Fauzan                     //
+//         Jurusan      : D3 - Manajemen Informatika              //
+//                      Windows Size                              //
+//         Width        : 57                                      //
+//         Height       : 110
+//================================================================//
+
+
+
+//================================================================//
+//                         PROTOTYPE                              //
+//================================================================//
+
+void border();
+void navbar();
+void borderNavbar();
+void frameInner();
+void tambahKandidat();
+void dataKandidat();
+void formLogin();
+void splashScreen();
+void dataPemilih();
+void tambahPemilih();
+void clrNav();
+void clrHeader();
+void popupEditKandidat();
+void popupDetailKandidat();
+void popupHapusKandidat();
+void popupEditPemilih();
+void popupHapusPemilih();
+void hapusKandidat(int i);
+void editKandidat(char z[10]);
+void detailKandidat(char z[10]);
+void editPemilih(int y);
+void hapusPemilih(int y);
+void voting();
+void menuKandidat();
+void menuPemilih();
+void hasilVoting();
+int valHuruf(char a[]);
+char* validasiHuruf(char a[],int r,int u);
+int valMisi(char a[]);
+char* validasiMisi(char a[],int r,int u);
+int valAngka(char a[]);
+char* validasiAngka(char a[],int r,int u);
+int valNIS(char angka[]);
+char* validasiNIS(char angka[],int x,int y);
+void errorInput();
+void errorInputAwal();
+
+
+
+
+
+//================================================================//
+//                        VARIABEL GLOBAL                         //
+//================================================================//
+
+char login[100][2][100];
+char kandidat[5][4][1000] = {{"Raihan","Rizqi","Fauzan","Lebih baik mengejar cita-cita, daripada cita citata"},{"Muhammad","Resha","Anshori","Gapailah Mimpi dengan cara tidur"}};
+char misi[5][10][300] = {{"Syahadat","Sholat","Puasa","Zakat","Naik Haji"},{"Senyum","Salam","Sapa","Sopan","Santun"}};
+char pemilih[100][4][50] = {{"1516101001","Adi Murianto","XII","RPL"},{"1516101002","Aditya","XII","RPL"}};
+int tampLogin=0;
+int tampKandidat=2;
+int tampPemilih=1;
+int tam_misi[5];
+int status;
+int prosesVoting[5]={0,0,0,0,0};
+bool statusVoting[100]={false};
+int pemilihOn;
+char userAdmin[50] = "admin";
+char pwAdmin[50] = "admin";
+char getKandidat[10];
+char nis[16];
+
+
+
+
+void errorInput(){
+   char c[] = "Inputan Salah !";
+   char s[] = "                ";
+   for(int a=0;a<strlen(c);a++){
+   textcolor(15);
+   	gotoxy(50+a,50);cprintf("%c",c[a]);Sleep(50);
+   }
+   for(int a=0;a<strlen(c);a++){
+   textcolor(15);
+   	gotoxy(50+a,50);cprintf("%c",s[a]);Sleep(50);
+   }
+}
+
+void nisSama(){
+	char c[] = "NIS sudah ada ! ";
+   char s[] = "                ";
+   for(int a=0;a<strlen(c);a++){
+   textcolor(15);
+   	gotoxy(50+a,50);cprintf("%c",c[a]);Sleep(50);
+   }
+   for(int a=0;a<strlen(c);a++){
+   textcolor(15);
+   	gotoxy(50+a,50);cprintf("%c",s[a]);Sleep(50);
+   }
+}
+
+void kandidatPenuh(){
+	frameInner();
+   textbackground(3);
+   textcolor(15);
+   gotoxy(25,30);cprintf("- K a n d i d a t   M a k s i m a l   5   P a s a n g a n -");
+   getch();
+   navbar();
+
+}
+
+void errorInputAwal(){
+   char c[] = "Inputan Salah !";
+   char s[] = "                ";
+   for(int a=0;a<strlen(c);a++){
+   	gotoxy(50+a,50);printf("%c",c[a]);Sleep(50);
+   }
+   for(int a=0;a<strlen(c);a++){
+   	gotoxy(50+a,50);printf("%c",s[a]);Sleep(50);
+   }
+}
+
+char* validasiHuruf(char huruf[],int x,int y){
+	char tampungan[100];
+   int p=0;
+   strcpy(tampungan,huruf);
+   while(tampungan[0]==NULL || valHuruf(tampungan)!=strlen(tampungan) || tampungan[0]==' '){
+      errorInput();
+   	for(int a=0;a<strlen(tampungan);a++){
+      	gotoxy(x+a,y);printf(" ");
+      }
+   p++;
+      gotoxy(x,y);gets(tampungan);
+   }
+
+   return tampungan;
+}
+
+int valHuruf(char huruf[]){
+	int a=0;
+   if(strlen(huruf)==0 || huruf[0]==NULL || strlen(huruf)>20){
+   	return 0;
+   }
+   for(int b=0;b<strlen(huruf);b++){
+   	if((huruf[b]>='A' && huruf[b]<='Z') || (huruf[b]>='a' && huruf[b]<='z') || huruf[b]=='\''|| huruf[b]==' '){
+      	a++;
+      }
+
+      if(huruf[b]==' ' && huruf[b+1]==' ' || huruf[b]=='\'' && huruf[b+1]=='\''){
+         return 0;
+      }
+   }
+   return a;
+}
+
+
+char* validasiMisi(char huruf[],int x,int y){
+	char tampungan[100];
+   int p=0;
+   strcpy(tampungan,huruf);
+   while(tampungan[0]==NULL || valMisi(tampungan)!=strlen(tampungan) || tampungan[0]==' '){
+      errorInput();
+   	for(int a=0;a<strlen(tampungan);a++){
+      	gotoxy(x+a,y);printf(" ");
+      }
+   p++;
+      gotoxy(x,y);gets(tampungan);
+   }
+
+   return tampungan;
+}
+
+int valMisi(char huruf[]){
+	int a=0;
+   if(strlen(huruf)==0){
+   	return 0;
+   }
+   for(int b=0;b<strlen(huruf);b++){
+   	if((huruf[b]>='a' && huruf[b]<='z') || (huruf[b]>='A' && huruf[b]<='Z') || (huruf[b]>='0' && huruf[b]<='9') || huruf[b]==' '|| huruf[b]=='\''|| huruf[b]=='\"' || huruf[b]=='\.' || huruf[b]=='\,'){
+      	a++;
+      }
+
+      if(huruf[b]==' ' && huruf[b+1]==' '){
+         return 0;
+      }
+   }
+   return a;
+}
+
+
+char* validasiAngka(char angka[],int x,int y){
+	char tampungan[100];
+   int p=0;
+   strcpy(tampungan,angka);
+   while(tampungan[0]==NULL || valAngka(tampungan)!=strlen(tampungan) || tampungan[0]==' '){
+      errorInput();
+   	for(int a=0;a<strlen(tampungan);a++){
+      	gotoxy(x+a,y);printf(" ");
+      }
+   p++;
+      gotoxy(x,y);gets(tampungan);
+   }
+
+   return tampungan;
+}
+
+char* validasiNIS(char angka[],int x,int y){
+	char tampungan[100];
+   int p=0;
+   strcpy(tampungan,angka);
+   while(strlen(tampungan)!=10 &&tampungan[0]==NULL || valNIS(tampungan)!=strlen(tampungan) || tampungan[0]==' '){
+      errorInput();
+   	for(int a=0;a<strlen(tampungan);a++){
+      	gotoxy(x+a,y);printf(" ");
+      }
+   p++;
+      gotoxy(x,y);gets(tampungan);
+   }
+
+   return tampungan;
+}
+
+int valAngka(char angka[]){
+	int a=0;
+   if(strlen(angka)==0 || angka[0] == '0' || angka[0] == '0'){
+   	return 0;
+   }
+   for(int b=0;b<strlen(angka);b++){
+   	if(angka[b]>='0' && angka[b]<='9'){
+      	a++;
+      }
+
+      if(angka[b]==' ' && angka[b+1]==' '){
+         return 0;
+      }
+   }
+   return a;
+}
+
+int valNIS(char angka[]){
+	int a=0;
+   if(strlen(angka)!=10 || angka[0] == ' '){
+   	return 0;
+   }
+   for(int b=0;b<strlen(angka);b++){
+   	if(angka[b]>='0' && angka[b]<='9'){
+      	a++;
+      }
+
+      if(angka[b]==' ' && angka[b+1]==' '){
+         return 0;
+      }
+   }
+   return a;
+}
+
+
+void border(){
+
+  	for(int x=1;x<=57;x++){
+   	for(int z=1;z<=110;z++){
+      	if(z==1 || z==110 || x<=2 || x==57){
+         	textcolor(16);cprintf("%c",219);
+         } else if(x>=10 && x<=15){
+         	textbackground(3);cprintf(" ",219);
+         } else {
+      		printf(" ");
+         }
+      }
+   }
+}
+
+
+void splashscreen(){
+	for(int x=1;x<=57;x++){
+   	for(int z=1;z<=110;z++){
+      	if(z==1 || z==110 || x<=2 || x==57){
+         	textbackground(15);cprintf(" ");
+         } else {
+         	textcolor(15);
+         	textbackground(3);cprintf(" ");
+         }
+      }
+   }
+
+
+   textcolor(15);
+   textbackground(3);
+   gotoxy(37,24);cprintf("    %c%c%c         %c%c%c                          ",219,219,219,219,219,219);
+   gotoxy(37,25);cprintf("   %c   %c       %c%c%c                           ",219,219,219,219,219);
+   gotoxy(37,26);cprintf("   %c%c%c%c%c %c%c%c  %c%c%c                            ",219,219,219,219,219,219,219,219,219,219,219);
+   gotoxy(37,27);cprintf("   %c         %c%c%c                             ",219,219,219,219);
+   gotoxy(37,28);cprintf("    %c%c%c     %c%c%c                              ",219,219,219,219,219,219);
+   gotoxy(37,29);cprintf("           %c%c%c       %c    %c        %c       ",219,219,219,219,219,219);
+   gotoxy(37,30);cprintf("  %c%c%c     %c%c%c   %c%c  %c%c%c      %c%c%c%c %c          ",219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219);
+	gotoxy(37,31);cprintf("   %c%c%c   %c%c%c   %c  %c  %c    %c  %c  %c %c %c%c%c      ",219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219);
+	gotoxy(37,32);cprintf("    %c%c%c %c%c%c    %c  %c  %c %c  %c  %c  %c %c   %c      ",219,219,219,219,219,219,219,219,219,219,219,219,219,219,219);
+   gotoxy(37,33);cprintf("     %c%c%c%c%c      %c%c   %c%c   %c  %c  %c  %c%c%c%c      ",219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219);
+   gotoxy(37,35);cprintf("              -   K  E  T  U  A    O  S  I  S");
+
+
+   for(int b=1;b<=10;b++){
+         gotoxy(55,40);cprintf(".    ");Sleep(100);
+         gotoxy(55,40);cprintf(". .  ");Sleep(100);
+         gotoxy(55,40);cprintf(". . .");Sleep(100);
+   }
+   formLogin();
+
+
+}
+
+void header(){
+	gotoxy(30,6);printf("- E   V O T I N G   S M K   N   1   B A N J A R  -");
+}
+
+void borderNavbar(){
+	for(int a=1;a<=20;a++){
+   	for(int b=1;b<=4;b++){
+      	gotoxy(1+a,9+b);textcolor(1);cprintf("%c",219);
+      }
+   }
+}
+
+void clrNav(){
+	for(int a=1;a<=106;a++){
+   	for(int b=1;b<=4;b++){
+      	gotoxy(1+a,9+b);textbackground(3);
+         cprintf(" ");
+      }
+   }
+}
+
+
+
+void navbar(){
+	clrscr();
+	system("color f3");
+	border();
+	header();
+
+   textcolor(15);
+   textbackground(3);
+   gotoxy(37,24);printf("    %c%c%c         %c%c%c                          ",219,219,219,219,219,219);
+   gotoxy(37,25);printf("   %c   %c       %c%c%c                           ",219,219,219,219,219);
+   gotoxy(37,26);printf("   %c%c%c%c%c %c%c%c  %c%c%c                            ",219,219,219,219,219,219,219,219,219,219,219);
+   gotoxy(37,27);printf("   %c         %c%c%c                             ",219,219,219,219);
+   gotoxy(37,28);printf("    %c%c%c     %c%c%c                              ",219,219,219,219,219,219);
+   gotoxy(37,29);printf("           %c%c%c       %c    %c        %c       ",219,219,219,219,219,219);
+   gotoxy(37,30);printf("  %c%c%c     %c%c%c   %c%c  %c%c%c      %c%c%c%c %c          ",219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219);
+	gotoxy(37,31);printf("   %c%c%c   %c%c%c   %c  %c  %c    %c  %c  %c %c %c%c%c      ",219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219);
+	gotoxy(37,32);printf("    %c%c%c %c%c%c    %c  %c  %c %c  %c  %c  %c %c   %c      ",219,219,219,219,219,219,219,219,219,219,219,219,219,219,219);
+   gotoxy(37,33);printf("     %c%c%c%c%c      %c%c   %c%c   %c  %c  %c  %c%c%c%c      ",219,219,219,219,219,219,219,219,219,219,219,219,219,219,219,219);
+   gotoxy(37,35);printf("              -   K  E  T  U  A    O  S  I  S");
+
+
+
+   char pilih;
+
+	textcolor(15);
+
+   if(status==1){
+   	gotoxy(4,12);cprintf("1. Kandidat");
+   	gotoxy(19,12);cprintf("2. Pemilih");
+   	gotoxy(34,12);cprintf("3. Grafik");
+      gotoxy(46,12);cprintf("4. Keluar");
+   	gotoxy(67,12);cprintf("0. Logout");
+   } else if(status==2){
+   	gotoxy(4,12);cprintf("1. Kandidat");
+   	gotoxy(19,12);cprintf("2. Voting");
+   	gotoxy(34,12);cprintf("3. Grafik");
+      gotoxy(46,12);cprintf("4. Keluar");
+   	gotoxy(67,12);cprintf("0. Logout");
+   }
+
+
+   gotoxy(94,12);cprintf("Pilih : ");
+   do {
+   	gotoxy(102,12);cprintf("   ");
+   	gotoxy(102,12);pilih=getche();
+
+   	if(pilih=='1'){
+      	menuKandidat();
+   	} else if(pilih=='2'){
+   		if(status==1){
+   			menuPemilih();
+      	} else {
+      		textcolor(16);
+      		gotoxy(19,12);cprintf("2. Voting");
+      		voting();
+      	}
+		} else if(pilih=='3'){
+      	textcolor(16);
+         clrNav();
+         gotoxy(4,12);cprintf("3. Grafik");
+  			hasilVoting();
+
+   	} else if(pilih=='0'){
+   		formLogin();
+   	} else if(pilih=='4'){
+   		exit(0);
+   	} else {
+   		errorInputAwal();
+   	}
+   } while(pilih!='1' || pilih!='2' || pilih!='3'  || pilih!='4'|| pilih!='0');
+
+
+
+}
+
+
+
+
+void menuKandidat(){
+	char menu;
+	clrNav();
+   dataKandidat();
+   textcolor(15);
+   if(status==1){
+   	gotoxy(4,12);cprintf("1. Tambah");
+   	gotoxy(19,12);cprintf("2. Edit");
+   	gotoxy(34,12);cprintf("3. Hapus");
+   	gotoxy(46,12);cprintf("4. Detail");
+
+   } else {
+   	gotoxy(4,12);cprintf("1. Detail");
+   }
+   gotoxy(60,12);cprintf("0. Kembali");
+   gotoxy(94,12);cprintf("Pilih : ");
+
+
+   textcolor(15);
+   textbackground(3);
+
+   if(status==1){
+       x :
+      	gotoxy(102,12);cprintf(" ");
+   		gotoxy(102,12);menu=getche();
+         if(menu=='1'){
+         	if(tampKandidat<5){
+         		textcolor(16);
+            	clrNav();
+      			gotoxy(4,12);cprintf("1. Tambah");
+      			tambahKandidat();
+            } else {
+            	textcolor(16);
+            	clrNav();
+      			gotoxy(4,12);cprintf("1. Tambah");
+      			kandidatPenuh();
+            }
+         } else if(menu=='2'){
+         	textcolor(16);
+            clrNav();
+      		gotoxy(4,12);cprintf("2. Edit");
+      		popupEditKandidat();
+         } else if(menu=='3'){
+         	textcolor(16);
+            clrNav();
+      		gotoxy(4,12);cprintf("3. Hapus");
+      		popupHapusKandidat();
+         } else if(menu=='4'){
+         	textcolor(16);
+            clrNav();
+      		gotoxy(4,12);cprintf("4. Detail");
+      		popupDetailKandidat();
+         } else if(menu=='0'){
+         	navbar();
+         } else {
+            errorInput();
+            goto x;
+         }
+   } else if(status==2){
+   	z:
+      	gotoxy(102,12);cprintf(" ");
+   		gotoxy(102,12);menu=getche();
+         if(menu=='1'){
+         	textcolor(16);
+      		gotoxy(4,12);cprintf("1. Detail");
+      		popupDetailKandidat();
+         } else if(menu=='0'){
+         	navbar();
+         } else {
+            errorInput();
+            goto z;
+         }
+   }
+}
+
+
+
+
+
+void menuPemilih(){
+	char menu;
+
+	clrNav();
+	dataPemilih();
+   textcolor(15);
+   gotoxy(4,12);cprintf("1. Tambah");
+   gotoxy(19,12);cprintf("2. Edit");
+   gotoxy(34,12);cprintf("3. Hapus");
+   gotoxy(46,12);cprintf("0. Kembali");
+   gotoxy(94,12);cprintf("Pilih : ");
+   do {
+   gotoxy(102,12);cprintf(" ");;
+  	gotoxy(102,12);menu=getche();
+   if(menu=='1'){
+   	textcolor(16);
+      gotoxy(4,12);cprintf("1. Tambah");
+      tambahPemilih();
+   } else if(menu=='2'){
+    	textcolor(16);
+      gotoxy(19,12);cprintf("2. Edit");
+      popupEditPemilih();
+   } else if(menu=='3'){
+    	textcolor(16);
+      gotoxy(34,12);cprintf("3. Hapus");
+      popupHapusPemilih();
+   } else if(menu=='0'){
+      navbar();
+   } else {
+   	errorInput();
+   }
+   } while(menu!='1' ||menu!='2'||menu!='3' || menu!='0');
+
+}
+
+
+
+void tambahPemilih(){
+	clrHeader();
+   frameInner();
+
+   textbackground(3);
+   textcolor(15);
+
+   gotoxy(35,6);printf("- T A M B A H   D A T A   P E M I L I H -");
+   gotoxy(19,19);cprintf("NIS          : ");
+   gotoxy(19,21);cprintf("Nama Lengkap : ");
+   gotoxy(19,23);cprintf("Kelas        : ");
+   gotoxy(19,25);cprintf("Jurusan      : ");
+
+   for(int x=0;x<50;x++){
+   	gotoxy(37+x,19);cprintf("%c",219);
+      gotoxy(37+x,21);cprintf("%c",219);
+      if(x<41){
+      	gotoxy(37+x,23);cprintf("%c",219);
+      }
+      gotoxy(37+x,25);cprintf("%c",219);
+   }
+   textcolor(14);gotoxy(88,19);cprintf("10 ANGKA");
+   textcolor(14);gotoxy(88,21);cprintf("MAKSIMAL 20 KARAKTER");
+   textcolor(14);gotoxy(88,23);cprintf("ex : X/XI/XII");
+   textcolor(14);gotoxy(88,25);cprintf("ex : RPL/Akuntansi/");
+   textcolor(14);gotoxy(88,26);cprintf("Multimedia/Pemasaran");
+
+   z :
+   bool x=false;
+   gotoxy(37,19);printf("                                ");
+   gotoxy(37,19);gets(pemilih[tampPemilih][0]);
+   // Mengecek Data Pemilih
+   	for(int a=0;a<tampPemilih;a++){
+   		if(strcmp(pemilih[a][0],pemilih[tampPemilih][0])==0){
+         	x=true;
+         	break;
+      	}
+   	}
+      if(x==true){
+      	nisSama();
+         goto z;
+      } else {
+   	strcpy(pemilih[tampPemilih][0],validasiNIS(pemilih[tampPemilih][0],37,19));
+   	}
+   gotoxy(37,21);gets(pemilih[tampPemilih][1]);strcpy(pemilih[tampPemilih][1],validasiHuruf(pemilih[tampPemilih][1],37,21));
+   int a=0;
+   do {
+   	gotoxy(37,23);printf("                                ");
+   	gotoxy(37,23);gets(pemilih[tampPemilih][2]);
+      if(strcmp(pemilih[tampPemilih][2],"X")==0 || strcmp(pemilih[tampPemilih][2],"XI")==0|| strcmp(pemilih[tampPemilih][2],"XII")==0){
+			a=1;
+      } else {
+      	errorInput();
+      }
+   }while(a!=1);
+
+   a=0;
+   do{
+   	gotoxy(37,25);printf("                                ");
+   	gotoxy(37,25);gets(pemilih[tampPemilih][3]);
+      if(strcmp(pemilih[tampPemilih][3],"RPL")==0 || strcmp(pemilih[tampPemilih][3],"Akuntansi")==0 || strcmp(pemilih[tampPemilih][3],"Multimedia")==0 || strcmp(pemilih[tampPemilih][3],"Pemasaran")==0){
+      	a=1;
+      } else {
+      	errorInput();
+      }
+   }while(a!=1);
+   a=0;
+   tampPemilih++;
+
+   menuPemilih();
+}
+
+
+void frameInner(){
+	for(int a=1;a<=106;a++){
+   	for(int b=1;b<=39;b++){
+      	gotoxy(2+a,15+b);textbackground(3);
+         cprintf(" ");
+      }
+   }
+}
+
+
+void clrHeader(){
+   for(int a=1;a<=108;a++){
+   	for(int b=1;b<=7;b++){
+      	gotoxy(1+a,1+b);textcolor(15);
+         cprintf("%c",219);
+      }
+   }
+}
+
+
+void dataKandidat(){
+	clrHeader();
+	frameInner();
+
+   gotoxy(40,6);printf("- D A T A   K A N D I D A T -");
+
+   textcolor(15);
+   textbackground(3);
+   for(int x=0;x<82;x++){
+   	for(int y=0;y<20;y++){
+      	if(y==0 || y==19 || y==4){
+      		gotoxy(15+x,17+y);cprintf("=");
+         }
+         if(x==0 && y>=1 || x==5 && y>=1 || x==30 && y>=1 || x==55 && y>=1 || x==81 && y>=1){
+          	gotoxy(15+x,17+y);cprintf("|");
+         }
+      }
+   }
+
+   gotoxy(17,19);cprintf("No");
+   gotoxy(28,19);cprintf("Ketua Umum");
+   gotoxy(51,19);cprintf("Wakil Ketua I");
+   gotoxy(76,19);cprintf("Wakil Ketua II");
+
+
+   for(int i=0;i<tampKandidat;i++){
+   	char tamp[3][100];
+      strcpy(tamp[0],strupr(kandidat[i][0]));
+      strcpy(tamp[1],strupr(kandidat[i][1]));
+      strcpy(tamp[2],strupr(kandidat[i][2]));
+
+   	gotoxy(17,23+i);cprintf("%d",i+1);
+      gotoxy(21,23+i);cprintf("%s",tamp[0]);
+      gotoxy(46,23+i);cprintf("%s",tamp[1]);
+      gotoxy(71,23+i);cprintf("%s",tamp[2]);
+   }
+
+}
+
+
+
+void tambahKandidat(){
+	clrHeader();
+	frameInner();
+	char jumMisi[2];
+
+   gotoxy(35,6);printf("- T A M B A H   D A T A   K A N D I D A T -");
+
+
+   textbackground(3);
+   textcolor(15);
+	gotoxy(19,17);cprintf("Pasangan Calon ke %d",tampKandidat+1);
+	gotoxy(19,19);cprintf("Ketua Umum     : ");
+	gotoxy(19,21);cprintf("Wakil Ketua 1  : ");
+	gotoxy(19,23);cprintf("Wakil Ketua 2  : ");
+	gotoxy(19,25);cprintf("Visi           : ");
+   gotoxy(19,27);cprintf("Jumlah Misi    : ");
+
+   for(int x=0;x<50;x++){
+   	gotoxy(37+x,19);printf(" ");
+      gotoxy(37+x,21);printf(" ");
+      gotoxy(37+x,23);printf(" ");
+      gotoxy(37+x,25);printf(" ");
+      if(x>45){
+   		gotoxy(37,27);printf(" ");
+      }
+   }
+   textcolor(14);gotoxy(88,19);cprintf("MAKSIMAL 20 KARAKTER");
+   textcolor(14);gotoxy(88,21);cprintf("MAKSIMAL 20 KARAKTER");
+  	textcolor(14);gotoxy(88,23);cprintf("MAKSIMAL 20 KARAKTER");
+
+
+   textbackground(3);
+   textcolor(15);
+
+   gotoxy(37,19);gets(kandidat[tampKandidat][0]);
+   strcpy(kandidat[tampKandidat][0],validasiHuruf(kandidat[tampKandidat][0],37,19));
+
+	gotoxy(37,21);gets(kandidat[tampKandidat][1]);
+   strcpy(kandidat[tampKandidat][1],validasiHuruf(kandidat[tampKandidat][1],37,21));
+
+   gotoxy(37,23);gets(kandidat[tampKandidat][2]);strcpy(kandidat[tampKandidat][2],validasiHuruf(kandidat[tampKandidat][2],37,23));
+   gotoxy(37,25);gets(kandidat[tampKandidat][3]);strcpy(kandidat[tampKandidat][3],validasiMisi(kandidat[tampKandidat][3],37,25));
+   a :
+   gotoxy(37,27);printf("   ");
+	gotoxy(37,27);gets(jumMisi);
+   tam_misi[tampKandidat]=atoi(jumMisi);
+   if(tam_misi[tampKandidat]>2 && tam_misi[tampKandidat]<=10){
+   	strcpy(jumMisi,validasiAngka(jumMisi,37,27));
+   } else {
+   	errorInput();
+   	goto a;
+   }
+
+
+   for(int a=0,b=1;a<atoi(jumMisi);a++,b+=2){
+   	gotoxy(19,28+b);cprintf("%d ",a+1);gets(misi[tampKandidat][a]);
+      strcpy(misi[tampKandidat][a],validasiMisi(misi[tampKandidat][a],21,28+b));
+   }
+   //gotoxy(40,25);printf("Berhasil Input Data");
+   tampKandidat++;
+
+
+
+   clrNav();
+   menuKandidat();
+
+
+}
+
+
+
+void popupEditKandidat(){
+	bool x;
+
+	for(int a=1;a<=35;a++){
+   	for(int b=1;b<=8;b++){
+      	gotoxy(38+a,20+b);textbackground(4);cprintf(" ");
+         gotoxy(39+a,21+b);textbackground(15);cprintf(" ");
+      }
+   }
+   textbackground(4);
+   textcolor(15);
+   gotoxy(47,22);cprintf("- C A R I   D A T A -");
+   gotoxy(41,26);cprintf("Masukan No Pasangan : ");
+
+   gotoxy(65,26);gets(getKandidat);
+
+   int c;
+   c=atoi(getKandidat);
+   // Mengecek Data Kandidat
+   	if(c>0 && c<=tampKandidat){
+      	x=true;
+      } else {
+      	x=false;
+      }
+
+   if(x==true){
+   	editKandidat(getKandidat);
+   } else {
+   	char p[] = "Data Tidak Ditemukan !";
+      char s[] = "                            ";
+      for(int a=0;p[a]!=NULL;a++){
+      	gotoxy(44+a,27);cprintf("%c",p[a]);Sleep(50);
+      }
+
+      for(int a=0;s[a]!=NULL;a++){
+      	gotoxy(44+a,27);cprintf("%c",s[a]);Sleep(50);
+      }
+      menuKandidat();
+
+   }
+}
+
+
+
+
+void editKandidat(char z[10]){
+   clrHeader();
+	frameInner();
+	char jumMisi[2];
+
+   gotoxy(35,6);printf("- E D I T   D A T A   K A N D I D A T -");
+
+
+   textbackground(3);
+   textcolor(15);
+	gotoxy(19,17);cprintf("Edit Pasangan Calon No %s",z);
+	gotoxy(19,19);cprintf("Ketua Umum     : ");
+	gotoxy(19,21);cprintf("Wakil Ketua 1  : ");
+	gotoxy(19,23);cprintf("Wakil Ketua 2  : ");
+	gotoxy(19,25);cprintf("Visi           : ");
+   gotoxy(19,27);cprintf("Jumlah Misi    : ");
+
+
+   for(int x=0;x<50;x++){
+   	gotoxy(37+x,19);printf(" ");
+      gotoxy(37+x,21);printf(" ");
+      gotoxy(37+x,23);printf(" ");
+      gotoxy(37+x,25);printf(" ");
+      if(x>45){
+   		gotoxy(37,27);printf(" ");
+      }
+   }
+
+    textcolor(14);gotoxy(88,19);cprintf("MAKSIMAL 20 KARAKTER");
+   textcolor(14);gotoxy(88,21);cprintf("MAKSIMAL 20 KARAKTER");
+  	textcolor(14);gotoxy(88,23);cprintf("MAKSIMAL 20 KARAKTER"); 
+
+
+   int x;
+   x=atoi(z);
+
+   textbackground(3);
+   textcolor(15);
+   gotoxy(37,19);gets(kandidat[x-1][0]);strcpy(kandidat[x-1][0],validasiHuruf(kandidat[x-1][0],37,19));
+   gotoxy(37,21);gets(kandidat[x-1][1]);strcpy(kandidat[x-1][1],validasiHuruf(kandidat[x-1][1],37,21));
+   gotoxy(37,23);gets(kandidat[x-1][2]);strcpy(kandidat[x-1][2],validasiHuruf(kandidat[x-1][2],37,23));
+   gotoxy(37,25);gets(kandidat[x-1][3]);strcpy(kandidat[x-1][3],validasiHuruf(kandidat[x-1][3],37,25));
+
+   a :
+   gotoxy(37,27);printf("   ");
+   gotoxy(37,27);gets(jumMisi);
+
+   tam_misi[x-1]=atoi(jumMisi);
+   if(tam_misi[x-1]>2 && tam_misi[x-1]<=10){
+   	strcpy(jumMisi,validasiAngka(jumMisi,37,27));
+   } else {
+   	errorInput();
+      goto a;
+   }
+
+
+   for(int a=0,b=1;a<atoi(jumMisi);a++,b+=2){
+   	gotoxy(19,28+b);cprintf("%d . ",a+1);gets(misi[x-1][a]);
+   	strcpy(misi[x-1][a],validasiMisi(misi[x-1][a],21,28+b));
+   }
+
+
+
+   clrNav();
+   menuKandidat();
+
+}
+
+
+void popupDetailKandidat(){
+	bool x;
+
+	for(int a=1;a<=35;a++){
+   	for(int b=1;b<=8;b++){
+      	gotoxy(38+a,20+b);textbackground(4);cprintf(" ");
+         gotoxy(39+a,21+b);textbackground(15);cprintf(" ");
+      }
+   }
+   textbackground(4);
+   textcolor(15);
+   gotoxy(47,22);cprintf("- C A R I   D A T A -");
+   gotoxy(41,26);cprintf("Masukan No Pasangan : ");
+
+   gotoxy(65,26);gets(getKandidat);
+
+   int c;
+   c=atoi(getKandidat);
+   // Mengecek Data Kandidat
+   if(c>0 && c<=tampKandidat){
+   	x = true;
+   } else {
+    	x = false;
+    }
+
+   if(x==true){
+   	detailKandidat(getKandidat);
+   } else {
+   	char p[] = "Data Tidak Ditemukan !";
+      char s[] = "                            ";
+      for(int a=0;p[a]!=NULL;a++){
+      	gotoxy(44+a,27);cprintf("%c",p[a]);Sleep(50);
+      }
+
+      for(int a=0;s[a]!=NULL;a++){
+      	gotoxy(44+a,27);cprintf("%c",s[a]);Sleep(50);
+      }
+      menuKandidat();
+
+   }
+}
+
+void detailKandidat(char z[10]){
+	clrHeader();
+	frameInner();
+
+   gotoxy(35,6);printf("- D E T A I L   D A T A   K A N D I D A T -");
+
+
+   textbackground(3);
+   textcolor(15);
+	gotoxy(19,17);cprintf("Pasangan Calon ke %s",z);
+	gotoxy(19,19);cprintf("Ketua Umum     : ");
+	gotoxy(19,21);cprintf("Wakil Ketua 1  : ");
+	gotoxy(19,23);cprintf("Wakil Ketua 2  : ");
+	gotoxy(19,25);cprintf("Visi           : ");
+   gotoxy(19,27);cprintf("Misi           : ");
+
+   int x;
+   x=atoi(z);
+
+   textbackground(3);
+   textcolor(15);
+   gotoxy(37,19);cprintf("%s",&kandidat[x-1][0]);
+   gotoxy(37,21);cprintf("%s",&kandidat[x-1][1]);
+   gotoxy(37,23);cprintf("%s",&kandidat[x-1][2]);
+   gotoxy(37,25);cprintf("%s",&kandidat[x-1][3]);
+
+   for(int a=0,b=1;misi[x-1][a][0]!=NULL;a++,b+=2){
+   	gotoxy(19,28+b);cprintf("%d %s",a+1,misi[x-1][a]);
+   }
+
+   getch();
+   clrNav();
+   menuKandidat();
+}
+
+
+void popupHapusKandidat(){
+	bool x=false;
+
+	for(int a=1;a<=35;a++){
+   	for(int b=1;b<=8;b++){
+      	gotoxy(38+a,20+b);textbackground(4);cprintf(" ");
+         gotoxy(39+a,21+b);textbackground(15);cprintf(" ");
+      }
+   }
+   textbackground(4);
+   textcolor(15);
+   gotoxy(47,22);cprintf("- C A R I   D A T A -");
+   gotoxy(41,26);cprintf("Masukan No Pasangan : ");
+
+   gotoxy(65,26);gets(getKandidat);
+
+   int c;
+   c=atoi(getKandidat);
+   // Mengecek Data Kandidat
+   if(c>0 && c<=tampKandidat){
+   	x=true;
+   }
+   c-=1;
+
+
+   if(x==true){
+   	hapusKandidat(c);
+   } else {
+   	char p[] = "Data Tidak Ditemukan !";
+      char s[] = "                            ";
+      for(int a=0;p[a]!=NULL;a++){
+      	gotoxy(44+a,27);cprintf("%c",p[a]);Sleep(50);
+      }
+
+      for(int a=0;s[a]!=NULL;a++){
+      	gotoxy(44+a,27);cprintf("%c",s[a]);Sleep(50);
+      }
+      menuKandidat();
+
+   }
+}
+
+void hapusKandidat(int i){
+	char tampunganK[4][1000];
+
+   clrHeader();
+   frameInner();
+   for(int a=i;a<tampKandidat;a++){
+   	strcpy(tampunganK[0],kandidat[a][0]);
+      strcpy(tampunganK[1],kandidat[a][1]);
+      strcpy(tampunganK[2],kandidat[a][2]);
+      strcpy(tampunganK[3],kandidat[a][3]);
+
+      strcpy(kandidat[a][0],kandidat[a+1][0]);
+      strcpy(kandidat[a][1],kandidat[a+1][1]);
+      strcpy(kandidat[a][2],kandidat[a+1][2]);
+      strcpy(kandidat[a][3],kandidat[a+1][3]);
+
+      strcpy(kandidat[a+1][0],tampunganK[0]);
+      strcpy(kandidat[a+1][1],tampunganK[1]);
+      strcpy(kandidat[a+1][2],tampunganK[2]);
+      strcpy(kandidat[a+1][3],tampunganK[3]);
+   }
+
+   kandidat[tampKandidat-1][0][0] = NULL;
+   kandidat[tampKandidat-1][1][0] = NULL;
+   kandidat[tampKandidat-1][2][0] = NULL;
+   kandidat[tampKandidat-1][3][0] = NULL;
+
+
+   tampKandidat--;
+
+
+   char tampMisi[10][300];
+
+   for(int b=i;b<tam_misi[i];b++){
+   	strcpy(tampMisi[0],misi[b][0]);
+      strcpy(tampMisi[1],misi[b][1]);
+      strcpy(tampMisi[2],misi[b][2]);
+      strcpy(tampMisi[3],misi[b][3]);
+
+      strcpy(misi[b][0],misi[b+1][0]);
+      strcpy(misi[b][1],misi[b+1][1]);
+      strcpy(misi[b][2],misi[b+1][2]);
+      strcpy(misi[b][3],misi[b+1][3]);
+
+      strcpy(misi[b+1][0],tampMisi[0]);
+      strcpy(misi[b+1][1],tampMisi[1]);
+      strcpy(misi[b+1][2],tampMisi[2]);
+      strcpy(misi[b+1][3],tampMisi[3]);
+   }
+
+
+   misi[tam_misi[i]-1][0][0] = NULL;
+   misi[tam_misi[i]-1][1][0] = NULL;
+   misi[tam_misi[i]-1][2][0] = NULL;
+   misi[tam_misi[i]-1][3][0] = NULL;
+   misi[tam_misi[i]-1][4][0] = NULL;
+   misi[tam_misi[i]-1][5][0] = NULL;
+   misi[tam_misi[i]-1][6][0] = NULL;
+   misi[tam_misi[i]-1][7][0] = NULL;
+   misi[tam_misi[i]-1][8][0] = NULL;
+   misi[tam_misi[i]-1][9][0] = NULL;
+
+   tam_misi[i]--;
+
+   menuKandidat();
+}
+
+
+
+
+void dataPemilih(){
+	clrHeader();
+   frameInner();
+
+	gotoxy(40,6);printf("- D A T A   P E M I L I H -");
+   for(int x=0;x<82;x++){
+   	for(int y=0;y<30;y++){
+      	if(y==0 || y==29 || y==4){
+      		gotoxy(15+x,17+y);cprintf("=");
+         }
+         if(x==0 && y>=1 || x==5 && y>=1 || x==30 && y>=1 || x==55 && y>=1 || x==81 && y>=1){
+          	gotoxy(15+x,17+y);cprintf("|");
+         }
+      }
+   }
+
+   gotoxy(17,19);cprintf("No");
+   gotoxy(28,19);cprintf("NIS");
+   gotoxy(51,19);cprintf("Nama Legkap");
+   gotoxy(76,19);cprintf("Kelas");
+
+
+
+   for(int i=0;i<tampPemilih;i++){
+
+   	char tamp[4][300];
+   	strcpy(tamp[0],strupr(pemilih[i][0]));
+   	strcpy(tamp[1],strupr(pemilih[i][1]));
+   	strcpy(tamp[2],strupr(pemilih[i][2]));
+   	strcpy(tamp[3],strupr(pemilih[i][3]));
+   	gotoxy(17,23+i);cprintf("%d",i+1);
+      gotoxy(21,23+i);cprintf("%s",tamp[0]);
+      gotoxy(46,23+i);cprintf("%s",tamp[1]);
+      gotoxy(71,23+i);cprintf("%s %s",tamp[2],tamp[3]);
+   }
+}
+
+
+void popupEditPemilih(){
+	bool x = false;
+
+	for(int a=1;a<=35;a++){
+   	for(int b=1;b<=8;b++){
+      	gotoxy(38+a,20+b);textbackground(4);cprintf(" ");
+         gotoxy(39+a,21+b);textbackground(15);cprintf(" ");
+      }
+   }
+   textbackground(4);
+   textcolor(15);
+   gotoxy(47,22);cprintf("- C A R I   D A T A -");
+   gotoxy(41,26);cprintf("Masukan NIS : ");
+
+   gotoxy(55,26);gets(nis);
+
+   int a;
+
+   // Mengecek Data Pemilih
+   for(a=0;a<tampPemilih;a++){
+   	if(strcmp(pemilih[a][0],nis)==0){
+         x=true;
+         break;
+      }
+   }
+
+   if(x==true){
+   	editPemilih(a);
+   } else {
+   	char p[] = "Data Tidak Ditemukan !";
+      char s[] = "                            ";
+      for(int a=0;p[a]!=NULL;a++){
+      	gotoxy(44+a,27);cprintf("%c",p[a]);Sleep(50);
+      }
+
+      for(int a=0;s[a]!=NULL;a++){
+      	gotoxy(44+a,27);cprintf("%c",s[a]);Sleep(50);
+      }
+      menuPemilih();
+
+   }
+}
+
+
+
+void editPemilih(int y){
+	clrHeader();
+   frameInner();
+
+   textbackground(3);
+   textcolor(15);
+
+   gotoxy(35,6);printf("- E D I T   D A T A   P E M I L I H -");
+   gotoxy(19,19);cprintf("NIS          : ");
+   gotoxy(19,21);cprintf("Nama Lengkap : ");
+   gotoxy(19,23);cprintf("Kelas        : ");
+   gotoxy(19,25);cprintf("Jurusan      : ");
+
+   for(int x=0;x<50;x++){
+   	gotoxy(37+x,19);cprintf("%c",219);
+      gotoxy(37+x,21);cprintf("%c",219);
+      if(x<41){
+      	gotoxy(37+x,23);cprintf("%c",219);
+      }
+      gotoxy(37+x,25);cprintf("%c",219);
+   }
+   textcolor(14);gotoxy(88,19);cprintf("10 ANGKA");
+   textcolor(14);gotoxy(88,21);cprintf("MAKSIMAL 25 KARAKTER");
+   textcolor(14);gotoxy(88,23);cprintf("ex : X/XI/XII");
+   textcolor(14);gotoxy(88,25);cprintf("ex : RPL/Akuntansi/");
+   textcolor(14);gotoxy(88,26);cprintf("Multimedia/Pemasaran");
+
+
+   gotoxy(37,19);gets(pemilih[y][0]);strcpy(pemilih[y][0],validasiNIS(pemilih[y][0],37,19));
+   gotoxy(37,21);gets(pemilih[y][1]);strcpy(pemilih[y][1],validasiHuruf(pemilih[y][1],37,21));
+
+   int a=0;
+   do {
+   	gotoxy(37,23);printf("                                ");
+   	gotoxy(37,23);gets(pemilih[y][2]);
+      if(strcmp(pemilih[y][2],"X")==0 || strcmp(pemilih[y][2],"XI")==0|| strcmp(pemilih[y][2],"XII")==0){
+      	a=1;
+      }  else {
+      	errorInput();
+      }
+   }while(a!=1);
+
+   a=0;
+   do{
+   	gotoxy(37,25);printf("                                ");
+   	gotoxy(37,25);gets(pemilih[y][3]);
+      if(strcmp(pemilih[y][3],"RPL")==0 || strcmp(pemilih[y][3],"Akuntansi")==0 || strcmp(pemilih[y][3],"Multimedia")==0 || strcmp(pemilih[y][3],"Pemasaran")==0){
+      	a=1;
+      } else {
+      	errorInput();
+      }
+   }while(a!=1);
+   menuPemilih();
+}
+
+void popupHapusPemilih(){
+	bool x = false;
+
+	for(int a=1;a<=35;a++){
+   	for(int b=1;b<=8;b++){
+      	gotoxy(38+a,20+b);textbackground(4);cprintf(" ");
+         gotoxy(39+a,21+b);textbackground(15);cprintf(" ");
+      }
+   }
+   textbackground(4);
+   textcolor(15);
+   gotoxy(47,22);cprintf("- C A R I   D A T A -");
+   gotoxy(41,26);cprintf("Masukan NIS : ");
+
+   gotoxy(55,26);gets(nis);
+
+   int a;
+
+   // Mengecek Data Pemilih
+   for(a=0;a<tampPemilih;a++){
+   	if(strcmp(pemilih[a][0],nis)==0){
+         x=true;
+         break;
+      }
+   }
+
+   if(x==true){
+   	hapusPemilih(a);
+   } else {
+   	char p[] = "Data Tidak Ditemukan !";
+      char s[] = "                            ";
+      for(int a=0;p[a]!=NULL;a++){
+      	gotoxy(44+a,27);cprintf("%c",p[a]);Sleep(50);
+      }
+
+      for(int a=0;s[a]!=NULL;a++){
+      	gotoxy(44+a,27);cprintf("%c",s[a]);Sleep(50);
+      }
+      menuPemilih();
+
+   }
+}
+
+
+void hapusPemilih(int x){
+	char tampunganP[4][50];
+
+   clrHeader();
+   frameInner();
+   for(int a=x;a<tampKandidat;a++){
+   	strcpy(tampunganP[0],pemilih[a][0]);
+      strcpy(tampunganP[1],pemilih[a][1]);
+      strcpy(tampunganP[2],pemilih[a][2]);
+      strcpy(tampunganP[3],pemilih[a][3]);
+
+      strcpy(pemilih[a][0],pemilih[a+1][0]);
+      strcpy(pemilih[a][1],pemilih[a+1][1]);
+      strcpy(pemilih[a][2],pemilih[a+1][2]);
+      strcpy(pemilih[a][3],pemilih[a+1][3]);
+
+      strcpy(pemilih[a+1][0],tampunganP[0]);
+      strcpy(pemilih[a+1][1],tampunganP[1]);
+      strcpy(pemilih[a+1][2],tampunganP[2]);
+      strcpy(pemilih[a+1][3],tampunganP[3]);
+   }
+   pemilih[tampPemilih-1][0][0] = NULL;
+	pemilih[tampPemilih-1][1][0] = NULL;
+   pemilih[tampPemilih-1][2][0] = NULL;
+   pemilih[tampPemilih-1][3][0] = NULL;
+
+   tampPemilih--;
+   menuPemilih();
+
+}
+
+
+void voting(){
+	clrHeader();
+
+   char vote[10];
+   if(statusVoting[pemilihOn]==false){
+
+   	gotoxy(35,6);printf("- D E T A I L   D A T A   K A N D I D A T -");
+
+   	if(tampKandidat!=0){
+   		for(int x=0;x<tampKandidat;x++){
+   			frameInner();
+   			textbackground(3);
+   			textcolor(15);
+      		gotoxy(19,17);cprintf("Pasangan Calon ke %d",x+1);
+				gotoxy(19,19);cprintf("Ketua Umum     : ");
+				gotoxy(19,21);cprintf("Wakil Ketua 1  : ");
+				gotoxy(19,23);cprintf("Wakil Ketua 2  : ");
+				gotoxy(19,25);cprintf("Visi           : ");
+   			gotoxy(19,27);cprintf("Misi           : ");
+   			textbackground(3);
+   			textcolor(15);
+   			gotoxy(37,19);cprintf("%s",&kandidat[x][0]);
+   			gotoxy(37,21);cprintf("%s",&kandidat[x][1]);
+   			gotoxy(37,23);cprintf("%s",&kandidat[x][2]);
+   			gotoxy(37,25);cprintf("%s",&kandidat[x][3]);
+
+   			for(int a=0,b=1;misi[x][a][0]!=NULL;a++,b+=2){
+   				gotoxy(19,28+b);cprintf("%d. %s",a+1,misi[x][a]);
+   			}
+         	gotoxy(45,50);cprintf("Lanjut >>");
+         	getch();
+      	}
+   	} else {
+   		gotoxy(45,30);cprintf("- D a t a   T i d a k   D i t e m u k a n -");
+
+   		getch();
+      	navbar();
+   	}
+   } else {
+   	frameInner();
+      textbackground(3);
+   	textcolor(15);
+      gotoxy(20,30);cprintf("- V o t i n g   H a n y a   D a p a t   D i l a k u k a n   1   Kali -");
+   	getch();
+      navbar();
+   }
+
+   a :
+   bool x;
+
+	for(int a=1;a<=35;a++){
+   	for(int b=1;b<=8;b++){
+      	gotoxy(38+a,20+b);textbackground(4);cprintf(" ");
+         gotoxy(39+a,21+b);textbackground(15);cprintf(" ");
+      }
+   }
+
+   textbackground(4);
+   textcolor(15);
+   gotoxy(40,22);cprintf("- P I L I H  K A N D I D A T -");
+   gotoxy(41,26);cprintf("Masukan No Kandidat : ");
+
+   gotoxy(65,26);gets(vote);
+
+   int c;
+   c=atoi(vote);
+   // Mengecek Data Kandidat
+   	if(c>0 && c<=tampKandidat){
+      	x = true;
+      } else {
+      	x = false;
+      }
+   c-=1;
+
+   char yn[2];
+   if(x==true){
+   	for(int a=1;a<=35;a++){
+   		for(int b=1;b<=8;b++){
+         	textcolor(15);
+      		gotoxy(38+a,20+b);textbackground(15);cprintf(" ");
+         	gotoxy(39+a,21+b);textbackground(14);cprintf(" ");
+      	}
+   	}
+      gotoxy(45,23);cprintf("Anda Yakin ? y/n");
+      gotoxy(52,24);gets(yn);
+      if(strcmp(yn,"y")==0 || strcmp(yn,"Y")==0){
+      	prosesVoting[c]++;
+         statusVoting[pemilihOn]=true;
+      } else if(strcmp(yn,"n")==0 || strcmp(yn,"N")==0) {
+      	goto a;
+      } else {
+      	errorInput();
+         goto a;
+      }
+
+   } else {
+   	char p[] = "Kandidat dengan no tersebut tidak ada !";
+      char s[] = "                                  ";
+      for(int a=0;p[a]!=NULL;a++){
+      	gotoxy(40+a,27);cprintf("%c",p[a]);Sleep(50);
+      }
+
+      for(int a=0;s[a]!=NULL;a++){
+      	gotoxy(40 +a,27);cprintf("%c",s[a]);Sleep(50);
+      }
+      navbar();
+
+   }
+
+
+
+
+   clrNav();
+   navbar();
+
+}
+
+
+void hasilVoting(){
+	clrHeader();
+   frameInner();
+	int jumlahSuara = 0;
+   float presentase[5];
+   int grafik[5];
+
+
+
+
+   int a=0;
+   while(true){
+   	if(a==tampKandidat){
+      	break;
+      } else {
+         jumlahSuara+=prosesVoting[a];
+      }
+      a++;
+
+   }
+
+   if(jumlahSuara>0){
+   a=0;
+
+   while(true){
+   	if(a==tampKandidat){
+      	break;
+      } else{
+      	presentase[a]=float((prosesVoting[a])/float(jumlahSuara))*100;
+      }
+      a++;
+   }
+
+
+
+   int y=41,m=0,y2=42;
+
+   textbackground(15);
+   for(int a=0;a<20;a++){
+   	gotoxy(20,y2);cprintf(" ");
+      y2--;
+   }
+
+
+   for(int a=0;a<80;a++){
+   	gotoxy(20+a,42);cprintf(" ");
+   }
+
+
+   for(int a=0;a<tampKandidat;a++){
+   	for(int b=presentase[a];b>0;b-=5){
+      	textbackground(14);
+         gotoxy(24+m,y);cprintf(" ");
+         gotoxy(25+m,y);cprintf(" ");
+         gotoxy(26+m,y);cprintf(" ");
+         gotoxy(27+m,y);cprintf(" ");
+         gotoxy(28+m,y);cprintf(" ");
+         Sleep(100);
+
+      y--;
+      }
+      textbackground(3);
+      y=41;
+      gotoxy(29+m,22);cprintf("%.2f %",presentase[a]);
+      gotoxy(20+m,44);cprintf("  Kandidat %d",a+1);
+      gotoxy(29+m,24);cprintf("%d suara",prosesVoting[a]);
+      m+=15;
+   }
+   getch();
+   navbar();
+   } else {
+   	frameInner();
+      textbackground(3);
+   	textcolor(15);
+      gotoxy(20,30);cprintf("- B e l u m   A d a   S u a r a   V o t i n g   y a n g   M a s u k -");
+   	getch();
+      navbar();
+   }
+}
+
+
+void formLogin(){
+	clrscr();
+	system("color f3");
+
+   char username[35];
+   char password[35];
+   for(int a=1;a<=18;a++){
+   	for(int b=1;b<=40;b++){
+      	gotoxy(34+b,12+a);textcolor(3);cprintf("%c",219);
+         gotoxy(35+b,13+a);textcolor(7);cprintf("%c",219);
+      }
+   }
+   textbackground(3);
+   textcolor(15);
+   gotoxy(48,15);cprintf("- L O G I N -");
+
+   gotoxy(38,18);cprintf("Username");
+   gotoxy(38,24);cprintf("Password");
+
+   for(int a=0;a<=33;a++){
+   	gotoxy(38+a,21);cprintf("_");
+      gotoxy(38+a,27);cprintf("_");
+   }
+
+   gotoxy(38,20);gets(username);
+   gotoxy(38,26);gets(password);
+
+   bool x=true;
+   int a;
+   for(a=0;a<100;a++){
+   	if(strcmp(userAdmin,username)==0 && strcmp(pwAdmin,password)==0){
+      	gotoxy(38,27);cprintf("Berhasil Login sebagai admin");
+
+         status=1;
+         x=true;
+         break;
+      } else if(strcmp(username,pemilih[a][0])==0 && strcmp(password,"siswa2019")==0){
+         pemilihOn=a;
+   		gotoxy(38,27);cprintf("Berhasil Login sebagai siswa");
+         status=2;
+         x=true;
+         break;
+      } else {
+      	x=false;
+      }
+   }
+
+   char profil[50];
+   strcpy(profil,pemilih[a][1]);
+
+   if(x==false){
+   	gotoxy(38,27);cprintf("Login Gagal");
+      getch();
+      clrscr();
+      formLogin();
+   }
+
+   if(status==1){
+   	getch();
+      navbar();
+   } else if(status==2){
+      getch();
+      navbar();
+   }
+}
+
+
+
+main(){
+	//system("color f3");
+	//prosesVoting[0] = 7;
+   //prosesVoting[1] = 2;
+   ///status=1;
+//tambahKandidat();
+	//hasilVoting();
+   splashscreen();
+   //formLogin();
+
+getch();
+}

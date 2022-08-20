@@ -1,0 +1,59 @@
+#include<stdio.h>
+#include<conio.h>
+#include<windows.h>
+void tujuan();
+void gambar1();
+void tabel();
+void tabel2();
+void login();
+void gambar1(){
+   gotoxy(29,5); cprintf("                                                                                                           a        ");
+   gotoxy(29,6); cprintf("                                                             a                     aaaaa                  aaa       ");
+	gotoxy(29,7); cprintf("           a                                                aaa                    aaaaa                 aaaaa      ");
+   gotoxy(29,8); cprintf("          aaa                                              aaaaa                   aaaaa                aaaaaaa     ");
+   gotoxy(29,9); cprintf("         aaaaa                                            aaaaaaa                  aaaaa               aa     aa      ");
+   gotoxy(29,10);cprintf("        aaaaaaa                                          aaaaaaaaa                 aaaaa              aaa     aaa    ");
+   gotoxy(29,11);cprintf("         aaaaa                                            aaaaaaa       aaaaaaaaaaa     aaaaaaaaaaa    aaaaaaaaa     ");
+   gotoxy(29,12);cprintf("          aaa                                              aaaaa        aaaaaaaaaaa     aaaaaaaaaaa     aaaaaaa      ");
+   gotoxy(29,13);cprintf("         aaaaa                                            aaaaaaa                  aaaaa               aaaaaaaaa     ");
+   gotoxy(29,14);cprintf("          aaa                                              aaaaa                   aaaaa              aaaaaaaaaaa    ");
+   gotoxy(29,15);cprintf("        aaaaaaa                                          aaaaaaaaa                 aaaaa                aaaaaaa      ");
+   gotoxy(29,16);cprintf("     aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa             aaaaa                aaaaaaa      ");
+   gotoxy(29,17);cprintf("    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa            aaaaa                aaaaaaa      ");
+   gotoxy(29,18);cprintf("   aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa           aaaaa                aaaaaaa      ");
+   gotoxy(29,19);cprintf("   aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa           aaaaa                  aaa        ");
+   gotoxy(29,20);cprintf("   aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa           aaaaa                  aaa        ");
+   gotoxy(29,21);cprintf("   aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa           aaaaa                  aaa        ");
+   gotoxy(29,22);cprintf("   aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa            aaa                   aaa        ");
+   gotoxy(29,23);cprintf("     aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa               aaa                   aaa        ");
+   gotoxy(29,24);cprintf("                                                                                    aaa                   aaa        ");
+   gotoxy(29,25);cprintf("                                                                                    aaa                   aaa        ");
+
+}  gotoxy(29,5); cprintf("                                                                                                                    ");
+   gotoxy(29,6); cprintf("                                                                                                                    ");
+	gotoxy(29,7); cprintf("                                                                                                                    ");
+   gotoxy(29,8); cprintf("           a                   a                                                      ");
+   gotoxy(29,9); cprintf("          aaa                 aaa                                                       ");
+   gotoxy(29,10);cprintf("         aaaaa               aaaaa                                                     ");
+   gotoxy(29,11);cprintf("          aaa                 aaa                                                      ");
+   gotoxy(29,12);cprintf("           a                   a                                                      ");
+   gotoxy(29,13);cprintf("          aaa                 aaa                    aaaaa               aaaaaaaaa     ");
+   gotoxy(29,14);cprintf("           a                   a                     aaaaa              aaaaaaaaaaa    ");
+   gotoxy(29,15);cprintf("         aaaaa               aaaaa                   aaaaa                aaaaaaa      ");
+   gotoxy(29,16);cprintf("       aaaaaaaaaaaaaaaaaaaaaaaaaaaaa         aaaaaaaaaaaaaaaaaaaaaaaaa             aaaaa                aaaaaaa      ");
+   gotoxy(29,17);cprintf("      aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa            aaaaa                aaaaaaa      ");
+   gotoxy(29,18);cprintf("     aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa   aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa           aaaaa                aaaaaaa      ");
+   gotoxy(29,19);cprintf("     aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa   aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa           aaaaa                  aaa        ");
+   gotoxy(29,20);cprintf("     aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa   aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa           aaaaa                  aaa        ");
+   gotoxy(29,21);cprintf("                                                                                   aaaaa                  aaa        ");
+   gotoxy(29,22);cprintf("                                                                                    aaa                   aaa        ");
+   gotoxy(29,23);cprintf("                                                                                    aaa                   aaa        ");
+   gotoxy(29,24);cprintf("                                                                                    aaa                   aaa        ");
+   gotoxy(29,25);cprintf("                                                                                    aaa                   aaa        ");
+
+}
+main(){
+
+
+getch();
+}
